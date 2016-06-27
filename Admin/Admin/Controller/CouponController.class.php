@@ -17,4 +17,12 @@ class CouponController extends BaseController{
         $this->display('Coupon:clist');
     }
 
+    /**
+     * 创建优惠劵
+     */
+    public function create()
+    {
+        $this->display('Coupon:create_coupon');
+    }
+
 }
