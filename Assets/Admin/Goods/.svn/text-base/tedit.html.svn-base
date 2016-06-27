@@ -1,0 +1,88 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<link rel="stylesheet" href="/Assets/Admin/Public/css/table.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                分类编辑
+                <small></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                <li class="active">Here</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <form method="post" action="__SELF__" role="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="templatemo-preferences-form" role="form">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div role="alert" class="alert alert-warning alert-dismissible" style="height: 60px">
+                                        <button data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <div class="col-xs-6 col-sm-3">规格：{$good.spec}</div>
+                                        <div class="col-xs-6 col-sm-3">包装规格：{$good.pkgspec}</div>
+                                        <div class="col-xs-6 col-sm-3">单位：{$good.unit}</div>
+                                        <div class="col-xs-6 col-sm-3">产地：{$good.palce}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 margin-bottom-15">
+                        <label class="control-label" for="name">分类标题</label>
+                        <input type="text" value="{$gtype.name}" id="name" name="name" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 margin-bottom-15">
+                        <label class="control-label" for="pid">父级分类</label>
+                        <select id="pid" name="pid" class="form-control margin-bottom-15">
+                            <option value="">顶级分类</option>
+                            <foreach name="gtypes" item="v">
+                                <option value="{$v.id}" <?php if($gtype['parent_id'] == $v['id']) {echo 'selected="selected"' ;}?> >{$v.html}{$v.name}</option>
+                            </foreach>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 margin-bottom-15">
+
+                        <present name="gtype">
+                            <input type="hidden" name="id" value="{$gtype.id}">
+                            <button type="submit" class="btn btn-primary">更新</button>
+                            <else/>
+                            <button type="submit" class="btn btn-primary">新建</button>
+                        </present>
+                        <button type="button" class="btn btn-default">返回</button>
+                    </div>
+                </div>
+            </form>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

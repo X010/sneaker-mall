@@ -1,0 +1,133 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<link rel="stylesheet" href="/Assets/Admin/Public/css/table.css">
+<script>
+    //删除
+    $().ready(function(){
+        $('.button_del').on('click',function(){
+            var id = $(this).attr('data-id');
+            $("#del"+id+" td").css('background','#CBDFF2');
+            parent.layer.confirm('请确认该组下已经没有组成员了，否则需要重新授权，真的要删除吗？', {
+                btn: ['是的','取消'], //按钮
+                shade: 0.5
+            }, function(){
+                $.post("{:U('Admin/permission/group_del')}", { "id": id },function(data){
+                    if(data == 1){
+                        parent.layer.msg('删除成功', { icon: 1, time: 1000 }, function(){
+                            $("#del"+id).remove();
+                        });
+                    }else{
+                        parent.layer.msg('删除失败', {icon: 2, time: 2000 });
+                    }
+                }, "json");
+            },function(){
+                $("#del"+id+" td").css('border-top','0');
+                $("#del"+id+" td").css('border-bottom','1px solid #EFEFEF');
+            });
+        })
+    })
+</script>
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                系统首页
+                <small></small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <include file="./Assets/Admin/Inc/toolbar.html" title="" keywords="" />
+            <div class="main-body">
+                <!--  begin -->
+                <div class="create-search">
+                    <div class="create clearfix">
+                        <a class="create-btn" href="javascript:;">刷新</a>
+                        <ul class="create-list">
+                            <li class="clearfix">
+                                <a class="btn btn-default">上架</a>
+                                <a class="btn btn-default">下架</a>
+                                <a class="btn btn-default">全选/取消</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="search clearfix">
+                        <input id="search-input" type="text" placeholder="请输入您需要的信息">
+                        <a class="search-btn" href="javascript:;">查找</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th><div align="center">-</div></th>
+                            <th><div align="center">ID</div></th>
+                            <th><div align="center">条码</div></th>
+                            <th><div align="center">商品标题</div></th>
+                            <th><div align="center">分类</div></th>
+                            <th><div align="center">品牌</div></th>
+                            <th><div align="center">规格</div></th>
+                            <th><div align="center">包装规格</div></th>
+                            <th><div align="center">单位</div></th>
+                            <th><div align="center">产地</div></th>
+                            <th><div align="center">供应商</div></th>
+                            <th><div align="center">状态</div></th>
+                            <th><div align="center">编辑</div> </th>
+                            <th><div align="center">发布</div> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <foreach name="goods" item="vo">
+                            <tr>
+                                <td height="50"><div align="center"><input type="checkbox"></div></td>
+                                <td><div align="center">{$vo.gid}</div></td>
+                                <td><div align="center">{$vo.barcode}</div></td>
+                                <td>
+                                    <div align="left">
+                                        <empty name="vo.title">{$vo.gname}<else/>{$vo.title}</empty>
+                                    </div>
+                                </td>
+                                <td><div align="center">{$vo.tname}</div> </td>
+                                <td><div align="center">{$vo.bname}</div> </td>
+                                <td><div align="center">{$vo.spec}</div> </td>
+                                <td><div align="center">{$vo.pkgspec}</div> </td>
+                                <td><div align="center">{$vo.unit}</div> </td>
+                                <td><div align="center">{$vo.place}</div> </td>
+                                <td><div align="center">{$vo.company_name}</div> </td>
+                                <td><div align="center">
+                                    <if condition="vo.publish eq 0"><p class="bg-danger">下架</p></if>
+                                    <if condition="vo.publish eq 1"><p class="bg-success">售卖中</p></if>
+                                </div> </td>
+                                <td><div align="center"><a class="btn btn-default" href="{:U('goods/gone',array('id'=>$vo['id']))}">Edit</a></div> </td>
+                                <td><div align="center">上架</div> </td>
+                            </tr>
+                        </foreach>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end -->
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

@@ -1,0 +1,129 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<link rel="stylesheet" href="/Assets/Admin/Public/css/table.css">
+<script>
+    $(function(){
+        $("#all_checkbox").click(function(){
+            var all = $('#all').val();
+            if(all == 1){
+                $('#all').attr('value', 0);
+                //此处使用attr第二次设置的时候会除问题，解决办法使用prop函数，jquery版本必须要1.6.1以上
+                $('input[type="checkbox"]').prop('checked', false);
+            }else{
+                $('#all').attr('value', 1);
+                $('input[type="checkbox"]').prop('checked', true);
+            }
+        });
+    });
+</script>
+<script>
+    function checkbox(id){
+        var box = $('#box'+id).val();
+        if(box == 1){
+            $('#box'+id).attr('value', 0);
+            //此处使用attr第二次设置的时候会出问题，解决办法使用prop函数，jquery版本必须要1.6.1以上
+            $('.checkbox'+id).prop('checked', false);
+        }else{
+            $('#box'+id).attr('value', 1);
+            $('.checkbox'+id).prop('checked', true);
+        }
+    }
+</script>
+<script>
+    function check_form(){
+        var title = $('#title').val();
+        if(title == ''){
+            layer.tips('请输入组名称', '#title', {time: 10000});
+            return false;
+        }
+        return true;
+    }
+</script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="bd clearfix">
+            <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+            <div class="main">
+                <include file="./Assets/Admin/Inc/toolbar.html" title="" keywords="" />
+
+                <div class="main-body">
+                    <!--  begin -->
+                    <div class="create-search">
+                        <div class="create clearfix">
+                            <a class="create-btn" href="javascript:;">刷新</a>
+
+                        </div>
+                        <div class="search clearfix">
+                            <input id="search-input" type="text" placeholder="请输入您需要的信息">
+                            <a class="search-btn" href="javascript:;">查找</a>
+                        </div>
+                    </div>
+                    <div class="table">
+
+                        <form name="myform" action="__SELF__" method="post" onsubmit="return check_form();">
+                            <div class="list">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="details">
+                                    <tbody>
+                                    <tr>
+                                        <td width="12%"><div align="right">组名称：</div></td>
+                                        <td width="88%">
+                                            <input type="hidden" name="id" value="{$reuslt.id}" />
+                                            <input type="text" name="title" id="title" size="24" value="{$reuslt.title}" style="margin-left:10px;width:195px;" />
+                                            * 栏目或操作的中文名称
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div align="right">分配的权限：</div></td>
+                                        <td>
+                                            <input type="hidden" id="all" value="1" />
+                                            <input type="button" value="全选 / 取消" class="btn" id="all_checkbox" style="width:200px;" />
+                                            * 给组分配的权限
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <ul class="first_checkbox" style=" margin-left:10px;">
+                                                <foreach name="data" item="vo">
+                                                    <li><input type="hidden" id="box{$vo.id}" value="0" />
+                                                        <if condition=" strpos($reuslt['rules'],','.$vo['id'].',') GT -1 ">
+                                                            <input type="checkbox" name="rules[]" class="checkbox{$vo.id}" id="{$vo.id}" onclick="checkbox({$vo.id})" value="{$vo.id}" checked="checked" />
+                                                            <else/>
+                                                            <input type="checkbox" name="rules[]" class="checkbox{$vo.id}" id="{$vo.id}" onclick="checkbox({$vo.id})" value="{$vo.id}" />
+                                                        </if>
+                                                        <label for="{$vo.id}">{$vo.title}</label><br/>
+                                                        <div class="two_checkbox">
+                                                            ┠─&nbsp;&nbsp;<foreach name="vo['sub']" item="sub">
+                                                            <if condition=" strpos($reuslt['rules'],','.$sub['id'].',') GT -1 ">
+                                                                <input type="checkbox" name="rules[]" class="checkbox{$vo.id}" id="{$sub.id}" value="{$sub.id}" checked="true" />
+                                                                <else/>
+                                                                <input type="checkbox" name="rules[]" class="checkbox{$vo.id}" id="{$sub.id}" value="{$sub.id}" />
+                                                            </if>
+                                                            <span><label for="{$sub.id}">{$sub.title}</label></span>
+                                                        </foreach>
+                                                        </div>
+                                                    </li>
+                                                </foreach>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="footer">
+                                <button type="submit" class="btn btn-primary" style="min-width:180px;">确 认</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                    <!-- end -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <include file="./Assets/Admin/Inc/foot.html" title="" keywords="" />

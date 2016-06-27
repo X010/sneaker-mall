@@ -1,0 +1,448 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<script>
+    var checkall = true;
+    $().ready(function(){
+        //全选/取消
+        $('#checkall').on('click',function(){
+            //console.log(checkall);
+            if(checkall){
+                $("[name='opbox']").prop("checked",'true');//全选
+                $(this).removeClass('btn-default');
+                $(this).addClass('btn-danger');
+                checkall = false;
+            }else{
+                $("[name='opbox']").removeAttr("checked");
+                $(this).removeClass('btn-danger');
+                $(this).addClass('btn-default');
+                checkall = true;
+            }
+        });
+
+        //批量上架
+        $("#pub_all").on('click',function(){
+            var ids = [];
+            $(".opbox").each(function(){
+                if($(this).is(':checked')){
+                    ids.push($(this).attr('data-id'));
+                }
+            });
+            if (!ids.length){
+                parent.layer.msg('请先勾选商品', {icon: 2, time: 2000 });
+
+            } else {
+                parent.layer.confirm('确定批量上架？', {
+                    btn: ['确定', '取消'], //按钮
+                    shade: 0.5
+                }, function () {
+                    $.post("{:U('goods/pub_all')}", {"id": ids}, function (data) {
+
+                        if (data.error == 0) {
+                            parent.layer.msg(data.msg, {icon: 1, time: 1000});
+                            location.replace(location.href);
+                        } else {
+                            parent.layer.msg('上架失败', {icon: 2, time: 2000});
+                        }
+                    });
+                });
+            }
+        });
+
+        //批量下架
+        $("#unpub_all").on('click',function(){
+            var ids = [];
+            $(".opbox").each(function(){
+                if($(this).is(':checked')){
+                    ids.push($(this).attr('data-id'));
+                }
+            });
+            if (!ids.length){
+                parent.layer.msg('请先勾选商品', {icon: 2, time: 2000 });
+
+            } else {
+                parent.layer.confirm('确定批量下架？', {
+                    btn: ['确定','取消'], //按钮
+                    shade: 0.5
+                }, function(){
+                    $.post("{:U('goods/unpub_all')}", { "id": ids },function(data){
+
+                        if(data.error == 0){
+                            parent.layer.msg(data.msg, { icon: 1, time: 1000 });
+                            location.replace(location.href);
+                        }else{
+                            parent.layer.msg('下架失败', {icon: 2, time: 2000 });
+                        }
+                    });
+                });
+            }
+
+        });
+
+        //不再展示
+        $("#del_all").on('click',function(){
+            var ids = [];
+            $(".opbox").each(function(){
+                if($(this).is(':checked')){
+                    ids.push($(this).attr('data-id'));
+                }
+            });
+            if (!ids.length){
+                parent.layer.msg('请先勾选商品', {icon: 2, time: 2000 });
+
+            } else {
+                parent.layer.confirm('确定批量删除商品？', {
+                    btn: ['确定', '取消'], //按钮
+                    shade: 0.5
+                }, function () {
+                    $.post("{:U('goods/del_all')}", {"id": ids}, function (data) {
+
+                        if (data.error == 0) {
+                            parent.layer.msg(data.msg, {icon: 1, time: 1000});
+                            location.replace(location.href);
+                        } else {
+                            parent.layer.msg('删除失败', {icon: 2, time: 2000});
+                        }
+                    });
+                });
+            }
+        });
+
+        //双击打开
+        $('.editgoods').on('dblclick',function(){
+            var id = $(this).attr('data-id');
+            var url = "{:U('goods/gone')}&id="+id;
+            location.href = url;
+        });
+
+        //勾选栏目
+        $('.huodong input').each(function(){
+            $(this).on('click',function(){
+                var cinput = $(this);
+                var dis = cinput.prop('checked') ? 0 : 1;
+                $.post(
+                        "{:U('goods/ucate')}",
+                        {   id:$(this).attr('data-id'),
+                            cid:$(this).attr('data-cate'),
+                            dis:dis
+                        },
+                        function(data){
+                            if(data.error == 0){
+                                parent.layer.msg(data.msg, { icon: 1, time: 1000 });
+                            }else{
+                                parent.layer.msg(data.msg, { icon: 2, time: 3000 });
+                            }
+                        }
+                )
+            })
+        })
+    })
+</script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                售卖定价
+                <small>设置商城价格后，未设置价格的类型客户将看不到该商品!</small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <script>
+                $().ready(function(){
+                    var tabsli = $('#tabs li');
+                    var tabat = ('{$gtyp}'  == '') ? '1' : '{$gtyp}' ;
+                    tabsli.eq(tabat - 1).addClass('active');
+                })
+            </script>
+            <!-- Default box -->
+            <div class="box box-primary">
+                <div class="box-header">
+                    <ul class="nav nav-tabs" id="tabs">
+                        <!--<li><a href="{:U('sale/price_list',array('key'=>$search_key))}">全部商品 <span class="badge" id="ltotal">{$total0}</span></a></li>-->
+                        <li><a href="{:U('sale/price_list',array('gtyp'=>1,'key'=>$search_key,'publish'=>$publish))}">基础商品 <span class="badge">{$total1}</span></a></li>
+                        <li><a href="{:U('sale/price_list',array('gtyp'=>2,'key'=>$search_key,'publish'=>$publish))}">捆绑商品 <span class="badge">{$total2}</span></a></li>
+                        <li><a href="{:U('sale/price_list',array('gtyp'=>3,'key'=>$search_key,'publish'=>$publish))}">大包装商品 <span class="badge">{$total3}</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="box-body table-responsive" style="padding-top: 0;">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="pull-left" style="padding: 0 0 10px 0;">
+                                <a class="btn btn-default btn-sm" onclick="location.reload();">刷新</a>
+                                <!--<a class="btn btn-default btn-sm" id="checkall">全选/取消</a>
+                                <a class="btn btn-default btn-sm" id="pub_all">批量上架</a>
+                                <a class="btn btn-default btn-sm" id="unpub_all">批量下架</a>
+                                <a class="btn btn-default btn-sm" id="del_all">不再展示</a>-->
+                            </div>
+                            <script>
+                                $().ready(function(){
+                                    if (<?php echo ($_SESSION["business"] == "B2C" ? 1 : 0); ?>){
+                                        $('div[name="div-cctype"]').each(function(i){
+                                            $(this).html(VIP_TYPES[i]);
+                                        });
+                                    }
+
+                                    changeStore();
+
+                                    $('#ck').change(function(){
+                                        changeStore();
+                                    });
+
+
+                                    $('#publish').change(function(){
+                                        changePublishStatus();
+                                    });
+
+                                    $('input[name="btn-detail"]').on('click', function(){
+                                        var id=$(this).attr('data-id');
+                                        location.href="{:U('sale/show_goods_price')}&mgid="+id;
+                                    });
+
+                                    $('input[name="btn-update"]').on('click',function(){
+                                        var tr = $(this).parent().parent().parent();
+                                        var gid = tr.attr('data-gid');
+                                        var mgid = tr.attr('data-id');
+                                        //var sid = {$cck};
+                                        var sid = $('#ck').val();
+                                        var price = {"data":[]};
+                                        tr.find('td[name="td-price"] input').each(function(){
+                                            var kv = $(this).val();
+                                            var kk = $(this).attr('data-customer');
+                                            //console.log(kk,kv);
+                                            price.data.push(jQuery.parseJSON('{"ck":"'+kk+'","price":"'+kv+'"}'));
+                                        });
+                                        parent.layer.confirm('确定要更改商品价格？', {
+                                            btn: ['确定','取消'], //按钮
+                                            shade: 0.5
+                                        }, function() {
+                                            $.post(
+                                                    "{:U('sale/fix_price_byck')}",
+                                                    {gid:gid,mgid:mgid,sid:sid,price:JSON.stringify(price)},
+                                                    function(data){
+                                                        if(data.error == 0){
+                                                            parent.layer.msg(data.msg, { icon: 1, time: 1000 });
+                                                            //location.reload();
+                                                        }else{
+                                                            parent.layer.msg(data.msg, {icon: 2, time: 2000 });
+                                                        }
+                                                    }
+                                            )
+                                        });
+
+                                    })
+
+
+
+                                }); //JQ END
+
+
+
+                                /**
+                                 * 切换仓库,重新取价格
+                                 */
+                                function changeStore(){
+                                    var ids = '';
+                                    $('.price_list').each(function(){
+                                        ids += $(this).attr('data-id') + ',';
+                                    });
+
+                                    var sid = $('#ck').val();
+                                    $.post(
+                                            "{:U('sale/shop_price')}",
+                                            {id:ids, list:1, sid:sid, gtyp:'{$gtyp}'},
+                                            function(data){
+                                                if(data.error == 0) {
+                                                    var rs = data.data;
+                                                    if (rs.length == 0){
+                                                        $('.price_list').each(function(){
+                                                            var tr = $(this);
+                                                            tr.find('input[name="price1"]').val('0.00');
+                                                            tr.find('input[name="price2"]').val('0.00');
+                                                            tr.find('input[name="price3"]').val('0.00');
+                                                            tr.find('input[name="price4"]').val('0.00');
+                                                        });
+                                                    } else {
+                                                        $('.price_list').each(function(){
+                                                            var tr = $(this);
+                                                            var k = tr.attr('data-id');
+                                                            tr.find('input[name="price1"]').val(rs[k].price1);
+                                                            tr.find('input[name="price2"]').val(rs[k].price2);
+                                                            tr.find('input[name="price3"]').val(rs[k].price3);
+                                                            tr.find('input[name="price4"]').val(rs[k].price4);
+                                                        });
+                                                    }
+                                                } else{
+                                                    parent.layer.msg("获取价格出错", {icon: 2, time: 2000 });
+                                                }
+                                            }
+                                    );
+                                }
+
+
+
+                                /**
+                                 * 切换上架状态,刷新页面
+                                 */
+                                function changePublishStatus(){
+                                    var params = {
+                                        'sid': $('#ck').val(),
+                                        'key': '{$search_key}',
+                                        'gtyp': '{$gtyp}',
+                                        'publish': $('#publish').val(),
+                                    };
+                                    var qs = '';
+                                    $.each(params, function(k, v){
+                                        qs += k + '=' + v + '&';
+                                    });
+                                    var url = "{:U('sale/price_list')}&" + qs;
+                                    location.href = url;
+                                }
+
+                            </script>
+
+                            <div class="pull-left input-group input-group-sm">
+                                <select name="publish" id="publish" class="form-control">
+                                    <option value="1" <if condition="$publish eq 1">selected="selected"</if> >已上架</option>
+                                    <option value="0" <if condition="$publish eq 0">selected="selected"</if> >未上架</option>
+                                    <option value="" <if condition="$publish eq ''">selected="selected"</if> >全部</option>
+                                </select>
+                            </div>
+
+
+                            <div class="pull-right form-inline">
+
+                                <div class="form-group input-group-sm">
+                                    <label>仓库</label>
+                                    <select name="ck" id="ck" class="form-control">
+                                        <volist name="ck" id="vo">
+                                            <option value="{$vo['id']}" <if condition="$cck eq $vo['id']">selected="selected"</if> >{$vo.name}</option>
+                                        </volist>
+                                    </select>
+                                </div>
+
+
+                                <form id="eform" class="" method="post" action="{:U('sale/price_list')}" style="display:inline-block;">
+                                    <div class="input-group input-group-sm" style="text-align: right;">
+                                        <input type="text" name="key" class="form-control pull-right" style="width: 200px;" value="{$search_key}" placeholder="请输入商品名称">
+                                        <input type="hidden" name="gtyp" value="{$gtyp}" />
+                                        <input type="hidden" name="publish" value="{$publish}" />
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <table id="table-price" class="table table-striped table-hover table-bordered" style="margin-bottom:0;">
+                                <thead>
+                                <tr >
+                                    <th style="min-width:200px;">商品名称</th>
+                                    <th>商品条码</th>
+                                    <th><div align="center">单位</div></th>
+                                    <!--<th><div align="center">商品类型</div> </th>-->
+                                    <volist name="customer" id="co">
+                                        <th><div align="center" name="div-cctype">{$co.name}</div> </th>
+                                    </volist>
+                                    <!--<?php if($gtyp!=1) { //基础商品 ?>
+                                    <th><div align="center">变更</div> </th>
+                                    <?php } ?>-->
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <foreach name="goods" item="vo">
+                                    <tr ondblclick="javscript:location.href='{:U('sale/show_goods_price')}&mgid={$vo['id']}'" class="price_list" data-id="{$vo.id}" data-gid="{$vo.gid}" id="g_{$vo.id}">
+                                        <!--<td><div align="center"><input name='opbox' class='opbox' type="checkbox" data-id="{$vo.id}"></div></td>-->
+                                        <td>{$vo.gname}</td>
+                                        <td>{$vo.barcode}</td>
+                                        <td><div align="center">{$vo.unit}</div> </td>
+                                        <!--<td><div align="center">
+                                            <if condition="$vo.isbind eq 1">捆绑
+                                                <elseif condition="$vo.pkgsize eq 1" />大包装
+                                                <else />基础商品</if>
+
+                                        </div> </td>-->
+
+                                        <volist name="customer" id="co">
+
+                                            <td name="td-price" class="price-list-td-disabled">
+                                                <input type="text" disabled="disabled" class="price-list-input-disabled" value="" class="custumer_price" name="price{$co.id}" id="customer_{$vo.id}_{$co.id}_{$cck}" data-customer="{$co.id}">
+                                            </td>
+
+                                            <!--
+                                            <?php if($gtyp==1) { //基础商品 ?>
+
+                                            <td name="td-price" class="price-list-td-disabled">
+                                                <input type="text" disabled="disabled" class="price-list-input-disabled" value="" class="custumer_price" name="price{$co.id}" id="customer_{$vo.id}_{$co.id}_{$cck}" data-customer="{$co.id}">
+                                            </td>
+
+                                            <?php } else { //捆绑&大包装商品 ?>
+
+                                            <td name="td-price" class="price-list-td">
+                                                <input type="text" class="price-list-input" value="" class="custumer_price" name="price{$co.id}" id="customer_{$vo.id}_{$co.id}_{$cck}" data-customer="{$co.id}">
+                                            </td>
+
+                                            <?php } ?>
+                                            -->
+                                        </volist>
+
+                                        <!--
+                                        <?php if($gtyp!=1) { //基础商品 ?>
+                                        <td><div align="center">
+                                            <input type="button" value="修改" name="btn-update" class="btn btn-default btn-sm">
+                                            <input type="button" value="详情" name="btn-detail" class="btn btn-default btn-sm" data-id="{$vo['id']}">
+                                        </div></td>
+                                        <?php } ?>
+                                        -->
+                                    </tr>
+                                </foreach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    {$page}
+                    <script>
+                        function saveExcel(){
+                            var params = {
+                                'ck':$('#ck').val(),
+                                'gtyp':'{$gtyp}',
+                                'key':'{$search_key}',
+                            };
+                            jsPOST("{:U('sale/price_list_excel')}", params);
+                        }
+
+                    </script>
+                    <a class="btn btn-default btn-sm btn-excel" onclick="saveExcel()">导出Excel</a>
+
+                </div>
+                <!-- /.box-footer-->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

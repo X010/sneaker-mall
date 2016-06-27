@@ -1,0 +1,81 @@
+* {margin:0; padding:0; font-family: Microsoft YaHei, SimHei, SimSun, Verdana, Geneva, sans-serif; font-weight:normal;}
+html, body{ width: 100%; height: 100%;  }
+a { text-decoration: none;}
+ul,li {list-style:none;}
+
+/*设置placeholder样式*/
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #D4D4D4; }
+input:-moz-placeholder, textarea:-moz-placeholder { color: #D4D4D4; }
+input::-moz-placeholder, textarea::-moz-placeholder { color: #D4D4D4; }
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #D4D4D4; }
+
+/*清除浮动*/
+.clearfix:after { content: "."; display: block; height: 0; clear: both; overflow: hidden; visibility: hidden; }
+.clearfix{ zoom:1; } /*for IE6\7*/
+
+body { position: relative; background: #E4E6EA;}
+.bg { position: absolute; background: #E4E6EA; background-size: cover; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
+.login-page { height: 100%; width: 100%; position: absolute; left: 0; top: 0; z-index: 10; }
+
+/*顶部*/
+.login-header { height:28px; padding-left: 60px; padding-right: 60px;}
+.login-header .nav { float: right; }
+.login-header .nav a { color: #FF5858; font-size: 14px; margin-left: 5px; margin-right: 5px;}
+.login-header .nav a.joinus { padding: 10px 20px; background: #FFFFFF; -webkit-border-radius:5px;  -moz-border-radius:5px;  border-radius:5px;}
+
+
+/*主内容*/
+.login-body { padding-top: 100px;}
+
+.panel-login { width: 400px; margin: 0 auto; }
+.panel-login h1 { height: 24px; line-height: 24px; font-size: 20px; margin-bottom: 5px; color: #4A4A4A; text-shadow: 0px 1px 2px rgba(0,0,0,0.50); }
+
+.login-logo { width: 100%; margin: 0 auto; text-align: center; }
+.login-logo img { width: 200px; margin: 0 auto; }
+.login-title { text-align: center; height: 60px; margin-bottom: 30px;  }
+
+.login-form { margin-bottom: 20px;}
+.login-form li.item { overflow: hidden; position: relative; margin-bottom: 5px; margin-left: 15px; margin-right: 15px; }
+.login-form li.item label.item-name {position: absolute; left: 0; top:0; height: 44px; width: 44px; line-height: 44px; z-index: 10; }
+.login-form li.item label.icon-user { background: url("../images/login_icon_user.svg") 50% 50% no-repeat; }
+.login-form li.item label.icon-password { background: url("../images/login_icon_password.svg") 50% 50% no-repeat; }
+.login-form li.item label.icon-vcode { background: url("../images/login_icon_vcode.svg") 50% 50% no-repeat; }
+.login-form li.item .f-input { width: 100%; border:1px solid #CCCCCC;  outline: none; text-indent: 44px; height: 44px; background: #FFFFFF; color: #535353; font-size: 16px; -webkit-border-radius:4px;  -moz-border-radius:4px;  border-radius:4px; }
+.login-form li.item .f-input:focus { color: #535353; }
+.login-form li.item .f-btn { width: 160px; border:1px solid #CCCCCC;  outline: none;  text-align: center; height: 44px; background: #E1E1E1; color: #535353; font-size: 14px; -webkit-border-radius:4px;  -moz-border-radius:4px;  border-radius:4px; }
+.login-form li.item .f-btn:hover { color: #535353; border:1px solid #C1C1C1; background: #FFFFFF;}
+.login-form li.item .f-btn:disabled { color: #C1C1C1; border:1px solid #EFEFEF; background: #EFEFEF; cursor: not-allowed;}
+
+.login-tool { height: 20px; line-height: 20px; margin-bottom: 15px; font-size: 12px; display: none;}
+.login-tool .group-l { float: left; height: 20px;}
+.login-tool .group-r { float: right; height: 20px;}
+.login-tool input { margin-right: 3px;}
+.login-tool a { color: #55A8F2; }
+
+.login-btn { height: 44px; margin-bottom: 30px; margin-left: 15px; margin-right: 15px;}
+.login-btn .btn-login { cursor: pointer; border: 1px solid #EEB65A; outline: none; height: 44px; width: 100%; background: #EEB65A; color: #FFFFFF; text-align: center; font-size: 17px; -webkit-border-radius:4px;  -moz-border-radius:4px;  border-radius:4px;}
+.login-btn .btn-login:hover { background: #FFC25D;}
+.login-btn .btn-login:active { background: #FFC25D; outline: none;}
+
+.contact { font-size: 14px; color: #666666; text-align: center; height: 30px; line-height: 30px;}
+.contact strong { color: #666666; font-size: 14px;}
+
+.login-footer { position: absolute; width: 100%; z-index: 2; bottom:20px; left: 0; }
+.login-footer .copyright { text-align: center;  font-size: 12px; color: #999999;}
+
+/*遮罩层*/
+#overlay {
+    background: #000;
+    filter: alpha(opacity=50); /* IE的透明度 */
+    opacity: 0.5;  /* 透明度 */
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 100; /* 此处的图层要大于页面 */
+    display:none;
+}
+#overlayMsg { z-index: 101; display: none; position: fixed; top: 20px; left: 50%; margin-left: -150px;  width: 300px; padding: 30px 0;  text-align: center; font-size: 14px; color: #FFFFFF; background: #333333; -webkit-border-radius:10px;  -moz-border-radius:10px;  border-radius:10px; filter: alpha(opacity=80); opacity: 0.8; }
+#overlayMsg i { font-size: 14px; margin-right: 5px;}
+

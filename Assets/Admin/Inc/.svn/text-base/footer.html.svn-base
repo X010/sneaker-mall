@@ -1,0 +1,78 @@
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">您确认要退出登录么?</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="{:U('login/logout')}" class="btn btn-primary">Yes</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs"></div>
+
+    <!-- Default to the left -->
+    <script>
+        var domain =  window.location.host || document.domain;
+        //var cp = {"99yuncang":['99yuncang.com','苏ICP备15010324号-3'], "99yc":["99yc.net",'苏ICP备15010324号-4'], "ms9d":["ms9d.com",""]};
+        var cp = {"99yuncang":['北京亚信通科技有限公司','苏ICP备15010324号-3'], "99yc":["北京亚信通科技有限公司",'苏ICP备15010324号-4'], "ms9d":["ms9d.com",""]};
+
+        var len = 0;
+        if(domain){var md = domain.split('.');len = md.length;}
+        if(len && cp[md[len-2]]){
+            //document.write("<strong>Copyright &copy; 2016 " +cp[md[len-2]][0]+ "</strong> All rights reserved.  <a href='http://www.miitbeian.gov.cn' target='_blank'>"+cp[md[len-2]][1]+"</a>");
+            document.write("<strong>Copyright &copy; 2016 北京亚信通科技有限公司</strong> All rights reserved.  <a href='http://www.miitbeian.gov.cn' target='_blank'>"+cp[md[len-2]][1]+"</a> 版本号:1.0");
+        }else{
+            document.write("<strong>Copyright &copy; 2016 北京亚信通科技有限公司</strong> All rights reserved. 版本号:1.0");
+        }
+    </script>
+
+
+    <script>
+        var imageAddr = "http://" + domain + "/ms9d.png?r=" + Math.random();
+        var downloadSize = 14059; //bytes
+
+        window.onload = function() {
+            var oProgress = document.getElementById("progress");
+            window.setTimeout(MeasureConnectionSpeed, 1);
+        };
+
+        function MeasureConnectionSpeed() {
+            var oProgress = document.getElementById("progress");
+            var startTime, endTime;
+            var download = new Image();
+            download.onload = function () {
+                endTime = (new Date()).getTime();
+                showResults();
+            }
+
+            download.onerror = function (err, msg) {
+                oProgress.innerHTML = "";
+            }
+
+            startTime = (new Date()).getTime();
+            var cacheBuster = "?nnn=" + startTime;
+            download.src = imageAddr + cacheBuster;
+
+            function showResults() {
+                var duration = (endTime - startTime) / 1000;
+                var bitsLoaded = downloadSize * 8;
+                var speedBps = (bitsLoaded / duration).toFixed(2);
+                var speedKbps = (speedBps / 1024).toFixed(2);
+                var speedMbps = (speedKbps / 1024).toFixed(2);
+                oProgress.innerHTML = "Your connection speed is: " +
+                        speedBps + " bps&nbsp"   +
+                        speedKbps + " kbps&nbsp" +
+                        speedMbps + " Mbps&nbsp";
+            }
+        }
+
+    </script>
+    <div id="progress" class="bg-info"></div>
+</footer>

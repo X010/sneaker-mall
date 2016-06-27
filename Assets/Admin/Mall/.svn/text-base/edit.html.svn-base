@@ -1,0 +1,353 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                商城配置
+                <small><?php if ($tab == 'base'){?>填写完整的商城信息，可以帮助加深品牌形象，并统一下游网点入口<?php }?></small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!--  Default box -->
+            <div class="box box-primary">
+                <div class="box-header">
+                    <ul class="nav nav-tabs" id="tabs">
+                        <li id="tab-base"><a href="{:U('mall/edit', array('tab'=> 'base', 'id' => $mall_id))}">企业信息</a></li>
+                        <li id="tab-delivery"><a href="{:U('mall/edit', array('tab' => 'delivery', 'id' => $mall_id))}">配送信息</a></li>
+                        <li id="tab-bind"><a href="{:U('mall/edit', array('tab' => 'bind', 'id' => $mall_id))}">公众号绑定</a></li>
+                    </ul>
+                </div>
+
+                <div class="box-body table-responsive" style="padding-top: 0;">
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <!-- params -->
+                            <form class="form-horizontal" id="mall-form" method="post" action="{:U(mall/edit)}">
+                                <input type="hidden" name="tab" id="tab" value="{$tab}" />
+                                <input type="hidden" name="id" value="<?php echo $mall['id'];?>" />
+
+                                <?php if ($tab == 'base') {?>
+                                <!-- 企业信息 begin-->
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">品牌名称</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="brand_name" id="brand_name" placeholder="如：盛世酩德" value="<?php echo $mall['name'];?>" />
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">品牌简介</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <textarea class="form-control w4" id="band_intro" name="brand_intro" rows="6" cols="60"><?php echo $mall['intro'];?></textarea>        
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">客服电话</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="brand_cs_phone" id="brand_cs_phone" placeholder="如：400-8888-8888" value="<?php echo $mall['cs_phone'];?>" />
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                               <div class="form-group">
+                                    <label  class="col-sm-3 control-label">LOGO</label>
+
+                                    <div class="col-xs-5">
+                                        <div class="input-group">
+                                            <input type="file" class="btn btn-default" id="picfile">
+                                        </div>
+                                        <div class="input-group" id="imgshow" style="margin-top:5px;">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label"></label>
+
+                                </div>
+                                <input type="hidden" name="brand_logo" id="brand_logo" value="<?php echo $mall['logo'];?>" />
+
+                                <div id="giving_goods_lists"></div>
+                                <!-- 企业信息 end-->
+
+
+                                <?php } else if ($tab == 'delivery')  { ?>
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">配送时间</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="delivery_time" id="delivery_time" placeholder="例如:早09:00 - 晚21:00" value="{$mall['delivery_time']}"  />
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">配送价格</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="delivery_fee" id="delivery_fee" placeholder="例如:免费" value="{$mall['delivery_fee']}"  />
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <?php } else { ?>
+                                <!-- 公众号绑定 begin-->
+                                <div class="form-group ">
+                                
+                                    <label class="col-sm-3 control-label">公众号名称</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="wx_name" id="wx_name" placeholder="公众号名称/昵称" value="{$mall['wx_name']}"  />
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+ 
+                                 <div class="form-group ">
+                                    <label class="col-sm-3 control-label">公众号原始 ID</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="wx_oid" id="wx_oid"  value="{$mall['wx_oid']}" <?php if ($mall['wx_oid'] && $mall['bind']) {?> readonly="readonly"  <?php }?> />
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">微信号</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="wx_id" id="wx_id" placeholder="如您未设置过微信号，进入公众号设置页：设置微信号" value="{$mall['wx_id']}" <?php if ($mall['wx_name'] && $mall['bind']) {?> readonly="readonly"  <?php }?> />
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">AppID</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="app_id" id="app_id" value="{$mall['app_id']}" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">AppSecret</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="app_secret" id="app_secret" value="{$mall['app_secret']}"  />
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                if (isset($url) && !empty($url) && $mall['bind']) {
+                                ?>
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">URL</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="url" id="url"  value="{: $url}" readonly="readonly" />
+                                            <div class="input-group-addon"><a id="a-copy-url" data-clipboard-action="copy" data-clipboard-target="#url">复制</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                }
+                                ?>
+
+                                <!-- 公众号绑定 end-->
+                                <?php }?>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-10">
+                                        <input type="button" onclick="checkForm();" class="btn btn-primary" value="保存" />
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                       <?php
+                                       if ($mall['bind']) {
+                                       ?>
+                                        <input type="button" id="btn-unbind-wx" class="btn" value="解绑" />
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- params end -->
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+        <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+<script src="/Assets/Admin/Public/js/clipboard.min.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+    //    tab 激活
+    $('#tab-' + '{:$tab}').addClass('active');
+
+    //var gphoto = parseInt('{$good.gphoto}');
+    var logo = "{:$mall['logo'];}"
+    logo = $.trim(logo);
+    
+    if (logo != ""){
+        var img = $('<img src="{:$mall['logo'];}{:C('IMG_SPEC_SM')}" width="100px" height="100px">');
+        img.appendTo($('#imgshow'));
+        $('#brand_logo').val(logo);
+    }
+    
+    //  // 上传图片
+    $('input[type="file"]').change(function(e){
+        var file = $(this).get(0).files[0];
+        //判断类型是不是图片
+        if(!/image\/\w+/.test(file.type)){
+            parent.layer.msg('不支持该图片类型', { icon: 2, time: 3000 });
+            return false;
+        }
+
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = function(e){
+            $.post(
+                    "{:U('mall/upload_img')}",
+                    {src:this.result},
+                    function(data){
+                        if(data.error == 0) {
+                            var img = $('<img src="' + data.data + '" width="100px" height="100px">');
+                            img.appendTo($('#imgshow'));
+                            $('#brand_logo').val(data.data);
+                        } else{
+                            parent.layer.msg('上传图片失败', { icon: 2, time: 2000 });
+
+                        }
+                    }
+            )
+        }
+
+    });
+    
+    $('#btn-unbind-wx').click(function() {
+        parent.layer.confirm('确定要解除当前的绑定吗？', {
+             btn: ['是的','取消'], //按钮
+             shade: 0.5
+         }, function(){
+             $.post(
+                "{:U('mall/unbind_wx')}",
+                {},
+                function(data) {
+                    if (data.error == 0){
+                        parent.layer.msg(data.msg, { icon: 1, time: 1000 });
+                        window.location.href = "{:U('mall/edit?tab=bind')}"
+                    } else {
+                        parent.layer.msg(data.msg, { icon: 1, time: 1000 });
+                    }
+                }
+             )
+         });
+    })
+
+})
+
+//  复制到粘贴板
+var clipboard = new Clipboard('#a-copy-url');
+clipboard.on('success', function(e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+    parent.layer.msg('复制成功', {icon : 1, time : 1000});
+    e.clearSelection();
+});
+
+clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+});
+
+
+function checkForm() {
+    tab = $('#tab').val();
+    
+    base_fields = {'brand_name' : '请填写品牌名称'};
+    bind_fields = {'wx_name' : '请填写微信公众号', 'wx_oid' : '请填写微信原始 ID', 'wx_id' : '请填写微信号'};
+    delivery_fields = {'delivery_time' : '请填写配送时间', 'delivery_fee' : '请填写配送费用'};
+
+    if (tab == "base") {
+        return checkNotEmpty(base_fields);
+    } else if (tab == 'delivery'){
+        return checkNotEmpty(delivery_fields);
+    } else {
+        return checkNotEmpty(bind_fields);
+    }
+}
+
+function checkNotEmpty(fields) {
+    error = false;
+    msg = '';
+    
+    $.each(fields, function(field, error_message) {
+       obj  = $('#' + field);
+       obj_value = $.trim(obj.val());
+       
+       if (obj_value == "") {
+            obj.focus();
+            msg = error_message;
+            error = error || true;
+       }
+       
+       if (error == true) {
+            return false;
+       }
+    });
+    
+    if (!error) {
+        $('#mall-form').submit();
+        return true;
+        
+    } else {
+        parent.layer.msg(msg, { icon: 2, time: 2000 });
+        return false;
+    }
+}
+</script>
+</body>
+</html>

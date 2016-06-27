@@ -1,0 +1,277 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<script>
+    var giving_num = 0;
+    $().ready(function(){
+        if (<?php echo ($_SESSION["business"] == "B2C" ? 1 : 0); ?>){
+            $('#cctypename').html('可见会员');
+            $('input[name="supplier[]"]').each(function(i){
+                $(this).attr('data-name', VIP_TYPES[i]).next('span').text(VIP_TYPES[i]);
+            });
+        }
+
+        /** 搜索 **/
+        $('#gkey').on("keyup", function (e) {
+            if (e.keyCode == 13) {
+                gdsearch();
+            }
+        });
+        $('#gsearch').on('click',function(){
+            gdsearch();
+        });
+
+        function gdsearch(){
+            var key = $('#gkey').val();
+            if(key == ""){
+                parent.layer.msg('请填写要搜索的商品名称或编码', { icon: 2, time: 3000 });
+                return;
+            }
+            //var url = "{:U('goods/pkg_search')}&key="+key;
+            var url = "{:U('goods/gsearch')}&gtyp=1&key="+key;
+            $.get(url,'',function(data){
+                //console.log(data);
+                if(data.error === 0){
+                    $('#scontent').empty();
+                    var tb = $('<table class="table table-striped table-hover table-bordered"></table>');
+                    var thead = $('<thead> \ ' +
+                            '<tr>\ ' +
+                            '<th> <div align="center">ID</div></th> \ ' +
+                            '<th><div align="center">名称</div></th>\ ' +
+                            '<th><div align="center">条码</div></th>\ ' +
+                            '<th><div align="center">规格</div></th>\ ' +
+                            '</tr>\ ' +
+                            '</thead>');
+                    tb.append(thead);
+
+                    var tbody = $('<tbody></tbody>');
+                    $.each(data.data.data,function(k,v){
+                        var tr = $('<tr data-id="'+ v.id +'" data-unit="'+ v.unit +'" data-pkgspec="'+ v.pkgspec +'" data-unit="'+ v.unit+'" data-spec="'+ v.spec+'" data-gname="'+ v.gname +'"></tr>');
+                        var trid = $('<td><div align="center">'+ v.gcode +'</div></td>');
+                        var trname = $('<td><div align="left">'+ v.gname +'</div></td>');
+                        var trcode = $('<td><div align="center">'+ v.barcode +'</div></td>');
+                        var tunit = $('<td><div align="center">'+ v.spec +'</div></td>');
+
+                        tr.append(trid);
+                        tr.append(trname);
+                        tr.append(trcode);
+                        tr.append(tunit);
+
+                        tr.on('dblclick',function(){
+                            $('#basegoods').val($(this).attr('data-gname'));
+                            $('#basegoodsid').val($(this).attr('data-id'));
+                            $('#spec').val($(this).attr('data-spec'));
+                            //$('#showunit').val($(this).attr('data-unit'));
+                            $('#showunit').val('箱');
+                            $('#scontent').empty();
+                        });
+                        tr.appendTo(tbody);
+                    });
+
+                    tb.append(tbody);
+                    $('#scontent').append(tb);
+                }
+            })
+        }
+    });
+
+    /**
+     * 检测并提交
+     * @returns {boolean}
+     */
+    function checkForm(){
+        var msg = '';
+        if ($.trim($('#maingoods').val()) == ''){
+            $('#maingoods').focus();
+            msg = '请填写大包装商品名称';
+        } else if ($.trim($('#basegoodsid').val()) == ''){
+            $('#basegoodsid').focus();
+            msg = '请选择基础商品';
+        } else if ($.trim($('#showunit').val()) == ''){
+            $('#showunit').focus();
+            msg = '请填写显示单位';
+        } else if ($.trim($('#spec').val()) == ''){
+            $('#spec').focus();
+            msg = '请选择商品规格';
+        } else if ($.trim($('#tid').val()) == '0'){
+            msg = '请选择商品分类';
+            $('#tid').focus();
+        } else {
+            $('#eform').submit();
+            return;
+        }
+        parent.layer.msg(msg, { icon: 2, time: 2000 });
+    }
+</script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>新建大包装商品</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{$good.gname}</h3>
+                </div>
+                <div class="box-body">
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <!-- params -->
+                            <form class="form-horizontal" id="eform" method="post" action="{:U('goods/pkgsize')}">
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">大包装商品名称</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="newmainname" id="maingoods" placeholder="如：金牡丹(箱)">
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">基础商品名称</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="basegoods" id="basegoods" placeholder="请通过右边搜索添加">
+                                            <input type="hidden" id="basegoodsid" name="basegoodsid">
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">显示单位</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <!--<div class="input-group-addon">N</div>-->
+                                            <input type="text" class="form-control" id="showunit" name="showunit" placeholder="如：箱">
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">商品规格</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <!--<div class="input-group-addon">N</div>-->
+                                            <input type="text" class="form-control" name="spec" id="spec" placeholder="如：6">
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">商品分类</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <!--<div class="input-group-addon">N</div>-->
+                                            <select class="form-control" id="tid" name="tid">
+                                                <option value="">- 请选择商品分类 -</option>
+                                                <?php
+                                                    foreach($tlist as $key=>$val){
+                                                $ronly = (isset($val['data']) && !empty($val['data']))?'disabled':'';
+                                                echo "<option ".$ronly." value='".$val['id']."'>".$val['name']."</option>";
+                                                foreach($val['data'] as $key2=>$val2){
+                                                $ronly = (isset($val2['data']) && !empty($val2['data']))?'disabled':'';
+                                                echo "<option ".$ronly." value='".$val2["id"]."'>------".$val2["name"]."</option>";
+                                                foreach($val2['data'] as $key3=>$val3){
+                                                $ronly = (isset($val3['data']) && !empty($val3['data']))?'disabled':'';
+                                                echo "<option  ".$ronly." value='".$val3["id"]."'>-----------".$val3["name"]."</option>";
+                                                }
+                                                }
+                                                }
+                                                ?>
+                                            </select>
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" id="cctypename">可见客户</label>
+                                    <div class="col-xs-8">
+                                        <foreach name="customer" item="vo">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" checked="checked" name="supplier[]" value="{$vo.id}"><span>{$vo.name}</span>
+                                            </label>
+                                        </foreach>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">出货仓库</label>
+                                    <div class="col-xs-7">
+                                        <foreach name="ck" item="vo">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" checked="checked" name="ck[]" class="ck" value="{$vo.id}" data-name="{$vo.name}"> {$vo.name}
+                                            </label>
+                                        </foreach>
+                                    </div>
+                                </div>
+
+                                <div id="giving_goods_lists"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-10">
+                                        <button type="button" onclick="checkForm();" class="btn btn-primary">确定新建</button>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                            <!-- params end -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" id="gkey" placeholder="请搜索想要的商品">
+                                        <div class="input-group-addon"><i class="fa fa-search" id="gsearch"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div id='scontent' class="col-xs-12">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+
+                </div>
+                <!-- /.box-footer-->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

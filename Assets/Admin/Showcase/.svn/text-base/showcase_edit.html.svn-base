@@ -1,0 +1,381 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                商城装饰
+                <small></small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="box box-primary">
+                <form role="form" id="templatemo-preferences-form" method="post" action="{:U('showcase/showcase_edit')}">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">正在编辑模块: <strong class="text-danger">{$showcase.name}</strong></h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+                                <div class="form-group">
+                                    <label for="name" class="control-label">模块名称</label>
+                                    <input type="text" class="form-control" id="name" name='name' value="{$showcase.name}"  readonly="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" value="<?php echo $showcase['type'];?>"  name="stype" id="stype"/>
+                                </div>
+
+
+                                <!-- 焦点图开始-->
+                                <div id="tonglan">
+                                    <button id="jiaodiantianjia" type="button" class="btn btn-default margin-bottom" aria-label="add"><i class="fa fa-plus"></i> 新增<?php echo $showcase['name'];?></button>
+                                    <ul class="products-list product-list-in-box" id="jiaodiantu-list">
+                                    </ul>
+                                </div>
+                                <!-- 焦点图结束-->
+                                <div class="row templatemo-form-buttons">
+                                    <div class="col-md-12">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="pull-left">
+                            <button type="reset" class="btn btn-default" onclick="javascript:history.go(-1);">返回</button>
+                        </div>
+                        <div class="pull-right">
+                            <input type="hidden" name="id" value="{$showcase.id}">
+                            <button type="submit" class="btn btn-primary" id="btn-save">保存</button>
+                        </div>
+                    </div>
+                    <!-- /.box-footer-->
+                </form>
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+
+<script>
+$().ready(function(){
+    $('#jiaodiantianjia').on('click',function() {
+        var num = "{$showcase_item_num}";
+        num = parseInt(num);
+        
+        <?php
+        if (in_array($showcase['type'], array(1, 2, 4))) {
+        ?>
+        if ($('input[name="pic[]"]').length < num) {
+            buildImgList();
+        } else {
+            parent.layer.msg("{$showcase['name']}只能有" + num + "张图片。", {icon: 2, time: 3000});
+        }
+            
+        <?php
+            } else {
+        ?>
+        if ($('input[name="text[]"]').length < num) {
+            buildTextList();
+        } else {
+            parent.layer.msg("{$showcase['name']}只能有" + num + "条文字。", {icon : 2, time: 3000});
+        }
+        <?php
+            }
+        ?>
+    });
+
+    <?php if($showcase['id']){ ?>
+    var id = '<?php echo $showcase["id"];?>';
+    $.post(
+            "<?php echo U('showcase/get_pics');?>",
+            {id:id},
+            function(data){
+                if(data.error == 0){
+                    if (data.data) {
+                        <?php
+                        if ($showcase['type'] == 3) {
+                            ?>
+                            for(var i=0; i<data.data.length;i++){
+                                buildTextList(data.data[i].c, data.data[i].href, data.data[i].orderby);
+                            }
+                            <?php
+                        } else {
+                            ?>
+                            for(var i=0; i<data.data.length;i++){
+                                buildImgList(data.data[i].c + '<?php echo C("IMG_SPEC_SM");?>', data.data[i].title, data.data[i].href, data.data[i].orderby, data.data[i].sub_title);
+                                $('input[name="title[]"]').each(function() {
+                                    if ($(this).val() == data.data[i].title) {
+                                        $(this).parent().find('select[name="href[]"] option').each(function () {
+                                            if ($(this).val() == data.data[i].href) {
+                                                $(this).attr('selected', 'selected');
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                            <?php
+                            }
+                        ?>
+                    }
+                }else{
+                    parent.layer.msg(data.msg, { icon: 1, time: 1000 });
+                }
+            }
+    );
+<?php } ?>
+
+//
+    $('#btn-save').click(function() {
+        flag = true;
+        <?php
+            if ($showcase['type'] == 2 || $showcase['type'] == 4) {
+        ?>
+        objs = $('#jiaodiantu-list').find ('li');
+        $.each(objs, function(key, obj) {
+            img = $(obj).find('img').attr('src');
+            
+            if (img != "/Assets/Admin/Public/images/thumb_empty.png") {
+                title_obj = $(obj).find('input[name="title[]"]');
+                title = title_obj.val();
+                title = $.trim(title);
+    
+                if (title == "") {
+                    title_obj.focus();
+                    parent.layer.msg('请输入标题。', {icon : 1, time : 1000})
+                    flag = false;
+                    return false;
+                }    
+            }
+
+        });
+        
+        if (flag == false) {
+            return false;
+        }
+        <?php
+            }
+        ?>
+    });
+
+});
+
+
+function readFile(obj,id,img,inpt) {
+    var file = obj.files[0];
+    //判断类型是不是图片
+    if (!/image\/\w+/.test(file.type)) {
+        parent.layer.msg('请确保文件为图像类型', { icon: 2, time: 3000 });
+        return false;
+    }
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (e) {
+        var timestamp3 = new Date().getTime();
+        $.ajax({
+            type: 'POST',
+            url: '{:U("showcase/picupload")}',
+            data: {src: this.result},
+            success: function (data) {
+                if(data.error == 0) {
+                    //$li = $('<img src="' + data.data + '">');
+                    img.attr('src',data.data + "");
+                    inpt.val(data.data);
+                }else{
+                    parent.layer.msg(data.msg, { icon: 2, time: 3000 });
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                var err_msg = 'status:' + XMLHttpRequest.status + '\nreadyState:' + XMLHttpRequest.readyState + '\ntextStatus:' + textStatus;
+                parent.layer.msg(err_msg, { icon: 2, time: 5000 });
+            }
+        });
+    }
+}
+
+/**
+ * 添加图片
+ * @param imgsrc
+ * @param title
+ * @param href
+ * @param orderby
+ * @param sub_title
+ */
+function buildImgList(imgsrc, title, href,orderby, sub_title){
+    var imgsrc = imgsrc?imgsrc:'';
+    var href = href?href:'';
+    var title = title ? title : '';
+    var orderby = orderby?orderby:'';
+    var sub_title = sub_title ? sub_title : '';
+    var ddrow = $('<li class=""></li>');
+    var ddrow_col = $('<div class="highlight"></div>');
+    var ddrow_con = $('<pre style="position: relative; padding-left: 200px;"></pre>');
+    var dd_img = $('<img style="position: absolute; left: 10px; top: 10px; width: 180px;" width="170" max-height="90" src="'+imgsrc+'" class="img-thumbnail">');
+    var dd_del = $('<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+    var dd_orderby = $('<input type="text" class="form-control" name="orderby[]" value="'+orderby+'" placeholder="请输入顺序数字，数字越大，排序越靠前">');
+    var dd_href = $('<input type="text" class="form-control margin-bottom"  name="href[]" value="'+href+'" placeholder="请输入跳转URL">');
+    var dd_img_val = $('<input type="hidden" class="form-control" id="input-pic" name="pic[]" value="'+imgsrc+'">');
+    var dd_upload = $('<div style="position: absolute; left: 10px; top: 110px; width: 180px;"></div>');
+
+    var dd_upload_input = $('<input type="file" id="picfile">');
+    dd_upload_input.appendTo(dd_upload);
+    dd_del.appendTo(ddrow_con);
+    dd_img.appendTo(ddrow_con);
+
+    //拼装执行动作 BEGIN
+    var url_array = [];
+    <?php if ($showcase['type'] == 4 || $showcase['type'] == 2){
+        $urls = '[["全部商品", "goods.html"],';
+        foreach ($goods_types as $v){
+            $urls .= ('["' . $v['name'] . '","goods.html?code=' . $v['tcode'] . '"],');
+        };
+        foreach ($coll as $v){
+            if ($v['type']==1 && $v['publish']==1){
+                $urls .= ('["' . $v['name'] . '","goods.html?column=' . $v['id'] . '"],');
+            }
+        };
+        $urls .= ']';
+        echo 'url_array = '. $urls. ';';
+        ?>
+
+    <?php } ?>
+    <?php if ($showcase['type'] == 2){ ?>
+        url_array = URL_SYS.concat(url_array)
+    <?php } ?>
+
+
+    var select = '<div><select class="form-control margin-bottom" name="href[]">';
+    for (var i=0; i<url_array.length; i++){
+        select += '<option value="'+url_array[i][1]+'">'+url_array[i][0]+'</option>';
+    }
+    select += '</select></div>';
+    var dd_select = $(select);
+    //拼装执行动作 END
+    
+    <?php
+    switch ($showcase['type']){
+        case 1: //banner
+            ?>
+            $('<label>链接地址 (格式:goods_item.html?mgid=上架ID):</label>').appendTo(ddrow_con);
+            dd_href.appendTo(ddrow_con);
+            <?php
+            break;
+        case 2: //功能入口
+            ?>
+            var dd_title = $('<input type="text" class="form-control margin-bottom"  name="title[]" value="'+title+'" placeholder="请输入标题">');
+            $('<label>标题:</label>').appendTo(ddrow_con);
+            dd_title.appendTo(ddrow_con);
+            $('<label>点击动作:</label>').appendTo(ddrow_con);
+            dd_select.appendTo(ddrow_con);
+            <?php
+            break;
+        case 3: //快报
+            ?>
+            <?php
+            break;
+        case 4: //橱窗
+            ?>
+            var dd_title = $('<input type="text" class="form-control margin-bottom"  name="title[]" value="'+title+'" placeholder="请输入标题">');
+            $('<label>标题:</label>').appendTo(ddrow_con);
+            dd_title.appendTo(ddrow_con);
+            var dd_sub_title = $('<input type="text" class="form-control margin-bottom"  name="sub_title[]" value="'+sub_title+'" placeholder="请输入副标题">');
+            $('<label>副标题:</label>').appendTo(ddrow_con);
+            dd_sub_title.appendTo(ddrow_con);
+            $('<label>链接到商品分类或活动栏目:</label>').appendTo(ddrow_con);
+            dd_select.appendTo(ddrow_con);
+            <?php
+            break;
+        default:
+            break;
+    }
+    ?>
+
+    $('<label>展示顺序:</label>').appendTo(ddrow_con);
+    dd_orderby.appendTo(ddrow_con);
+    dd_img_val.appendTo(ddrow_con);
+    if(!imgsrc && !href){
+        dd_upload.appendTo(ddrow_con);
+        dd_img.attr("src","/Assets/Admin/Public/images/thumb_empty.png");
+    }
+
+
+    ddrow_con.appendTo(ddrow_col);
+    ddrow_col.appendTo(ddrow);
+
+    dd_upload_input.on('change',function(){
+        readFile(this,1,dd_img,dd_img_val);
+        dd_upload.empty();
+    });
+    dd_del.on('click',function(){
+        ddrow.remove();
+    });
+    ddrow.prependTo($('#jiaodiantu-list'));
+}
+
+/**
+ * 快报
+ * @param text
+ * @param href
+ * @param orderby
+ */
+function buildTextList(text, href, orderby) {
+    var text = text ? text : '';
+    var href = href ? href:'';
+    var orderby = orderby ? orderby : '';
+    var ddrow = $('<li class=""></li>');
+    var ddrow_col = $('<div class="highlight"></div>');
+    var ddrow_con = $('<pre style="position: relative;"></pre>');
+ 
+    var dd_del = $('<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+    var dd_orderby = $('<input type="text" class="form-control" name="orderby[]" value="'+orderby+'" placeholder="请输入顺序数字，数字越大，排序越靠前">');
+    var dd_href = $('<input type="text" class="form-control margin-bottom" name="href[]" value="'+href+'" placeholder="请输入跳转URL">');
+    var dd_text = $('<input type="text" class="form-control margin-bottom" name="text[]" value="'+text+'" placeholder="请输入快报文字">');
+
+
+  
+    dd_del.appendTo(ddrow_con);
+    $('<label>快报文字:</label>').appendTo(ddrow_con);
+    dd_text.appendTo(ddrow_con);
+    $('<label>跳转URL:</label>').appendTo(ddrow_con).hide();
+    dd_href.appendTo(ddrow_con).hide();
+    $('<label>展示顺序:</label>').appendTo(ddrow_con);
+    dd_orderby.appendTo(ddrow_con);
+
+    ddrow_con.appendTo(ddrow_col);
+    ddrow_col.appendTo(ddrow);
+
+
+    dd_del.on('click',function(){
+        ddrow.remove();
+    });
+    ddrow.prependTo($('#jiaodiantu-list'));
+}
+</script>
+</body>
+</html>

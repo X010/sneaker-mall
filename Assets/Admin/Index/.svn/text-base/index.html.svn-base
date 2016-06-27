@@ -1,0 +1,68 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {$com.name}
+                <small>欢迎使用</small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">快捷入口</h3>
+                </div>
+                <div class="box-body">
+                    <div>
+                        <a href="{:U('goods/glist')}" class="btn btn-app">
+                            <i class="fa fa-cubes"></i>
+                            商品管理
+                        </a>
+                        <a href="{:U('sale/price_list')}" class="btn btn-app">
+                            <i class="fa fa-yen"></i>
+                            价格管理
+                        </a>
+                        <a href="{:U('column/clist')}" class="btn btn-app">
+                            <i class="fa fa-th-list"></i>
+                            栏目管理
+                        </a>
+                        <!--<a href="{:U('market/market_list')}" class="btn btn-app">
+                            <i class="fa fa-money"></i>
+                            促销管理
+                        </a>-->
+                        <a href="{:U('showcase/slist')}" class="btn btn-app">
+                            <i class="fa fa-weixin"></i>
+                            微信商城
+                        </a>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+
+</body>
+</html>

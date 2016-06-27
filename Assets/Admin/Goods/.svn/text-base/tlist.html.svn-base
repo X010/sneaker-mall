@@ -1,0 +1,363 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<script>
+    $().ready(function(){
+
+        $('.level-define-1').on('click',function(){
+            $('.level-show-1').attr('disabled',false);
+            $('.level-show-2').attr('checked',false);
+            $('.level-show-2').attr('disabled',true);
+            $('.level-show-3').attr('checked',false);
+            $('.level-show-3').attr('disabled',true);
+            $('#orderlist').empty();
+        });
+
+        $('.level-define-2').on('click',function(){
+            $('.level-show-2').attr('disabled',false);
+            $('.level-show-1').attr('checked',false);
+            $('.level-show-1').attr('disabled',true);
+            $('.level-show-3').attr('checked',false);
+            $('.level-show-3').attr('disabled',true);
+            $('#orderlist').empty();
+        });
+
+        $('.level-define-3').on('click',function(){
+            $('.level-show-3').attr('disabled',false);
+            $('.level-show-2').attr('checked',false);
+            $('.level-show-2').attr('disabled',true);
+            $('.level-show-1').attr('checked',false);
+            $('.level-show-1').attr('disabled',true);
+            $('#orderlist').empty();
+        });
+
+        var level_show = '{$level_setting.cvalue}';
+        if(level_show === '1'){
+            $('.level-show-2').attr('disabled',true);
+            $('.level-show-3').attr('disabled',true);
+        }else if(level_show === '2'){
+            $('.level-show-1').attr('disabled',true);
+            $('.level-show-3').attr('disabled',true);
+        }else if(level_show === '3'){
+            $('.level-show-1').attr('disabled',true);
+            $('.level-show-2').attr('disabled',true);
+        }
+
+
+        function tablelen(){
+            return $("#orderlist").children("tr").length;
+        }
+
+        var url = "{:U('goods/tsortlist')}";
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: "",
+            success : function(data){
+                //console.log(data);
+                if(data.status=="success"){
+                    if(data.data != null){
+
+                        data.data.forEach(function(v){
+                            var input = $('#input_'+ v.tid);
+                            var dli = $('<tr id="'+ v.tid +'"></tr>');
+                            var dname = $('<td class="col-md-2 type-name">'+ input.attr('data-name') +'</td>');
+                            var dup = $('<td class="col-md-2 type-up" align="center"><i data-id="'+ v.tid +'" class="fa fa-arrow-circle-up orderup"></i></td>');
+                            var ddown = $('<td class="col-md-2 type-down" align="center"><i data-id="'+ v.tid +'" class="fa fa-arrow-circle-down orderdown"></i></td>');
+
+                            dname.appendTo(dli);
+                            dup.appendTo(dli);
+                            ddown.appendTo(dli);
+
+                            dli.appendTo($('#orderlist'));
+                            input.attr('checked',true);
+                        });
+
+                        //绑定排序事件
+                        $('#orderlist .orderup').on('click', function () {
+                            changorder($(this).parent().parent(), 1);
+                        });
+                        $('#orderlist .orderdown').on('click', function () {
+                            changorder($(this).parent().parent(), 0);
+                        });
+                    }
+                }else{
+                    alert("数据加载失败");
+                }
+            }
+        });
+        /*
+         $.post(url,'',function(data,status){
+         console.log(status);
+         if(status=="success"){
+         if(data.data != null){
+         console.log(data.data);
+         data.data.forEach(function(v){
+         var input = $('#input_'+ v.tid);
+         var dli = $('<tr id="'+ v.tid +'"></tr>');
+         var dname = $('<td class="col-md-2 type-name">'+ input.attr('data-name') +'</td>');
+         var dup = $('<td class="col-md-2 type-up"><i data-id="'+ v.tid +'" class="fa fa-level-up orderup"></i></td>');
+         var ddown = $('<td class="col-md-2 type-down"><i data-id="'+ v.tid +'" class="fa fa-level-down orderdown"></i></td>');
+
+         dname.appendTo(dli);
+         dup.appendTo(dli);
+         ddown.appendTo(dli);
+
+         dup.find('i').on('click',function(){
+         changorder(dli,1);
+         })
+
+         ddown.find('i').on('click',function(){
+         changorder(dli,0);
+         })
+         dli.appendTo($('#orderlist'));
+         input.attr('checked',true);
+         })
+         }
+         }else{
+         alert("数据加载失败");
+         }
+         },"json");*/
+
+        /**
+         * 重新填充已选分类到商城分类
+         */
+        function findintable(obj){
+            var self = obj;
+            var r = true; //true:添加操作 / false:移除操作
+            var newlist = $('#orderlist tr');
+            $('#orderlist').empty();
+            newlist.each(function(){
+                if(self.val() === $(this).attr('id')){
+                    r =  false; //移除该项
+                }else{
+                    $('#orderlist').append($(this));
+                }
+            });
+            return r;
+        }
+
+        //勾选分类
+        $('input[type=checkbox]').on('click',function(){
+            if(findintable($(this))) {
+                //添加勾选项到商城分类中
+                var dli = $('<tr id="' + $(this).val() + '"></tr>');
+                var dname = $('<td class="col-md-2 type-name">' + $(this).attr('data-name') + '</td>');
+                var dup = $('<td class="col-md-2 type-up" align="center"><i data-id="' + $(this).val() + '" class="fa fa-arrow-circle-up orderup"></i></td>');
+                var ddown = $('<td class="col-md-2 type-down" align="center"><i data-id="' + $(this).val() + '" class="fa fa-arrow-circle-down orderdown"></i></td>');
+                dname.appendTo(dli);
+                dup.appendTo(dli);
+                ddown.appendTo(dli);
+
+                dli.appendTo($('#orderlist'))
+            }
+            //绑定排序事件
+            $('#orderlist .orderup').on('click', function () {
+                changorder($(this).parent().parent(), 1);
+            });
+            $('#orderlist .orderdown').on('click', function () {
+                changorder($(this).parent().parent(), 0);
+            });
+        });
+
+        /**
+         * 排序按钮
+         * @param obj
+         * @param op
+         */
+        function changorder(obj,op){
+            var self = obj;
+            var prev = null;
+            var newtable = [];
+            var postion = 0;
+            $('#orderlist tr').each(function(k,v){
+                if($(this).attr('id') == self.attr('id')){
+                    postion = k;
+                }
+
+                newtable.push($(this));
+            });
+            if(op === 1) {
+                if(postion > 0) {
+                    var tmp = newtable[postion - 1];
+                    newtable[postion - 1] = newtable[postion];
+                    newtable[postion] = tmp;
+                }
+            }else{
+                if(postion < $("#orderlist").children("tr").length-1) {
+                    var tmp = newtable[postion + 1];
+                    newtable[postion + 1] = newtable[postion];
+                    newtable[postion] = tmp;
+                }
+            }
+
+
+
+            $('#orderlist').empty();
+
+            newtable.forEach(function(v){
+                v.find('.orderup').on('click',function(){ changorder(v,1) })
+                v.find('.orderdown').on('click',function(){ changorder(v,0) })
+                $('#orderlist').append(v);
+            });
+
+
+            //}
+            //}
+
+        }
+
+        //保存
+        $('#submit-order').on('click',function(){
+            var ids = [];
+            var i = 1;
+            $('#orderlist tr').each(function(){
+                ids.push([$(this).attr('id'),i]);
+                i = i+1;
+            });
+            var json = {};
+            for(var i=0;i<ids.length;i++)
+            {
+                json[ids[i][0]]=ids[i][1];
+            }
+            var jstring = JSON.stringify(json);
+            $('#order').val(jstring);
+            if (ids.length){
+                $('#order-form').submit();
+            } else {
+                parent.layer.msg('商城分类不能为空,请勾选ERP分类', { icon: 2, time: 3000 });
+                return false;
+            }
+        });
+    })
+</script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>商品分类管理</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="box">
+                <form action="{:U('goods/type_show_edit')}" method="post" id="order-form">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">商城的分类显示基于ERP设置的分类,请选择ERP所展示的相应层级和分类</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <!----- 一级 -------->
+                            <div class="col-md-6">
+                                <div class="row">
+
+                                    <div class="col-md-offset-1 col-md-10 margin-bottom-30">
+                                        <label class="label label-primary">ERP分类</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="radio" name="define_level" value="1" class="level-define-1" <if condition="$level_setting.cvalue eq 1">checked="checked"</if> >一级分类
+                                            </label>
+                                            <label class="col-md-offset-2">
+                                                <input type="radio" name="define_level" value="2" class="level-define-2" <if condition="$level_setting.cvalue eq 2">checked="checked"</if>>二级分类
+                                            </label>
+                                            <label class="col-md-offset-2">
+                                                <input type="radio" name="define_level" value="3" class="level-define-3" <if condition="$level_setting.cvalue eq 3">checked="checked"</if>>三级分类
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <foreach name="typelist" item="vo">
+
+                                        <div class="col-md-offset-1 col-md-10 margin-bottom-30" style="border-bottom: 1px dashed #f1f1f1" >
+                                            <div class="checkbox">
+                                                <label>
+                                                    <b style="color: #f1f1f1">------------+</b><input id="input_{$vo.id}" type="checkbox" class="level-show-1" value="{$vo.id}" data-name="{$vo.name}">{$vo.name}
+                                                </label>
+                                            </div>
+
+
+                                            <foreach name="vo.data" item="vvo">
+
+                                                <div class="col-md-offset-2 col-md-10 margin-bottom-15" >
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <b style="color: #f1f1f1">├------------</b><input id="input_{$vvo.id}" type="checkbox" class="level-show-2" value="{$vvo.id}" data-name="{$vvo.name}"> {$vvo.name}
+                                                        </label>
+                                                    </div>
+
+                                                    <foreach name="vvo.data" item="vvvo">
+                                                        <div class="col-md-offset-2 col-md-10 margin-bottom-15" >
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <b style="color: #f1f1f1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├-----------</b><input id="input_{$vvvo.id}" class="level-show-3" type="checkbox" value="{$vvvo.id}" data-name="{$vvvo.name}"> {$vvvo.name}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </foreach>
+
+
+                                                </div>
+                                            </foreach>
+
+                                        </div>
+                                    </foreach>
+                                </div>
+                            </div>
+                            <!----- 一级 -------->
+                            <div class="col-md-offset-1 col-md-4">
+                                <div class="row">
+
+                                    <div class="col-md-offset-1 col-md-11 margin-bottom-30">
+                                        <div style="margin-bottom: 10px;"><label class="label label-primary">商城分类</label></div>
+                                        <table class="table table-striped table-hover table-bordered" >
+                                            <thead>
+                                            <th>分类</th>
+                                            <th>向上</th>
+                                            <th>向下</th>
+                                            </thead>
+                                            <tbody id="orderlist">
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="order" name="order">
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <!--<div class="pull-left">
+                            <button type="reset" class="btn btn-default" onclick="javascript:history.go(-1);">返回</button>
+                        </div>-->
+                        <div class="pull-right">
+                            <button type="button" id="submit-order" class="btn btn-primary">保存修改</button>
+                        </div>
+                    </div>
+                    <!-- /.box-footer-->
+                </form>
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

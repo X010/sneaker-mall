@@ -1,0 +1,175 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<script>
+    //栏目列表
+    $().ready(function(){
+        /**
+         * 设置排序
+         */
+        $('.csort').on('keypress',function(event){
+            var id = $(this).attr('data-id');
+            var sval = $(this).val();
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if(keycode == '13'){
+                $.post("{:U('column/csort')}", { "id": id,"sort_val":sval },function(data){
+                    if(data) {
+                        parent.layer.msg(data.msg, { icon: 1, time: 2000 });
+                    }
+                });
+            }
+        });
+
+        /**
+         * 发布栏目
+         */
+        $('.huodong input').each(function(){
+            $(this).on('click',function(){
+                var cinput = $(this);
+                var dis = $(this).prop('checked') ? 1 : 0;
+                $.post(
+                        "{:U('column/publish')}",
+                        {id:$(this).attr('data-id'),dis:dis},
+                        function(data){
+                            if(data.error == 0){
+                                parent.layer.msg(data.msg, { icon: 1, time: 2000 });
+                            }else{
+                                parent.layer.msg(data.msg, { icon: 2, time: 3000 });
+                                cinput.attr('checked', false);
+                            }
+                        }
+                )
+            })
+        });
+
+        var obj; //当前操作行
+        //删除栏目
+        $('.del-column').on('click',function(){
+            obj = $(this);
+            var id = obj.attr('data-id');
+            parent.layer.confirm('确定要删除该栏目？', {
+                btn: ['是的','取消'], //按钮
+                shade: 0.5
+            }, function(){
+                $.post(
+                        "{:U('column/column_del')}",
+                        {id:id},
+                        function(data){
+                            if(data.error == 0){
+                                parent.layer.msg(data.msg, { icon: 1, time: 1000 });
+                                del_colum_ok();
+                            }else{
+                                parent.layer.msg(data.msg, { icon: 1, time: 1000 });
+                            }
+                        }
+                )
+            });
+        });
+
+        /**
+         * 删除成功后移除当前行
+         */
+        function del_colum_ok(){
+            obj.parent().parent().parent().remove();
+        }
+    })
+</script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                栏目管理
+                <small>业务员APP活动栏目列表及顶部焦点图设置</small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">业务员APP活动栏目列表及顶部焦点图设置</h3>
+                    <div class="box-tools pull-right">
+                        <a href="{:U('column/column_edit')}" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> 添加新栏目</a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="btn-group pull-left" id="templatemo_sort_btn" style="margin-bottom: 10px;">
+                                <a class="btn btn-default btn-sm" href="javascript:location.reload();">刷新</a>
+                            </div>
+                            <div class="table-responsive">
+
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th><div align="center">发布</div> </th>
+                                        <th><div align="center">栏目名称</div></th>
+                                        <!--<th><div align="center">#</div></th>-->
+                                        <th><div align="center">排序(回车键更新)</div></th>
+                                        <th><div align="center">类型</div></th>
+                                        <th><div align="center">商城首页</div></th>
+                                        <th><div align="center">操作</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="coll" item="vo">
+                                        <tr>
+                                            <td class="huodong">
+                                                <div align="center">
+                                                    <input type="checkbox" data-id="{$vo.id}"  data-pub="{$vo.publish}" <if condition="$vo['publish'] eq 1">checked="checked"</if> >
+                                                </div>
+                                            </td>
+                                            <td><div align="left">{$vo.html}{$vo.name}</div></td>
+                                            <!--<td><div align="center">{$vo.id}</div></td>-->
+                                            <td><div align="center"><input class="csort" type="text" size="3" data-id="{$vo.id}" value="{$vo.csort}"></div></td>
+                                            <td>
+                                                <div align="center">
+                                                    <if condition="$vo.type eq 1"><span class="">活动栏目</span></if>
+                                                    <if condition="$vo.type eq 2"><span class="">顶部焦点图</span></if>
+                                                </div>
+                                            </td>
+                                            <td><div align="center"><if condition="$vo['wx_home'] eq 1">是<else />否</if></div></td>
+                                            <td><div align="center"><a class="btn btn-primary btn-sm" href="{:U('column/column_edit',array('id'=>$vo['id']))}" role="button">编辑</a> <a class="btn btn-danger btn-sm del-column" data-id="{$vo.id}" href="javascript:;">删除</a></div></td>
+
+
+                                        </tr>
+                                    </foreach>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+
+                </div>
+                <!-- /.box-footer-->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
