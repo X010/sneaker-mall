@@ -1,0 +1,45 @@
+<header class="main-header">
+
+    <!-- Logo -->
+    <a href="#" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><img src="/Assets/Admin/Public/images/logo_mini.png"></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><img style="margin-left:-10px;margin-top:-5px;" src="/Assets/Admin/Public/images/logo_mini.png">网购后台</span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li style="padding: 15px 10px; color: #c4e3f3;"><span>{$com.name}</span></li>
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">{$name}</span><span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- The user image in the menu -->
+                        <li class="user-header">
+                            <img src="/Assets/Admin/Public/images/avatar.png" class="img-circle" alt="User Image">
+                            <p>
+                                {$name}
+                                <small>{$com.name}</small>
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#confirmModal">退出登录</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

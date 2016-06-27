@@ -1,0 +1,101 @@
+<aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+            <!-- Optionally, you can add icons to the links -->
+            <li name="li_menu" class="<?php if($Think.CONTROLLER_NAME == 'Index') echo ' active'; ?>"><a href="{:U('index/index')}"><i class="fa fa-tachometer"></i> <span>系统首页</span></a></li>
+            <li name="li_menu" class="treeview <?php if($Think.CONTROLLER_NAME == 'Goods') echo 'open active'; ?>">
+                <a href="javascript:"><i class="fa fa-cubes"></i> <span>商品管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a name="menu_link" href="{:U('goods/glist')}"><i class="fa fa-circle-o"></i>商品列表</a></li>
+                    <li><a name="menu_link" href="{:U('goods/pkgsize')}"><i class="fa fa-circle-o"></i>新建大包装商品</a></li>
+                    <li><a name="menu_link" href="{:U('goods/tlist')}"><i class="fa fa-circle-o"></i>商品分类管理</a></li>
+                </ul>
+            </li>
+
+            <li name="li_menu" class="treeview <?php if($Think.CONTROLLER_NAME == 'Sale') echo 'open active'; ?>">
+                <a href="javascript:"><i class="fa fa-yen"></i> <span>价格管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a name="menu_link" href="{:U('sale/price_list')}"><i class="fa fa-circle-o"></i>售卖定价</a></li>
+                </ul>
+            </li>
+
+            <li name="li_menu" class="treeview <?php if($Think.CONTROLLER_NAME == 'Market') echo 'open active'; ?>">
+                <a href="javascript:"><i class="fa fa-money"></i> <span>促销管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a name="menu_link" href="{:U('goods/gift')}"><i class="fa fa-circle-o"></i>新建买赠促销</a></li>
+                    <li><a name="menu_link" href="{:U('goods/new_bind')}"><i class="fa fa-circle-o"></i>新建组合促销</a></li>
+                    <li><a name="menu_link" href="{:U('market/market_list')}"><i class="fa fa-circle-o"></i>赠品列表</a></li>
+                    <!--<li><a name="menu_link" href="{:U('market/giving')}"><i class="fa fa-circle-o"></i>新建赠品栏</a></li>-->
+                </ul>
+            </li>
+            <li name="li_menu" class="treeview <?php if($Think.CONTROLLER_NAME == 'Column') echo 'active'; ?>">
+                <a href="javascript:"><i class="fa fa-th-list"></i> <span>栏目管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a name="menu_link" href="{:U('column/clist')}"><i class="fa fa-circle-o"></i> 栏目列表</a></li>
+                    <li><a name="menu_link" href="{:U('column/column_edit')}"><i class="fa fa-circle-o"></i> 新建栏目</a></li>
+                </ul>
+            </li>
+            <li name="li_menu" class="treeview <?php if($Think.CONTROLLER_NAME == 'Showcase' || $Think.CONTROLLER_NAME == 'Mall') echo 'active'; ?>">
+                <a href="javascript:"><i class="fa fa-weixin"></i> <span>微信商城</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a name="menu_link" href="{:U('mall/edit')}"><i class="fa fa-circle-o"></i>商城设置</a></li>
+                    <li><a name="menu_link" href="{:U('showcase/slist')}"><i class="fa fa-circle-o"></i>商城装饰</a></li>
+                    <li><a name="menu_link" href="{:U('mall/promotion_setting')}"><i class="fa fa-circle-o"></i>会销设置</a></li>
+                    <!--<li><a name="menu_link" href="{:U('showcase/preview')}"><i class="fa fa-circle-o"></i>橱窗预览</a></li>-->
+                </ul>
+            </li>
+
+            <!--<li class="treeview">
+                <a href="javascript:enterOtherPlatform('yc');"><i class="fa fa-cloud"></i> <span>99云仓</span> </a>
+            </li>-->
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
+
+<script>
+    //自动展开当前菜单(需要API配合透传回current_menu)
+    $().ready(function(){
+        $('li[name="li_menu"]').removeClass('active').each(function(i){
+            if (i == '<?php echo $_SESSION["current_menu"]; ?>'){
+                $(this).addClass('active');
+            }
+        });
+
+        $('a[name="menu_link"]').each(function(){
+            var idx = $(this).parent().parent().parent().index();
+            var href = $(this).attr('href');
+            href = href + '&current_menu=' + idx;
+            $(this).attr('href', href);
+        });
+
+    });
+
+</script>
+<!-- (没有ticket,暂不支持)
+<script>
+    /**
+     * 打开新页面进入其他系统
+     * @param subdomain
+     */
+    function enterOtherPlatform(subdomain){
+        if (typeof(subdomain) == 'string'){
+            var hosts = window.location.host.split('.');
+            var url = 'http://' + subdomain + '.' + hosts[1] + '.' + hosts[2];
+            if (typeof(url) == 'string'){
+                var ticket = '{$ticket}';
+                if (ticket) {
+                    url += '?ticket=' + ticket;
+                    window.open(url);
+                }
+            }
+        }
+    }
+</script>
+-->

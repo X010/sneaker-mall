@@ -1,0 +1,42 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+</head>
+<body style="background:#E4E6EA;">
+<div id="main-wrapper">
+    <div class="template-page-wrapper">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div align="center" style="padding-top: 100px;">
+
+                    <div class="error-content">
+                        <h3 style="margin-bottom: 50px;"><i class="fa fa-warning text-red"></i> 系统提示:<?php echo($error); ?></h3>
+
+                        <p>页面<i id="wait">2</i>秒后跳转...</p>
+                        <p><a id="href" class="btn btn-default btn-sm" href="<?php echo($jumpUrl); ?>" role="button">立即跳转</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- -->
+    </div>
+</div>
+</body>
+<script>
+    $().ready(function(){
+        var wait = $('#wait');
+        var href = $('#href').attr('href');
+        var tw = parseInt(wait.text());
+        var interval = setInterval(function(){
+            var time = parseInt(wait.text()) - 1;
+            wait.text(time);
+
+            if(time<=0){
+                clearInterval(interval);
+                location.href = href;
+            }
+        },1000);
+    })
+</script>
+</html>

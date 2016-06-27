@@ -1,0 +1,404 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<link rel="stylesheet" href="/Assets/Admin/Public/css/daterangepicker.css">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                编辑商品价格详情
+                <small></small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{$good.gname}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <!-- params -->
+                            <form class="form-horizontal" id="eform" method="post" action="">
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">商品名称</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" readonly id="gname" name='gname' value="{$good.gname}">
+                                        <input type="hidden" name="id" value="{$good.id}">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">商品规格</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" readonly name='specz' value="{$good.spec}">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">商品单位</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" readonly name='unit' value="{$good.unit}">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">商品编码</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" readonly name='gcode' value="{$good.gcode}" placeholder="如：81000001">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">商品参数</label>
+                                    <div class="col-xs-7">
+                                        <table class="table table-striped table-hover table-bordered">
+                                            <thead>
+                                            <th>规格</th>
+                                            <th>包装规格</th>
+                                            <th>单位</th>
+                                            <th>产地</th>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{$good.spec}</td>
+                                                <td>{$good.pkgspec}</td>
+                                                <td>{$good.unit}</td>
+                                                <td>{$good.place}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <?php $cids = explode(',',$good['cctype']); ?>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label" id="cctypename">客户类型</label>
+                                    <div class="col-xs-8">
+                                        <foreach name="sp" item="vo">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="supplier[]" class="sp" <?php if(in_array($vo['id'],$cids)) echo "checked";?>  value="{$vo.id}" data-name="{$vo.name}"><span>{$vo.name}</span>
+                                            </label>
+                                        </foreach>
+                                    </div>
+                                </div>
+
+                                <?php $cids = explode(',',$good['sids']); ?>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">出货仓库</label>
+                                    <div class="col-xs-7">
+                                        <foreach name="ck" item="vo">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="ck[]" class="ck"  value="{$vo.id}" <?php if(in_array($vo['id'],$cids)) echo "checked";?> data-name="{$vo.name}"> {$vo.name}
+                                            </label>
+                                        </foreach>
+                                    </div>
+                                </div>
+                                <script>
+                                    $().ready(function(){
+                                        if (<?php echo ($_SESSION["business"] == "B2C" ? 1 : 0); ?>){
+                                            $('#cctypename').html('会员类型');
+                                            $('input[name="supplier[]"]').each(function(i){
+                                                $(this).attr('data-name', VIP_TYPES[i]).next('span').text(VIP_TYPES[i]);
+                                            });
+
+                                            $('#th-cctype').html('会员类型');
+                                        }
+
+                                        // 初始化价格表
+                                        {$json_ck}
+
+                                        {$json_sp}
+
+                                        ck.forEach(function(e){
+                                            var _ck = e;
+                                            $('input[name="ck[]"]').each(function(){
+                                                if ($(this).val() == _ck.id) {
+                                                    $(this).attr('checked', 'checked');
+                                                }
+                                            });
+                                            sp.forEach(function(v){
+                                                buildtb(_ck.id, _ck.name, v.id, v.name);
+                                            })
+                                        });
+
+                                        //勾选客户类型
+                                        $('.sp').on('click',function(){
+                                            var _this = $(this);
+                                            if($(this).is(':checked')) {
+                                                //被选中客户类型
+                                                if($.inArray($(this).val(), sp) == -1){
+                                                    sp.push($.parseJSON('{"id":"'+_this.val()+'","name":"'+_this.attr('data-name')+'"}'));
+                                                }
+
+                                                ck.forEach(function(v){
+                                                    buildtb( v.id, v.name, _this.val(),_this.attr('data-name'));
+                                                })
+                                            }else{
+                                                // 清除表格信息
+                                                var _sp = [];
+                                                var _input = $(this).val();
+                                                sp.forEach(function(v){
+                                                    if(v.id !== _input){
+                                                        _sp.push($.parseJSON('{"id":"'+ v.id+'","name":"'+ v.name +'"}'));
+                                                    }
+                                                });
+                                                sp = _sp;
+                                                removetb(_input,'sp');
+                                            }
+                                            //console.log(sp);
+                                        });
+
+                                        // 勾选仓库
+                                        $('.ck').on('click',function(){
+                                            var _this = $(this);
+                                            if($(this).is(':checked')) {
+                                                // 被选中仓库
+                                                // 存储仓库信息
+                                                if($.inArray($(this).val(),ck) == -1){
+                                                    ck.push($.parseJSON('{"id":"'+_this.val()+'","name":"'+_this.attr('data-name')+'"}'));
+                                                }
+
+                                                $('input[name="supplier[]"]').each(function(){
+                                                    if ($(this).prop('checked')){
+                                                        buildtb(_this.val(), _this.attr('data-name'), $(this).val(), $(this).attr('data-name'));
+                                                    }
+                                                });
+                                            }else{
+                                                // 清除表格信息
+                                                var _ck = [];
+                                                var _input = _this.val();
+                                                ck.forEach(function(v){
+                                                    if(v.id !== _input){
+                                                        _ck.push($.parseJSON('{"id":"'+ v.id+'","name":"'+ v.name +'"}'));
+                                                    }
+                                                });
+                                                ck = _ck;
+                                                removetb(_input,'ck');
+                                            }
+                                            //console.log(ck);
+                                        });
+
+                                        /**
+                                         * 添加一行价格
+                                         * @param ckid
+                                         * @param ckname
+                                         * @param spid
+                                         * @param spname
+                                         */
+                                        function buildtb(ckid,ckname,spid,spname){
+                                            //console.log(ckid,ckname,spid,spname);
+                                            if($('#maingoodsid').val() === "0"){
+                                                parent.layer.msg('请选择活动商品', { icon: 2, time: 3000 });
+                                                return ;
+                                            }
+
+                                            var tr = $('<tr id="'+ckid+'_'+spid+'" data-ckid="'+ckid+'" data-spid="'+spid+'">');
+                                            var _ck = $('<td style="min-width:100px;padding-top:12px;">'+ckname+'</td>');
+                                            var _sp = $('<td style="padding-top:12px;">'+spname+'</td>');
+                                            //var _npr = $('<td class="tbyellow"><input <?php if ($good["isbind"]==0 && $good["pkgsize"]==0) echo "disabled=\"disabled\""; ?> size="5" name="gprice" data-ckid="'+ckid+'" data-spid="'+spid+'" data-value="" class="form-control input-sm" type="text" value="加载中..."></td>');
+                                            var _npr = $('<td class="tbyellow"><input size="5" name="gprice" data-ckid="'+ckid+'" data-spid="'+spid+'" data-value="" class="form-control input-sm" type="text" value="加载中..."></td>');
+                                            getprice({$good.id},ckid,spid,_npr.find('input'));
+
+                                            tr.append(_ck);
+                                            tr.append(_sp);
+
+                                            tr.append(_npr);
+
+                                            var empy = true;
+                                            $('#ttbody tr').each(function(){
+                                                if($(this).attr('data-ckid') === tr.attr('data-ckid')){
+                                                    $(this).before(tr);
+                                                    empy = false;
+                                                }
+                                            });
+                                            if(empy) {
+                                                tr.appendTo($('#ttbody'));
+                                            }
+                                        }
+
+                                        /**
+                                         * 移除一行价格
+                                         * @param id
+                                         * @param tp
+                                         */
+                                        function removetb(id,tp){
+                                            $('#ttbody tr').each(function(){
+                                                if(tp == 'ck'){
+                                                    if($(this).attr('data-ckid')===id){
+                                                        $(this).remove();
+                                                    }
+                                                }else if(tp === 'sp'){
+                                                    if($(this).attr('data-spid') === id){
+                                                        $(this).remove();
+                                                    }
+                                                }
+                                            })
+                                        }
+
+                                        /**
+                                         * 获取一个价格
+                                         * @param id
+                                         * @param ckid
+                                         * @param spid
+                                         * @param obj
+                                         */
+                                        function getprice(id,ckid,spid,obj){
+                                            var params = {id:id,ckid:ckid,spid:spid,list:0};
+                                            <?php
+                                            if ($good["isbind"]==0 && $good["pkgsize"]==0){
+                                                echo "params['gtyp'] = 1;";
+                                            }
+                                            ?>
+                                            $.post(
+                                                    "{:U('sale/shop_price')}",
+                                                    {id:id,ckid:ckid,spid:spid,list:0,gtyp:1},
+                                                    function(data){
+                                                        if(data.error == 0) {
+                                                            obj.val(data.data.price).attr('data-value', data.data.price);
+                                                        }
+                                                    }
+                                            )
+                                        }
+
+                                        //修改价格时,顺便修改属性价格
+                                        $('input[name="gprice"]').change(function(){
+                                            $(this).attr('data-value', $(this).val());
+                                        });
+
+                                        // 更改商品价格
+                                        $('#submit_btn').on('click',function(){
+                                            var sp = '';
+                                            $('input[name="supplier[]"]:checked').each(function(v){
+                                                sp+=$(this).val()+',';
+                                            });
+                                            var ck = '';
+                                            $("input[name='ck[]']:checked").each(function(v){
+                                                ck+=$(this).val()+',';
+                                            });
+                                            var price_style = $('#price_style').prop('checked') ? 1 : 0;
+                                            var price = '';
+                                            $("input[name='gprice']").each(function(){
+                                                var _c = $(this).attr('data-ckid');
+                                                var _s = $(this).attr('data-spid');
+                                                var _p = $(this).val();
+                                                price += _c+'-'+_s+'-'+_p+',';
+                                            });
+
+                                            var params = {
+                                                ck:ck,
+                                                sp:sp,
+                                                price_style:price_style,
+                                                pricelist:price,
+                                                id:{$good.id},
+                                            };
+                                            $.post(
+                                                    "{:U('sale/fix_price')}",
+                                                    params,
+                                                    function(data){
+                                                        if (data.error){
+                                                            parent.layer.msg(data.msg, { icon: 2, time: 2000 });
+                                                        } else {
+                                                            //parent.layer.msg(data.msg, { icon: 1, time: 3000 });
+                                                            history.go(-1);
+                                                        }
+                                                    }
+                                            )
+                                        });
+
+
+                                    });
+
+                                    //填充价格
+                                    function full(){
+                                        //var price = $.trim($('#price_list tbody tr').eq(0).find('td:last input').attr('data-value'));
+                                        var price = $.trim($('#price_list tbody tr').eq(0).find('td:last input').val());
+                                        price = price ? parseFloat(price).toFixed(2) : '0.00';
+                                        $('#price_list tbody tr').each(function(){
+                                            $(this).find('td:last input').val(price).attr('data-value', price)
+                                        });
+                                    }
+
+
+                                </script>
+                                <?php if ($good["pkgsize"]==1){ ?>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">价格显示</label>
+                                    <div class="col-xs-7">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="price_style" id="price_style" value="1" <?php if($good['price_style']==1) echo "checked";?>> 折算单价显示
+                                        </label>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">售价详情</label>
+                                    <div class="col-xs-7">
+                                        <table id="price_list" class="table table-striped table-hover table-bordered">
+                                            <thead>
+                                            <th>仓库</th>
+                                            <th id="th-cctype">客户类型</th>
+                                            <th>价格<a href="javascript:full()"> [填充]</a></th>
+                                            </thead>
+                                            <tbody id="ttbody" >
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="form-group"><label  class="col-sm-2 control-label"></label><div class="col-xs-7"></div></div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="button" id="submit_btn" class="btn btn-primary" onclick="disableBtn(this)">确定保存</button>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                            <!-- params end -->
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+
+                </div>
+                <!-- /.box-footer-->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

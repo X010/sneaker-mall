@@ -1,0 +1,877 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<link rel="stylesheet" href="/Assets/Admin/Public/css/daterangepicker.css">
+<script src="/Assets/Admin/Public/js/moment.min.js"></script>
+<script src="/Assets/Admin/Public/js/daterangepicker.js"></script>
+<script>
+    var focus_item = '';
+    var giving_num = 0;
+    $().ready(function(){
+        if (<?php echo ($_SESSION["business"] == "B2C" ? 1 : 0); ?>){
+            $('#cctypename').html('可见会员');
+            $('input[name="supplier[]"]').each(function(i){
+                $(this).attr('data-name', VIP_TYPES[i]).next('span').text(VIP_TYPES[i]);
+            });
+        }
+
+        // 时间选择
+        $('#begin_time').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function(start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+        $('#end_time').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function(start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+        $('#begin_time').val('{$market.start_time}');
+        $('#end_time').val('{$market.end_time}');
+
+
+        /* ------------------------------------- 基础商品搜索 BEGIN ------------------------------------- */
+        $('#gkey-base').on("keyup", function (e) {
+            if (e.keyCode == 13) {
+                gdsearch_base();
+            }
+        });
+        $('#gsearch-base').on('click',function(){
+            gdsearch_base();
+        });
+
+        function gdsearch_base(){
+            var key = $('#gkey-base').val();
+            if(key == ""){
+                parent.layer.msg('请填写要搜索的商品名称或编码', { icon: 2, time: 3000 });
+                return;
+            }
+            //var url = "{:U('goods/bind_search')}&key="+key;
+            var url = "{:U('goods/gsearch')}&gtyp=1&key="+key;
+            $.get(url,'',function(data){
+                if(data.error === 0){
+                    $('#scontent-base').empty();
+                    var tb = $('<table class="table table-striped table-hover table-bordered"></table>');
+                    var thead = $('<thead> \ ' +
+                            '<tr> \ ' +
+                            '<th> <div align="center">ID</div></th> \ ' +
+                            '<th><div align="center">名称</div></th>\ ' +
+                            '<th><div align="center">条码</div></th>\ ' +
+                            '<th><div align="center">规格</div></th>\ ' +
+                            '</tr>\ ' +
+                            '</thead>');
+                    tb.append(thead);
+
+                    var tbody = $('<tbody></tbody>');
+                    $.each(data.data.data,function(k,v){
+                        var tr = $('<tr data-id="'+ v.id +'" data-unit="'+ v.unit +'" data-spec="'+ v.spec +'" data-unit="'+ v.unit+'" data-gname="'+ v.gname +'"></tr>');
+                        var trid = $('<td><div align="center">'+ v.gcode +'</div></td>');
+                        var trname = $('<td><div align="left">'+ v.gname +'</div></td>');
+                        var trcode = $('<td><div align="center">'+ v.barcode +'</div></td>');
+                        var spec = $('<td><div align="center">'+ v.spec +'</div></td>');
+
+                        tr.append(trid);
+                        tr.append(trname);
+                        tr.append(trcode);
+                        tr.append(spec);
+
+                        tr.on('dblclick',function(){
+                            $('#basegoods').val($(this).attr('data-gname'));
+                            $('#basegoodsid').val($(this).attr('data-id'));
+                            $('#spec').val($(this).attr('data-spec'));
+                            //$('#showunit').val($(this).attr('data-unit'));
+                            $('#showunit').val('箱');
+                            $('#scontent-base').empty();
+                            $('#gkey-base').val('');
+                        });
+                        tr.appendTo(tbody);
+                    });
+
+                    tb.append(tbody);
+                    $('#scontent-base').append(tb);
+                }
+            })
+        }
+
+        /* ------------------------------------- 基础商品搜索 END ------------------------------------- */
+
+
+
+        /* ------------------------------------- 捆绑商品搜索 BEGIN ------------------------------------- */
+        $('#gkey-bind').on("keyup", function (e) {
+            if (e.keyCode == 13) {
+                gdsearch_bind();
+            }
+        });
+        $('#gsearch-bind').on('click',function(){
+            gdsearch_bind();
+        });
+
+        function gdsearch_bind(){
+            var key = $('#gkey-bind').val();
+            if(key == ""){
+                parent.layer.msg('请填写要搜索的商品名称或编码', { icon: 2, time: 3000 });
+                return;
+            }
+            //var url = "{:U('goods/bind_search')}&key="+key;
+            var url = "{:U('goods/gsearch')}&gtyp=1&key="+key;
+            $.get(url,'',function(data){
+                if(data.error === 0){
+                    $('#scontent-bind').empty();
+                    var tb = $('<table class="table table-striped table-hover table-bordered"></table>');
+                    var thead = $('<thead> \ ' +
+                            '<tr> \ ' +
+                            '<th> <div align="center">ID</div></th> \ ' +
+                            '<th><div align="center">名称</div></th>\ ' +
+                            '<th><div align="center">条码</div></th>\ ' +
+                            '<th><div align="center">规格</div></th>\ ' +
+                            '</tr>\ ' +
+                            '</thead>');
+                    tb.append(thead);
+
+                    var tbody = $('<tbody></tbody>');
+                    $.each(data.data.data,function(k,v){
+                        var tr = $('<tr data-id="'+ v.id +'" data-unit="'+ v.unit +'" data-pkgspec="'+ v.pkgspec +'" data-unit="'+ v.unit+'" data-gname="'+ v.gname +'"></tr>');
+                        var trid = $('<td><div align="center">'+ v.gcode +'</div></td>');
+                        var trname = $('<td><div align="left">'+ v.gname +'</div></td>');
+                        var trcode = $('<td><div align="center">'+ v.barcode +'</div></td>');
+                        var spec = $('<td><div align="center">'+ v.spec +'</div></td>');
+
+                        tr.append(trid);
+                        tr.append(trname);
+                        tr.append(trcode);
+                        tr.append(spec);
+
+                        tr.on('dblclick',function(){
+                            var goods_info = {
+                                'id': $(this).attr('data-id'),
+                                'gname': $(this).attr('data-gname'),
+                                'gcode': $(this).attr('data-gcode'),
+                            };
+                            add_goods_row(goods_info, 'bind_', 'bind_');
+                            $('#scontent-bind').empty();
+                            $('#gkey-bind').val('');
+
+                        });
+                        tr.appendTo(tbody);
+                    });
+
+                    tb.append(tbody);
+                    $('#scontent-bind').append(tb);
+                }
+            })
+        }
+
+        /* ------------------------------------- 捆绑商品搜索 END ------------------------------------- */
+
+        /* ------------------------------------- 赠送商品搜索 BEGIN ------------------------------------- */
+        $('#gkey-gift').on("keyup", function (e) {
+            if (e.keyCode == 13) {
+                gdsearch_gift();
+            }
+        });
+        $('#gsearch-gift').on('click',function(){
+            gdsearch_gift();
+        });
+
+        function gdsearch_gift(){
+            var key = $('#gkey-gift').val();
+            if(key == ""){
+                parent.layer.msg('请填写要搜索的商品名称或编码', { icon: 2, time: 3000 });
+                return;
+            }
+            //var url = "{:U('goods/bind_search')}&key="+key;
+            var url = "{:U('goods/gsearch')}&gtyp=1&key="+key;
+            $.get(url,'',function(data){
+                if(data.error === 0){
+                    $('#scontent-gift').empty();
+                    var tb = $('<table class="table table-striped table-hover table-bordered"></table>');
+                    var thead = $('<thead> \ ' +
+                            '<tr> \ ' +
+                            '<th> <div align="center">ID</div></th> \ ' +
+                            '<th><div align="center">名称</div></th>\ ' +
+                            '<th><div align="center">条码</div></th>\ ' +
+                            '<th><div align="center">规格</div></th>\ ' +
+                            '</tr>\ ' +
+                            '</thead>');
+                    tb.append(thead);
+
+                    var tbody = $('<tbody></tbody>');
+                    $.each(data.data.data,function(k,v){
+                        var tr = $('<tr data-id="'+ v.id +'" data-unit="'+ v.unit +'" data-spec="'+ v.spec +'" data-unit="'+ v.unit+'" data-gname="'+ v.gname +'"></tr>');
+                        var trid = $('<td><div align="center">'+ v.gcode +'</div></td>');
+                        var trname = $('<td><div align="left">'+ v.gname +'</div></td>');
+                        var trcode = $('<td><div align="center">'+ v.barcode +'</div></td>');
+                        var spec = $('<td><div align="center">'+ v.spec +'</div></td>');
+
+                        tr.append(trid);
+                        tr.append(trname);
+                        tr.append(trcode);
+                        tr.append(spec);
+
+                        tr.on('dblclick',function(){
+                            var goods_info = {
+                                'id': $(this).attr('data-id'),
+                                'gname': $(this).attr('data-gname'),
+                                'gcode': $(this).attr('data-gcode'),
+                            };
+                            add_giving_goods_row(goods_info, 'giving_', 'giving_');
+                            $('#scontent-gift').empty();
+                            $('#gkey-gift').val('');
+
+                        });
+                        tr.appendTo(tbody);
+                    });
+
+                    tb.append(tbody);
+                    $('#scontent-gift').append(tb);
+                }
+            })
+        }
+
+        /* ------------------------------------- 赠送商品搜索 END ------------------------------------- */
+
+
+
+    });
+
+
+    var giving_num = 0;
+    /**
+     * 添加一行商品(活动定制)
+     *   需要全局变量 giving_num
+     * @param goods_info
+     * @param prefix 参数前缀 如:giving_ / bind_
+     */
+    function add_giving_goods_row(goods_info, prefix_goods, prefix_num){
+        var goods = {
+            'id': '',
+            'gname': '',
+            'gcode': '',
+            'num': '',
+        };
+        $.extend(goods, goods_info);
+        prefix_goods = prefix_goods ? prefix_goods : 'giving_';
+        prefix_num = prefix_num ? prefix_num : 'z';
+
+        var lists = $('#'+prefix_goods+'goods_lists');
+        var doit = true;
+
+        //检测是否已经有了
+        $('input[name="'+prefix_goods+'goods[]"]').each(function(){
+            if ($(this).val() == goods.id) {
+                parent.layer.msg('该商品已经添加过', { icon: 2, time: 2000 });
+                doit = false;
+                return;
+            }
+        });
+
+
+        if (doit){
+            var dgroup = $('<div class="form-group"></div>');
+            var dlabel = $('<label class="col-xs-3 control-label"></label>');
+            var dlabel_close = $('<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+
+            dlabel.append(dlabel_close);
+            dgroup.append(dlabel);
+            dlabel_close.on('click',function(){
+                dgroup.remove();
+            });
+
+
+            giving_num = giving_num + 1;
+            var dgiving = $('<div class="col-xs-7"></div>');
+            var dgiving_goods_title = $('<div class="input-group"><div class="input-group-addon">标题</div><input type="text" class="form-control"  id="'+prefix_goods+'title_'+ giving_num +'" name="'+prefix_goods+'title[]" value="'+goods.gname+'"></div>');
+            var dgiving_goods_name = $('<div class="input-group"><div class="input-group-addon">赠品</div><input type="text" disabled="disabled" class="form-control"  id="'+prefix_goods+'goods_name_show_'+ giving_num +'" name="'+prefix_goods+'goods_name_show[]" value="'+goods.gname+'"></div>');
+            var dgiving_goods = $('<input type="hidden" class="form-control"  id="'+prefix_goods+'goods_name_'+ giving_num +'" name="'+prefix_goods+'goods_name[]" value="'+goods.gname+'">');
+            var dgiving_goods_id = $('<input type="hidden" name="'+prefix_goods+'goods[]" id="'+prefix_goods+'goods_'+ giving_num +'_id" value="'+goods.id+'" />');
+            var dgiving_goods_code = $('<input type="hidden" name="'+prefix_goods+'goods_code[]" id="'+prefix_goods+'goods_'+ giving_num +'_code" value="'+goods.gcode+'" />');
+            dgiving_goods_title.appendTo(dgiving);
+            dgiving_goods_name.appendTo(dgiving);
+            dgiving_goods.appendTo(dgiving);
+            dgiving_goods_id.appendTo(dgiving);
+            dgiving_goods_code.appendTo(dgiving);
+            dgiving.appendTo(dgroup);
+
+            var dgiving_num = $('<div class="col-xs-2"></div>');
+            var dgiving_num_group = $('<div class="input-group"></div>');
+            var dgiving_num_num = $('<div style="height:34px;"></div><input onblur="modifyGivingTitle(this);" type="text" class="form-control" name="'+prefix_num+'goods_num[]" placeholder="数量" value="'+ goods.num +'">');
+            dgiving_num_num.appendTo(dgiving_num_group);
+            dgiving_num_group.appendTo(dgiving_num);
+            dgiving_num.appendTo(dgroup);
+
+            lists.append(dgroup);
+            $('input[name="'+prefix_num+'goods_num[]"]:last').focus();
+        }
+    }
+
+
+    /**
+     * 自动填充赠品标题
+     */
+    function modifyGivingTitle(obj){
+        var name = $.trim($(obj).parent().parent().parent().find('input[name="giving_goods_name[]"]').val());
+        var num = $.trim($(obj).parent().parent().parent().find('input[name="giving_goods_num[]"]').val());
+        var title_obj = $(obj).parent().parent().parent().find('input[name="giving_title[]"]');
+        if (title_obj.val().indexOf(name) == 0){
+            $(obj).parent().parent().parent().find('input[name="giving_title[]"]').val(name + ' ×' + num);
+        }
+    }
+
+    /**
+     * 检测并提交
+     * @returns {boolean}
+     */
+    function checkForm(){
+        var msg = '';
+        var doit = false;
+        //商品信息检测
+        var type = $('#goods_type').val();
+        if (type == 1){ //大包装
+            if ($.trim($('#maingoods').val()) == ''){
+                $('#maingoods').focus();
+                msg = '请填写促销商品名称';
+                doit = false;
+            } else if ($.trim($('#basegoodsid').val()) == ''){
+                $('#basegoodsid').focus();
+                msg = '请选择基础商品';
+                doit = false;
+            } else if ($.trim($('#showunit').val()) == ''){
+                $('#showunit').focus();
+                msg = '请填写促销商品单位';
+                doit = false;
+            } else if ($.trim($('#spec').val()) == ''){
+                $('#spec').focus();
+                msg = '请选择基础商品规格';
+                doit = false;
+            } else if ($.trim($('#tid').val()) == '0'){
+                msg = '请选择促销商品分类';
+                $('#tid').focus();
+                doit = false;
+            } else {
+                //$('#eform').submit();
+                //return;
+                doit = true;
+            }
+            if (!doit){
+                parent.layer.msg(msg, { icon: 2, time: 2000 });
+                return;
+            }
+
+        } else if (type == 2){ //捆绑商品
+            if ($.trim($('#maingoods').val()) == ''){
+                $('#maingoods').focus();
+                msg = '请填写促销商品名称';
+                doit = false;
+            } else if ($.trim($('#showunit').val()) == ''){
+                $('#showunit').focus();
+                msg = '请填写显示单位';
+                doit = false;
+            } else if ($.trim($('#tid').val()) == '0'){
+                $('#tid').focus();
+                msg = '请选择促销商品分类';
+                doit = false;
+            } else if ($.trim($('input[name="bind_goods[]"]').val()) == ''){
+                msg = '请添加绑定商品';
+                doit = false;
+            } else {
+                var err = 0;
+                $('input[name="bind_goods_num[]"]').each(function(){
+                    if ($.trim($(this).val()) == '' || $.trim($(this).val()) == 0){
+                        msg = '请输入绑定商品数量';
+                        err = 1;
+                        doit = false;
+                    }
+                });
+                if (!err){
+                    //$('#eform').submit();
+                    //return;
+                    doit = true;
+                }
+            }
+            if (!doit){
+                parent.layer.msg(msg, { icon: 2, time: 2000 });
+                return;
+            }
+        }
+
+        //策略检测
+        if ($.trim($('#begin_time').val()) == ''){
+            parent.layer.msg('请选择开始时间', { icon: 2, time: 2000 });
+            $('#begin_time').focus();
+            doit = false;
+        } else if ($.trim($('#end_time').val()) == ''){
+            parent.layer.msg('请选择结束时间', { icon: 2, time: 2000 });
+            $('#end_time').focus();
+            doit = false;
+        } else if ($.trim($('input[name="giving_goods[]"]').val()) == ''){
+            parent.layer.msg('请添加赠品', { icon: 2, time: 2000 });
+            $('#giving_goods_1').focus();
+            doit = false;
+        } else {
+            $('#timer').val($.trim($('#begin_time').val()) + ' - ' + $.trim($('#end_time').val()));
+
+            var miss_giving_title = false;
+            $('input[name="giving_title[]"]').each(function(){
+                if ($.trim($(this).val()) == ''){
+                    parent.layer.msg('请输入赠品标题', { icon: 2, time: 2000 });
+                    $(this).focus();
+                    miss_giving_title = true;
+                    return;
+                }
+            });
+            if (miss_giving_title){
+                return;
+            }
+
+            var miss_num = false;
+            $('input[name="giving_goods_num[]"]').each(function(){
+                if ($.trim($(this).val()) == ''){
+                    parent.layer.msg('请输入赠品数量', { icon: 2, time: 2000 });
+                    $(this).focus();
+                    miss_num = true;
+                    return;
+                }
+            });
+            if (miss_num){
+                return;
+            } else {
+                if (!doit){
+                    parent.layer.msg(msg, { icon: 2, time: 2000 });
+                    return;
+                }
+            }
+
+            $('#eform').submit();
+        }
+
+
+    }
+
+
+    /**
+     * 切换活动商品类型
+     * @param type
+     */
+    function f_goods_type(type){
+        if(type == 1){ //大包装商品
+            $('#div_pkg').show();
+            $('#div_bind').hide();
+            $('#searchbox-base').show();
+            $('#searchbox-bind').hide();
+            //解除自身禁用
+            //$('#basegoods').removeAttr('disabled');
+            $('#basegoodsid').removeAttr('disabled');
+            $('#spec').removeAttr('disabled');
+            //禁用其他
+            $('#place').attr('disabled', 'disabled');
+            $('#bind_goods_lists').empty();
+
+        } else if(type == 2){ //绑定商品
+            $('#div_pkg').hide();
+            $('#div_bind').show();
+            $('#searchbox-base').hide();
+            $('#searchbox-bind').show();
+            //解除自身禁用
+            $('#place').removeAttr('disabled');
+            //禁用其他
+            $('#basegoods').attr('disabled', 'disabled');
+            $('#basegoodsid').attr('disabled', 'disabled');
+            $('#spec').attr('disabled', 'disabled');
+        }
+    }
+
+</script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                新建买赠促销
+                <small></small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{$good.gname}</h3>
+                </div>
+                <div class="box-body">
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <!-- params -->
+                            <form class="form-horizontal" id="eform" method="post" action="{:U('goods/gift')}">
+
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">促销商品类型</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <select class="form-control" id="goods_type" name="goods_type" onchange="f_goods_type(this.value)">
+                                                <option value="1" selected>大包装商品</option>
+                                                <option value="2">捆绑商品</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">促销商品名称</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="newmainname" id="maingoods" placeholder="如：双沟小青花买一送一">
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">促销商品分类</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <!--<div class="input-group-addon">N</div>-->
+                                            <select class="form-control" id="tid" name="tid">
+                                                <option value="0">- 请选择商品分类 -</option>
+                                                <?php
+                                                    foreach($tlist as $key=>$val){
+                                                $ronly = (isset($val['data']) && !empty($val['data']))?'disabled':'';
+                                                echo "<option ".$ronly." value='".$val['id']."'>".$val['name']."</option>";
+                                                foreach($val['data'] as $key2=>$val2){
+                                                $ronly = (isset($val2['data']) && !empty($val2['data']))?'disabled':'';
+                                                echo "<option ".$ronly." value='".$val2["id"]."'>------".$val2["name"]."</option>";
+                                                foreach($val2['data'] as $key3=>$val3){
+                                                $ronly = (isset($val3['data']) && !empty($val3['data']))?'disabled':'';
+                                                echo "<option  ".$ronly." value='".$val3["id"]."'>-----------".$val3["name"]."</option>";
+                                                }
+                                                }
+                                                }
+                                                ?>
+                                            </select>
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 大包装商品 BEGIN -->
+                                <div id="div_pkg">
+
+                                    <div class="form-group ">
+                                        <label class="col-sm-3 control-label">基础商品名称</label>
+                                        <div class="col-xs-7">
+                                            <div class="input-group">
+                                                <input type="text" disabled class="form-control" name="basegoods" id="basegoods" placeholder="请通过右边搜索添加">
+                                                <input type="hidden" id="basegoodsid" name="basegoodsid">
+                                                <div class="input-group-addon">必填</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label  class="col-sm-3 control-label">促销商品规格</label>
+                                        <div class="col-xs-7">
+                                            <div class="input-group">
+                                                <!--<div class="input-group-addon">N</div>-->
+                                                <input type="text" class="form-control" name="spec" id="spec" placeholder="如：6">
+                                                <div class="input-group-addon">必填</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- 大包装商品 END -->
+
+                                <!-- 捆绑商品 BEGIN -->
+
+                                <div id="div_bind" style="display:none">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">商品产地</label>
+                                        <div class="col-xs-7">
+                                            <div class="input-group">
+                                                <!--<div class="input-group-addon">N</div>-->
+                                                <input type="text" class="form-control" name="place" id="place" placeholder="如：南京">
+                                                <div class="input-group-addon">选填</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label  class="col-sm-3 control-label">绑定商品</label>
+                                        <div class="col-xs-7">
+                                            <span class="checkbox-inline">请到右侧搜索要绑定的商品，然后双击添加</span>
+                                        </div>
+                                    </div>
+
+                                    <div id="bind_goods_lists"></div>
+                                </div>
+                                <!-- 捆绑商品 END -->
+
+
+                                <!-- 新建商品共用部分 BEGIN -->
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">促销商品单位</label>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <!--<div class="input-group-addon">N</div>-->
+                                            <input type="text" class="form-control" name="showunit" id="showunit" placeholder="如：套">
+                                            <div class="input-group-addon">必填</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" id="cctypename">可见客户</label>
+                                    <div class="col-xs-8">
+                                        <foreach name="customer" item="vo">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" checked="checked" name="supplier[]" value="{$vo.id}"><span>{$vo.name}</span>
+                                            </label>
+                                        </foreach>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">出货仓库</label>
+                                    <div class="col-xs-7">
+                                        <foreach name="ck" item="vo">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" checked="checked" name="ck[]" class="ck" value="{$vo.id}" data-name="{$vo.name}"> {$vo.name}
+                                            </label>
+                                        </foreach>
+                                    </div>
+                                </div>
+
+                                <!-- 新建商品共用部分 END -->
+
+                                <hr />
+
+
+                                <!-- 活动策略部分 BEGIN -->
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label"></label>
+                                    <div class="col-xs-9">
+                                        <span class="" style="color:#B13030;">注意：赠送商品价格将为0！活动结束后将不再赠送赠品！</span>
+                                    </div>
+                                </div>
+
+                                <!---
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">赠品栏说明</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="title" name="title" placeholder="如：送青岛冰纯500ml一瓶">
+                                    </div>
+
+                                </div>
+                                -->
+
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">角标名称</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="iconname" name="iconname" value="买赠" placeholder="如：买赠">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">促销开始时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="begin_time" name="begin_time" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">促销结束时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="end_time" name="end_time" />
+                                        <input type="hidden" class="form-control" id="timer" name="timer" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-3 control-label">添加赠品</label>
+                                    <div class="col-xs-7">
+                                        <span class="checkbox-inline">请到右侧搜索要添加的赠品，然后双击添加</span>
+                                    </div>
+                                </div>
+
+                                <div id="giving_goods_lists"></div>
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-10">
+                                        <button type="button" onclick="checkForm();" class="btn btn-primary">确定新建</button>
+                                    </div>
+                                </div>
+
+                                <!-- 活动策略部分 END -->
+
+
+
+                            </form>
+                            <!-- params end -->
+                        </div>
+                        <div class="col-md-4">
+                            <div id="searchbox-base">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="gkey-base" placeholder="搜索基础商品">
+                                            <div class="input-group-addon" id="gsearch-base"><i class="fa fa-search"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id='scontent-base' class="col-xs-12">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="searchbox-bind" style="display:none;">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="gkey-bind" placeholder="搜索绑定商品">
+                                            <div class="input-group-addon" id="gsearch-bind"><i class="fa fa-search"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id='scontent-bind' class="col-xs-12">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="searchbox-gift">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="gkey-gift" placeholder="搜索赠送商品">
+                                            <div class="input-group-addon" id="gsearch-gift"><i class="fa fa-search"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id='scontent-gift' class="col-xs-12">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+
+                </div>
+                <!-- /.box-footer-->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

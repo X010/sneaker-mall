@@ -1,0 +1,121 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<link rel="stylesheet" href="/Assets/Admin/Public/css/table.css">
+<script>
+
+        function check(){
+            var title = $('#title').val();
+            var name = $('#name').val();
+            if(title == ''){
+                layer.tips('请输入名称', '#title',{tips:1,time: 10000});
+                return false;
+            }
+            if(name == ''){
+                layer.tips('请输入（控制器/方法）', '#name',{tips:1,time: 10000});
+                return false;
+            }
+            if(name.indexOf('/') <=0 ){
+                layer.tips('格式必须为（控制器/方法）', '#name',{tips:[1, '#78BA32'],time: 10000});
+                return false;
+            }
+            return true;
+        }
+  </script>
+</head>
+<body>
+    <div class="container-fluid"">
+        <div class="bd clearfix">
+            <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+            <div class="main">
+                <include file="./Assets/Admin/Inc/toolbar.html" title="" keywords="" />
+
+                <div class="main-body">
+                    <!--  begin -->
+
+                    <div class="create-search">
+                        <div class="create clearfix">
+                            <a class="create-btn" href="javascript:;">刷新</a>
+
+                            <ul class="create-list"> <form class="navbar-form" id="myform" name="myform" action="{:U('admin/permission/rule')}" method="post"  onsubmit="return check(this)">
+                                <li class="clearfix">
+                                    <label>父级：</label>
+                                    <div class="seleted-box">
+                                        <select name="pid">
+                                        <option value="">--------- 顶级 ---------</option>
+                                        <foreach name="data" item="vo" >
+                                            <option value="{$vo.id}">{$vo.title}</option>
+                                        </foreach>
+                                    </select>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <label>名称：</label>
+                                    <div class="seleted-box">
+                                        <input type="text" class="form-control" name="title" id="title" placeholder="请输入您需要的信息">
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <label>控制器/方法：</label>
+                                    <div class="seleted-box">
+                                    <input type="text" class="form-control" name="name" id="name" class="input" />
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <div class="seleted-box">
+                                        <button type="submit" id="submit" class="button">确 定</button>
+                                    </div>
+                                </li>  </form>
+                            </ul>
+
+                        </div>
+                        <div class="search clearfix">
+                            <input id="search-input" type="text" placeholder="请输入您需要的信息">
+                            <a class="search-btn" href="javascript:;">查找</a>
+                        </div>
+                    </div>
+                    <div class="table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>排序</th>
+                                <th>ID</th>
+                                <th>名称</th>
+                                <th>控制器/方法</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <foreach name="data" item="vo">
+                                <tr>
+                                    <td><div align="center"><input type="text" style="width:40px;height:24px;padding-left:10px;margin-right:30px;" value="{$vo.sort}"></div></td>
+                                    <td height="45"><div align="center">{$vo.id}</div></td>
+                                    <td><div style="padding-left:50px;">{$vo.title}</div></td>
+                                    <td><div style="padding-left:50px;">{$vo.name}</div></td>
+                                    <td><div align="center">{$vo.create_time|date="Y-m-d H:i:s",###}</div></td>
+                                    <td>-</td>
+                                </tr>
+                                <foreach name="vo['sub']" item="sub">
+                                    <tr>
+                                        <td><div align="center"><input type="text" style="width:40px;height:24px;padding-left:10px;margin-left:20px;" value="{$vo.sort}"></div></td>
+                                        <td height="45"><div align="center">{$sub.id}</div></td>
+                                        <td><div style="padding-left:50px;">&nbsp;&nbsp;&nbsp;&nbsp;┠─&nbsp;&nbsp;{$sub.title}</div></td>
+                                        <td><div style="padding-left:100px;">{$sub.name}</div></td>
+                                        <td><div align="center">{$sub.create_time|date="Y-m-d H:i:s",###}</div></td>
+                                        <td>--</td>
+                                    </tr>
+                                </foreach>
+                            </foreach>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- end -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <include file="./Assets/Admin/Inc/foot.html" title="" keywords="" />

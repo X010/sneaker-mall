@@ -1,0 +1,28 @@
+.main-sidebar, .left-side { width: 150px;}
+.content-wrapper, .right-side, .main-footer { margin-left: 150px;}
+.main-header .logo { width: 150px;}
+.main-header>.navbar { margin-left: 150px;}
+
+.sidebar-menu>li.header { text-align: center;}
+.table-hover > tbody > tr:hover td {
+    background-color: #E3E3E3;
+}
+
+.pagination { margin: 0; float:right;}
+
+.label-bg-1 { margin-right: 3px; background: #89E2E2; color: #FFFFFF; }
+.label-bg-2 { margin-right: 3px; background: #65CC9E; color: #FFFFFF; }
+.label-bg-3 { margin-right: 3px; background: #F8C770; color: #FFFFFF; }
+.label-bg-4 { margin-right: 3px; background: #A29FCD; color: #FFFFFF; }
+
+.price-list-td{width:75px; background-color: #feffed;height: 30px;overflow: hidden; position: relative;white-space: nowrap;}
+.price-list-td-disabled{width:75px;height: 30px;overflow: hidden; position: relative;white-space: nowrap;}
+
+.price-list-input{height:100%;width:100%;outline: 0 none;color:#d54e4e;background-color: transparent;text-align:right;border:0;margin: 0; padding: 0;}
+.price-list-input-disabled{height:100%;width:100%;outline: 0 none;color:#d54e4e;background-color: transparent;text-align:right;border:0;margin: 0; padding: 0;}
+
+.col-xs-7 input{color:#026EAD;}
+
+.btn-excel {margin-bottom:30px; float:left;}
+
+.img-delete {position: absolute; z-index: 10; margin-left: -15px;}
