@@ -48,7 +48,12 @@
                     <!--<li><a name="menu_link" href="{:U('showcase/preview')}"><i class="fa fa-circle-o"></i>橱窗预览</a></li>-->
                 </ul>
             </li>
-
+            <li name="li_menu" class="treeview <?php if($Think.CONTROLLER_NAME == 'Coupon') echo 'active'; ?>">
+                <a href="javascript:"><i class="fa fa-money"></i> <span>优惠劵</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a name="menu_link" href="{:U('coupon/clist')}"><i class="fa fa-circle-o"></i>优惠劵列表</a></li>
+                </ul>
+            </li>
             <!--<li class="treeview">
                 <a href="javascript:enterOtherPlatform('yc');"><i class="fa fa-cloud"></i> <span>99云仓</span> </a>
             </li>-->
