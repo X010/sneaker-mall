@@ -48,7 +48,8 @@ class CouponController extends BaseController
         $data['company_id'] = $company['id'];
         $data['coupon_status'] = 2;
         $id = $model->add($data);
-
+        var_dump($data);
+        var_dump($id);
         $this->display('Coupon:clist');
     }
 
