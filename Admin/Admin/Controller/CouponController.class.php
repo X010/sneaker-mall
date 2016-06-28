@@ -79,7 +79,7 @@ class CouponController extends BaseController
                 $cid = $company['id'];
                 if ($id > 0) {
                     $model = M('coupon');
-                    $res = $model->where("companyid=$cid AND id=$id")->delete();
+                    $res = $model->where("company_id=$cid AND id=$id")->delete();
                 }
             }
         }
