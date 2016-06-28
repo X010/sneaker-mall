@@ -19,6 +19,17 @@ class CouponController extends BaseController
      */
     public function clist()
     {
+        $search_key = I('key','');
+        $p = I('p',0,'intval');
+        $company = $this->get_company();
+
+        $res = $this->getCouponList($company['id'], $p);
+        $count = $this->getCouponCount($company['id']);
+
+        $this->assign('coupon_list',$res);
+        $Page = new \Extend\Page($count, $this->limit);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show = $Page->show();// 分页显示输出
+        $this->assign('page',$show);
         $this->display('Coupon:clist');
     }
 
@@ -70,7 +81,7 @@ class CouponController extends BaseController
     private function getCouponList($cid, $p)
     {
         $model = M('coupon');
-        $where = " companyid=$cid";
+        $where = " company_id=$cid";
 
         $start = 0;
         if ($p >= 1) {
