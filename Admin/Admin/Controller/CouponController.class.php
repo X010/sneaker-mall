@@ -87,6 +87,26 @@ class CouponController extends BaseController
     }
 
     /**
+     * 优惠劵详情列表
+     */
+    public function detail()
+    {
+        $company = $this->get_company();
+        $model = M('coupon');
+        if (!empty($company) && $company['id'] > 0) {
+            $id = I('id', 0);
+            $cid = $company['id'];
+            if ($id > 0) {
+                $coupon = $model->where(" company_id=$cid and id=$id")->select();
+
+                $this->assign("inst", $coupon);
+            }
+        }
+        $this->display('Coupon:detail');
+    }
+
+
+    /**
      *按公司获取优惠劵列表
      */
     private function getCouponList($cid, $p)
