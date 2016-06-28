@@ -97,7 +97,7 @@ class CouponController extends BaseController
             $id = I('id', 0);
             $cid = $company['id'];
             if ($id > 0) {
-                $coupon = $model->where(" company_id=$cid and id=$id")->select();
+                $coupon = $model->where(" company_id=$cid and id=$id")->select()[0];
 
                 $this->assign("inst", $coupon);
             }
