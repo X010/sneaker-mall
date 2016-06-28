@@ -245,6 +245,7 @@
             return false;
         }
 
+        $('#coupon-form').submit();
     }
 </script>
 </head>
@@ -283,7 +284,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-8">
-                            <form class="form-horizontal" id="mall-form" method="post" action="{:U(coupon/save)}">
+                            <form class="form-horizontal" id="coupon-form" method="post" action="{:U(coupon/save)}">
                                 <div class="form-group ">
                                     <label class="col-sm-3 control-label">红包名称</label>
                                     <div class="col-xs-7">
