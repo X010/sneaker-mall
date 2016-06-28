@@ -207,7 +207,7 @@
             parent.layer.msg('请输入红包金额', {icon: 2, time: 2000});
             return false;
         } else {
-            if (coupon_money >= 0 || coupon_money <= 9999999) {
+            if (checknumber(coupon_money)) {
                 parent.layer.msg('请输入正确的红包金额', {icon: 2, time: 2000});
                 return false;
             }
@@ -217,7 +217,7 @@
             parent.layer.msg('请输入最小订单金额', {icon: 2, time: 2000});
             return false;
         } else {
-            if (coupon_money >= 0 || coupon_money <= 9999999) {
+            if (checknumber(coupon_money)) {
                 parent.layer.msg('请输入正确的红包金额', {icon: 2, time: 2000});
                 return false;
             }
@@ -245,6 +245,20 @@
             return false;
         }
 
+    }
+
+
+    function checknumber(String) {
+        var Letters = "1234567890";
+        var i;
+        var c;
+        for( i = 0; i < Letters.length(); i ++ )   {   //Letters.length() ->>>>取字符长度
+            c = Letters.charAt( i );
+            if (Letters.indexOf( c ) ==-1)   { //在"Letters"中找不到"c"   见下面的此函数的返回值
+                return true;
+            }
+        }
+        return false;
     }
 </script>
 </head>

@@ -28,8 +28,8 @@
       <file leaf-file-name="create_coupon.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.93670887">
-              <caret line="247" column="5" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.7151899">
+              <caret line="220" column="66" selection-start-line="220" selection-start-column="66" selection-end-line="220" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -915,12 +915,12 @@
       <created>1467046168098</created>
       <option name="number" value="Default" />
       <updated>1467046168098</updated>
-      <workItem from="1467046169570" duration="7891000" />
+      <workItem from="1467046169570" duration="8089000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7891000" />
+    <option name="totallyTimeSpent" value="8089000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -1218,8 +1218,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.93670887">
-          <caret line="247" column="5" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.7151899">
+          <caret line="220" column="66" selection-start-line="220" selection-start-column="66" selection-end-line="220" selection-end-column="66" />
           <folding />
         </state>
       </provider>
