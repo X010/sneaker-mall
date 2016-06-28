@@ -75,7 +75,13 @@
                                             <div align="center">{$vo.coupon_name}</div>
                                         </td>
                                         <td>
-
+                                            <if condition="$vo.coupon_type eq 1">
+                                                按用户发放
+                                                <elseif condition="$vo.coupon_type eq 2"/>
+                                                按订单金额发放
+                                                <else />
+                                                按商品发放
+                                            </if>
                                         </td>
                                         <td>
                                             <div align="center">{$vo.coupon_money}</div>
@@ -97,7 +103,7 @@
                                             <div align="center">{$vo.coupon_use_end}</div>
                                         </td>
                                         <td>
-                                            <div align="center"> </div>
+                                            <div align="center">编辑 | 移除</div>
                                         </td>
                                         <!--<td><div>{$vo.description}</div></td>-->
                                     </tr>

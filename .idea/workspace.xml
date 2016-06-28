@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d65fd0e7-8a83-4f03-9253-ecdfd6f0132b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" afterPath="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" afterPath="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
     </list>
     <ignored path="pb-admin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +28,8 @@
       <file leaf-file-name="create_coupon.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.375">
-              <caret line="284" column="37" selection-start-line="284" selection-start-column="37" selection-end-line="284" selection-end-column="37" />
+            <state vertical-scroll-proportion="-7.875">
+              <caret line="310" column="92" selection-start-line="310" selection-start-column="86" selection-end-line="310" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -75,21 +75,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CouponController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CouponController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6835443">
-              <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+            <state vertical-scroll-proportion="-7.875">
+              <caret line="54" column="45" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clist.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="clist.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-51.791668">
-              <caret line="84" column="45" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.56540084">
+              <caret line="105" column="66" selection-start-line="105" selection-start-column="66" selection-end-line="105" selection-end-column="66" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -151,8 +151,8 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Admin/Inc/menu.html" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html" />
-        <option value="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
         <option value="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" />
+        <option value="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
       </list>
     </option>
   </component>
@@ -965,12 +965,12 @@
       <created>1467046168098</created>
       <option name="number" value="Default" />
       <updated>1467046168098</updated>
-      <workItem from="1467046169570" duration="12694000" />
+      <workItem from="1467046169570" duration="13041000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12694000" />
+    <option name="totallyTimeSpent" value="13041000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -1258,14 +1258,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.375">
-          <caret line="284" column="37" selection-start-line="284" selection-start-column="37" selection-end-line="284" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/MallController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="64.375">
@@ -1294,21 +1286,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
+    <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-51.791668">
-          <caret line="84" column="45" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-7.875">
+          <caret line="54" column="45" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6835443">
-          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+        <state vertical-scroll-proportion="-7.875">
+          <caret line="310" column="92" selection-start-line="310" selection-start-column="86" selection-end-line="310" selection-end-column="92" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56540084">
+          <caret line="105" column="66" selection-start-line="105" selection-start-column="66" selection-end-line="105" selection-end-column="66" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
