@@ -1,12 +1,12 @@
-<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<include file="./Assets/Admin/Inc/header.html" title="" keywords=""/>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
     <!-- Main Header -->
-    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords=""/>
     <!-- Left side column. contains the logo and sidebar -->
-    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords=""/>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -33,11 +33,83 @@
                     -->
                 </div>
                 <div class="box-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="table-price" class="table table-striped table-hover table-bordered" style="margin-bottom:0;">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <div align="center">红包名称</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">发放类型</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">红包金额</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">订单下限</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">发放起始时间</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">发放结束时间</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">使用起始时间</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">使用结束时间</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">操作</div>
+                                    </th>
+                                    <!--<th><div>描述</div> </th>-->
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <foreach name="coupon_list" item="vo">
+                                    <tr class="market_list" data-id="{$vo.id}" ondblclick="javscript:location.href='{:U('coupon/detail')}&id={$vo.id}'">
+                                        <td>
+                                            <div align="center">{$vo.coupon_name}</div>
+                                        </td>
+                                        <td>
 
+                                        </td>
+                                        <td>
+                                            <div align="center">{$vo.coupon_money}</div>
+                                        </td>
+                                        <td>
+                                            <div align="center">{$vo.coupon_small_money}</div>
+                                        </td>
+
+                                        <td>
+                                            <div align="center">{$vo.coupon_send_start}</div>
+                                        </td>
+                                        <td>
+                                            <div align="center">{$vo.coupon_send_end}</div>
+                                        </td>
+                                        <td>
+                                            <div align="center">{$vo.coupon_use_start}</div>
+                                        </td>
+                                        <td>
+                                            <div align="center">{$vo.coupon_use_end}</div>
+                                        </td>
+                                        <td>
+                                            <div align="center"> </div>
+                                        </td>
+                                        <!--<td><div>{$vo.description}</div></td>-->
+                                    </tr>
+                                </foreach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-
+                    {$page}
                 </div>
                 <!-- /.box-footer-->
             </div>
@@ -49,7 +121,7 @@
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords=""/>
 </div>
 <!-- ./wrapper -->
 </body>

@@ -7,6 +7,7 @@ class CouponController extends BaseController
 {
 
     private $r = array("error" => 0, "msg" => "", "data" => "");
+    private $limit = 15;
 
     public function index()
     {
@@ -47,9 +48,18 @@ class CouponController extends BaseController
         $data['coupon_use_end'] = I('coupon_use_end', '');
         $data['company_id'] = $company['id'];
         $data['coupon_status'] = 2;
+
         $id = $model->add($data);
-        var_dump($data);
-        var_dump($id);
+
+        //绑定数据并返回
+        $res = $this->getCouponList($company['id'], 0);
+        $count = $this->getCouponCount($company['id']);
+
+
+        $this->assign('coupon_list',$res);
+        $Page = new \Extend\Page($count, $this->limit);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show = $Page->show();// 分页显示输出
+        $this->assign('page',$show);
         $this->display('Coupon:clist');
     }
 
@@ -57,9 +67,28 @@ class CouponController extends BaseController
     /**
      *按公司获取优惠劵列表
      */
-    private function getCouponList($cid)
+    private function getCouponList($cid, $p)
     {
+        $model = M('coupon');
+        $where = " companyid=$cid";
 
+        $start = 0;
+        if ($p >= 1) {
+            $start = ($p - 1) * $this->limit;
+        } else {
+            $start = 0;
+        }
 
+        $res = $model->where($where)->limit($start, $this->limit)->order('coupon_send_start DESC')->select();
+        return $res;
+    }
+
+    /**
+     * @param $cid 统计该公司的红包数量
+     */
+    private function getCouponCount($cid)
+    {
+        $model = M('coupon');
+        return $model->where(" company_id=$cid")->count();
     }
 }
