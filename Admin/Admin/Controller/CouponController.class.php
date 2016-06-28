@@ -63,16 +63,7 @@ class CouponController extends BaseController
             $id = $model->add($data);
         }
 
-        //绑定数据并返回
-        $res = $this->getCouponList($company['id'], 0);
-        $count = $this->getCouponCount($company['id']);
-
-
-        $this->assign('coupon_list', $res);
-        $Page = new \Extend\Page($count, $this->limit);// 实例化分页类 传入总记录数和每页显示的记录数(25)
-        $show = $Page->show();// 分页显示输出
-        $this->assign('page', $show);
-        $this->display('Coupon:clist');
+        $this->redirect(U('Coupon/clist'));
     }
 
 
@@ -91,7 +82,6 @@ class CouponController extends BaseController
             $start = 0;
         }
 
-        var_dump($start);
         $res = $model->where($where)->limit($start, $this->limit)->order('coupon_send_start DESC')->select();
         return $res;
     }
