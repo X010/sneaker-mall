@@ -103,7 +103,7 @@
                                             <div align="center">{$vo.coupon_use_end}</div>
                                         </td>
                                         <td>
-                                            <div align="center">编辑 | 移除</div>
+                                            <div align="center">编辑 |<a href="javascript:confirm('您确认删除吗?'){ location.href='{:U('coupon/delete')}&id={$vo.id}' }">移除</a></div>
                                         </td>
                                         <!--<td><div>{$vo.description}</div></td>-->
                                     </tr>

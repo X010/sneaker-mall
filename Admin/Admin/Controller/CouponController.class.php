@@ -66,6 +66,25 @@ class CouponController extends BaseController
         $this->redirect(U('Coupon/clist'));
     }
 
+    /**
+     * 删除该红包
+     */
+    public function delete()
+    {
+        $company = $this->get_company();
+        if ($company) {
+            if ($company['id'] > 0) {
+                //在登陆该公司的情况下才能删除
+                $id = I('id', 0);
+                $cid = $company['id'];
+                if ($id > 0) {
+                    $model = M('coupon');
+                    $res = $model->where("companyid=$cid AND id=$id")->delete();
+                }
+            }
+        }
+        $this->redirect(U('Coupon/clist'));
+    }
 
     /**
      *按公司获取优惠劵列表
@@ -73,7 +92,7 @@ class CouponController extends BaseController
     private function getCouponList($cid, $p)
     {
         $model = M('coupon');
-        $where = " company_id=$cid";
+        $where = " company_id=$cid AND coupon_status<>9 ";
 
         $start = 0;
         if ($p) {
