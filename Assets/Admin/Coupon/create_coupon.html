@@ -1,12 +1,198 @@
-<include file="./Assets/Admin/Inc/header.html" title="" keywords="" />
+<include file="./Assets/Admin/Inc/header.html" title="" keywords=""/>
+<link rel="stylesheet" href="/Assets/Admin/Public/css/daterangepicker.css">
+<script src="/Assets/Admin/Public/js/moment.min.js"></script>
+<script src="/Assets/Admin/Public/js/daterangepicker.js"></script>
+<script language="javascript">
+    $().ready(function () {
+        // 时间选择
+        $('#coupon_send_start').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function (start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+        $('#coupon_send_end').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function (start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+
+        // 时间选择
+        $('#coupon_use_start').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function (start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+        $('#coupon_use_end').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function (start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+    });
+</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
     <!-- Main Header -->
-    <include file="./Assets/Admin/Inc/nav.html" title="" keywords="" />
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords=""/>
     <!-- Left side column. contains the logo and sidebar -->
-    <include file="./Assets/Admin/Inc/menu.html" title="" keywords="" />
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords=""/>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -33,7 +219,62 @@
                     -->
                 </div>
                 <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form class="form-horizontal" id="mall-form" method="post" action="{:U(coupon/save)}">
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">红包名称</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_name" name="coupon_name" placeholder="如：满300送5元代金劵">
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">红包金额</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_money" name="coupon_money" placeholder="如: 5"> 元
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">最小订单金额</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_small_money" name="coupon_small_money" placeholder="如: 5"> 元
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">发放红包类型</label>
+                                    <div class="col-xs-7">
+                                        <input type="radio" name="coupon_type" checked value="1"> 按用户发放 &nbsp;&nbsp;<input type="radio" name="coupon_type"   value="2"> 按订单金额发放 &nbsp;&nbsp;<input type="radio" name="coupon_type"  value="3"> 按商品发放
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">发放起始时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_send_start" name="coupon_send_start"/>
+                                    </div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">发放结束时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_send_end" name="coupon_send_end"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">使用起始时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_use_start" name="coupon_use_start"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">使用结束时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_use_end" name="coupon_use_end"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
@@ -49,7 +290,7 @@
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <include file="./Assets/Admin/Inc/footer.html" title="" keywords="" />
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords=""/>
 </div>
 <!-- ./wrapper -->
 </body>

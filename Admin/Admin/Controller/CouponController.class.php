@@ -1,19 +1,23 @@
 <?php
 namespace Admin\Controller;
+
 use Think\Controller;
 
-class CouponController extends BaseController{
+class CouponController extends BaseController
+{
 
-    private $r = array("error"=>0,"msg"=>"","data"=>"");
+    private $r = array("error" => 0, "msg" => "", "data" => "");
 
-    public function index(){
+    public function index()
+    {
         $this->display('Coupon:index');
     }
 
     /**
      * 优惠劵列表
      */
-    public function clist(){
+    public function clist()
+    {
         $this->display('Coupon:clist');
     }
 
@@ -25,4 +29,23 @@ class CouponController extends BaseController{
         $this->display('Coupon:create_coupon');
     }
 
+
+    /**
+     * 保存数据
+     */
+    public function save()
+    {
+
+        $this->display('Coupon:clist');
+    }
+
+
+    /**
+     *按公司获取优惠劵列表
+     */
+    private function getCouponList($cid)
+    {
+
+
+    }
 }
