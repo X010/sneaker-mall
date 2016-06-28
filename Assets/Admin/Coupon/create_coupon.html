@@ -197,7 +197,7 @@
         var coupon_send_end = $("#coupon_send_end").val();
         var coupon_use_start = $("#coupon_use_start").val();
         var coupon_use_end = $("#coupon_use_end").val();
-
+        var reg = new RegExp("^[0-9]*$");
 
         if (coupon_name == null || coupon_money == '') {
             parent.layer.msg('请输入红包名称', {icon: 2, time: 2000});
@@ -207,7 +207,7 @@
             parent.layer.msg('请输入红包金额', {icon: 2, time: 2000});
             return false;
         } else {
-            if (checknumber(coupon_money)) {
+            if (!reg.test(coupon_money)) {
                 parent.layer.msg('请输入正确的红包金额', {icon: 2, time: 2000});
                 return false;
             }
@@ -217,7 +217,7 @@
             parent.layer.msg('请输入最小订单金额', {icon: 2, time: 2000});
             return false;
         } else {
-            if (checknumber(coupon_money)) {
+            if (!reg.test(coupon_small_money)) {
                 parent.layer.msg('请输入正确的红包金额', {icon: 2, time: 2000});
                 return false;
             }
@@ -245,21 +245,6 @@
             return false;
         }
 
-    }
-
-
-    function checknumber(String) {
-        var Letters = "1234567890";
-        var i;
-        var c;
-        for( i = 0;i<Letters.length;i++ )
-        {
-            c = Letters.charAt( i );
-            if (Letters.indexOf( c ) ==-1)   { //在"Letters"中找不到"c"   见下面的此函数的返回值
-                return true;
-            }
-        }
-        return false;
     }
 </script>
 </head>
