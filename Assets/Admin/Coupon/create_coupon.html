@@ -189,6 +189,60 @@
          * 校验表单
          */
         function checkForm() {
+            var coupon_name = $("#coupon_name").val();
+            var coupon_money = $("#coupon_money").val();
+            var coupon_small_money = $("#coupon_small_money").val();
+            var coupon_send_start = $("#coupon_send_start").val();
+            var coupon_send_end = $("#coupon_send_end").val();
+            var coupon_use_start = $("#coupon_use_start").val();
+            var coupon_use_end = $("#coupon_use_end").val();
+
+
+            if (coupon_name == null || coupon_money == '') {
+                parent.layer.msg('请输入红包名称', {icon: 2, time: 2000});
+                return false;
+            }
+            if (coupon_money == null || coupon_money == '') {
+                parent.layer.msg('请输入红包金额', {icon: 2, time: 2000});
+                return false;
+            } else {
+                if (coupon_money >= 0 || coupon_money <= 9999999) {
+                    parent.layer.msg('请输入正确的红包金额', {icon: 2, time: 2000});
+                    return false;
+                }
+            }
+
+            if (coupon_small_money == null || coupon_small_money == '') {
+                parent.layer.msg('请输入最小订单金额', {icon: 2, time: 2000});
+                return false;
+            } else {
+                if (coupon_money >= 0 || coupon_money <= 9999999) {
+                    parent.layer.msg('请输入正确的红包金额', {icon: 2, time: 2000});
+                    return false;
+                }
+            }
+
+
+            if (coupon_send_start == null || coupon_send_start == '') {
+                parent.layer.msg('请输入发放起始时间', {icon: 2, time: 2000});
+                return false;
+            }
+
+            if (coupon_send_end == null || coupon_send_end == '') {
+                parent.layer.msg('请输入发放结束时间', {icon: 2, time: 2000});
+                return false;
+            }
+
+
+            if (coupon_use_end == null || coupon_use_end == '') {
+                parent.layer.msg('请输入使用起始时间', {icon: 2, time: 2000});
+                return false;
+            }
+
+            if (coupon_use_end == null || coupon_use_end == '') {
+                parent.layer.msg('请输入使用结束时间', {icon: 2, time: 2000});
+                return false;
+            }
 
         }
     });
