@@ -252,7 +252,8 @@
         var Letters = "1234567890";
         var i;
         var c;
-        for( i = 0; i < Letters.length(); i ++ )   {   //Letters.length() ->>>>取字符长度
+        for( i = 0;i<Letters.length;i++ )
+        {
             c = Letters.charAt( i );
             if (Letters.indexOf( c ) ==-1)   { //在"Letters"中找不到"c"   见下面的此函数的返回值
                 return true;
