@@ -80,7 +80,17 @@
                                         <td><div align="center">{$vo.customer_name}</div></td>
                                         <td><div align="center">{$vo.coupon_order_no}</div></td>
                                         <td><div align="center">{$vo.use_user_account}</div></td>
-                                        <td><div align="center"></div></td>
+                                        <td><div align="center">
+                                            <if condition="$vo.status eq 2">
+                                                锁定
+                                                <elseif condition="$vo.status eq 3"/>
+                                                正常
+                                                <elseif condition="$vo.status eq 9"/>
+                                                删除
+                                                <else />
+                                                其它
+                                            </if>
+                                        </div></td>
                                         <td><div align="center">{$vo.use_time}</div></td>
                                         <td><div align="center">{$vo.use_order_no}</div></td>
                                         <td><div align="center"></div></td>
