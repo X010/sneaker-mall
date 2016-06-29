@@ -91,14 +91,31 @@ class CouponController extends BaseController
      */
     public function detail()
     {
+        $search_key = I('key', 0);
+        $p = I('p', 0, 'intval');
         $company = $this->get_company();
         $model = M('coupon');
+        $model_detail = M('coupon_detail');
         if (!empty($company) && $company['id'] > 0) {
             $id = I('id', 0);
             $cid = $company['id'];
             if ($id > 0) {
                 $coupon = $model->where(" company_id=$cid and id=$id")->select()[0];
+                //获取详情列表
+                $start = 0;
+                if ($p) {
+                    $start = ($p - 1) * $this->limit;
+                } else {
+                    $start = 0;
+                }
 
+                $coupon_detail_list = $model_detail->where(" coupon_id=$id")->limit($start, $this->limit)->order(' id DESC')->select();
+                $count=$model_detail->where(" coupon_id=$id")->count();
+
+                $Page = new \Extend\Page($count, $this->limit, ['key'=>$search_key]);
+                $show = $Page->show();// 分页显示输出
+                $this->assign('page', $show);
+                $this->assign("coupon_detail_list", $coupon_detail_list);
                 $this->assign("inst", $coupon);
             }
         }
