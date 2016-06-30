@@ -80,9 +80,9 @@ class CouponController extends BaseController
                 if ($id > 0) {
                     //先清除所有发出去的红包
                     $model_detail = M('coupon_detail');
-                    $res_detail = $model_detail->where("coupon_id=$id and company_id=$cid")->setField('status', 9); //表示删除
+                    $res_detail = $model_detail->where("coupon_id=$id and company_id=$cid AND status<>4")->setField('status', 9); //表示删除
                     $model = M('coupon');
-                    $res = $model->where("company_id=$cid AND id=$id AND status<>4")->setField('coupon_type', 9);
+                    $res = $model->where("company_id=$cid AND id=$id")->setField('coupon_type', 9);
                 }
             }
         }
