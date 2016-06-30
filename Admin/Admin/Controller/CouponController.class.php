@@ -82,7 +82,7 @@ class CouponController extends BaseController
                     $model_detail = M('coupon_detail');
                     $res_detail = $model_detail->where("coupon_id=$id and company_id=$cid")->setField('status', 9); //表示删除
                     $model = M('coupon');
-                    $res = $model->where("company_id=$cid AND id=$id AND status<>4")->setField('status', 9);
+                    $res = $model->where("company_id=$cid AND id=$id AND status<>4")->setField('coupon_type', 9);
                 }
             }
         }
@@ -151,6 +151,6 @@ class CouponController extends BaseController
     private function getCouponCount($cid)
     {
         $model = M('coupon');
-        return $model->where(" company_id=$cid")->count();
+        return $model->where(" company_id=$cid AND coupon_status<>9")->count();
     }
 }
