@@ -48,8 +48,8 @@
       <file leaf-file-name="CouponController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38926175">
-              <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.5525727">
+              <caret line="84" column="95" selection-start-line="84" selection-start-column="95" selection-end-line="84" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -911,12 +911,12 @@
       <option name="number" value="Default" />
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
-      <workItem from="1467297416209" duration="1112000" />
+      <workItem from="1467297416209" duration="1253000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21888000" />
+    <option name="totallyTimeSpent" value="22029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="6" />
@@ -1342,8 +1342,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38926175">
-          <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.5525727">
+          <caret line="84" column="95" selection-start-line="84" selection-start-column="95" selection-end-line="84" selection-end-column="95" />
           <folding />
         </state>
       </provider>
