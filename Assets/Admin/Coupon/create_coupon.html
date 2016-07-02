@@ -220,12 +220,12 @@
         if (id != null) {
             if (index_str.indexOf("<" + id + ">") < 0) {
                 //判断选择的行里面是否存在
-                var td = "<tr>"
+                var td = "<tr id='remove_" + id + "' data_id='" + id + "'>"
                 td += "<td><div align='center'>" + gcode + "</div></td>";
                 td += "<td><div align='center'>" + gname + "</div></td>";
                 td += "<td><div align='center'>" + barcode + "</div></td>";
                 td += "<td><div align='center'>" + spec + "</div></td>";
-                td += "<td><div align='center'><a href='javascript:deleteSelectRow(" + id + ")'> 添加</a></div></td>";
+                td += "<td><div align='center'><a href='javascript:deleteSelectRow(" + id + ")'> 删除</a></div></td>";
                 td += "</tr>";
                 index_str += "<" + id + ">";
                 $("#submit_goods tbody").append(td);
@@ -238,7 +238,8 @@
     //删除行
     function deleteSelectRow(id) {
         if (index_str.indexOf("<" + id + ">") >= 0) {
-            var tds = $("#submit_goods tbody tr");
+            $("#remove_" + id).remove();
+            index_str.replace("<" + id + ">", "");
         }
     }
 
