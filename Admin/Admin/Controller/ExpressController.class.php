@@ -16,4 +16,12 @@ class ExpressController extends BaseController
     {
         $this->display('Express:express');
     }
+
+    /**
+     * 保存信息
+     */
+    public function save()
+    {
+
+    }
 }
