@@ -239,7 +239,7 @@
     function deleteSelectRow(id) {
         if (index_str.indexOf("<" + id + ">") >= 0) {
             $("#remove_" + id).remove();
-            index_str.replace("<" + id + ">", "");
+            index_str = index_str.replace("<" + id + ">", "");
         }
     }
 
