@@ -185,6 +185,18 @@
         });
     });
 
+    //修改选择的红包类型
+    function selectCouponType() {
+        var coupon_type = $('input[name="coupon_type"]:checked ').val();
+        if (coupon_type == 3) {
+            //按商品发放
+
+        } else {
+
+        }
+        alert(coupon_type);
+    }
+
 
     /**
      * 校验表单
@@ -306,9 +318,10 @@
                                 <div class="form-group ">
                                     <label class="col-sm-3 control-label">发放红包类型</label>
                                     <div class="col-xs-7">
-                                        <input type="radio" name="coupon_type" checked value="1"> 按用户发放 &nbsp;&nbsp;<input type="radio" name="coupon_type"
-                                                                                                                           value="2"> 按订单金额发放 &nbsp;&nbsp;<input
-                                            type="radio" name="coupon_type" value="3"> 按商品发放
+                                        <input type="radio" name="coupon_type" onchange="selectCouponType();" checked value="1"> 按用户发放 &nbsp;&nbsp;<input
+                                            type="radio" onchange="selectCouponType();" name="coupon_type"
+                                            value="2"> 按订单金额发放 &nbsp;&nbsp;<input
+                                            type="radio" name="coupon_type" onchange="selectCouponType();" value="3"> 按商品发放
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -346,7 +359,7 @@
                             </form>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4" id="search_goods" style="display: none;">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="input-group">
