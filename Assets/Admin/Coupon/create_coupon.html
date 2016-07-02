@@ -189,7 +189,7 @@
             var search_name = $("#gkey").val();
 
             if (search_name != null && search_name.length > 0) {
-                var url = "{:U('goods/gsearch')}&gtyp=5&key=" + key;
+                var url = "{:U('goods/gsearch')}&gtyp=5&key=" + search_name;
                 $.get(url, function (data) {
                     if (data.error === 0) {
                         $("#scontent").empty();
