@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65fd0e7-8a83-4f03-9253-ecdfd6f0132b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Express/express.html" afterPath="$PROJECT_DIR$/Assets/Admin/Express/express.html" />
     </list>
     <ignored path="pb-admin.iws" />
@@ -66,8 +67,8 @@
       <file leaf-file-name="express.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.84745765">
-              <caret line="68" column="196" selection-start-line="68" selection-start-column="196" selection-end-line="68" selection-end-column="196" />
+            <state vertical-scroll-proportion="0.6885593">
+              <caret line="68" column="220" selection-start-line="68" selection-start-column="220" selection-end-line="68" selection-end-column="220" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -915,12 +916,12 @@
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
       <workItem from="1467297416209" duration="1865000" />
-      <workItem from="1467434599731" duration="19885000" />
+      <workItem from="1467434599731" duration="20067000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42526000" />
+    <option name="totallyTimeSpent" value="42708000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -1395,8 +1396,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84745765">
-          <caret line="68" column="196" selection-start-line="68" selection-start-column="196" selection-end-line="68" selection-end-column="196" />
+        <state vertical-scroll-proportion="0.6885593">
+          <caret line="68" column="220" selection-start-line="68" selection-start-column="220" selection-end-line="68" selection-end-column="220" />
           <folding>
             <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
           </folding>
