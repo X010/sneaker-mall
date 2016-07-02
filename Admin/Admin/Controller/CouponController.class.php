@@ -83,7 +83,7 @@ class CouponController extends BaseController
                     $res_model_user['coupon_name'] = I('coupon_name', '');
                     $res_model_user['coupon_money'] = I('coupon_money', '');
                     $res_model_user['coupon_small_money'] = I('coupon_small_money', '');
-                    $res_model_user['coupon_send_start'] = I('coupon_type', '');
+                    $res_model_user['coupon_send_start'] = I('coupon_send_start', '');
                     $res_model_user['coupon_send_end'] = I('coupon_send_end', '');
                     $res_model_user['coupon_use_start'] = I('coupon_use_start', '');
                     $res_model_user['coupon_use_end'] = I('coupon_use_end', '');
