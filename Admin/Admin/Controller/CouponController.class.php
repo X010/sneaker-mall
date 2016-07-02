@@ -60,6 +60,7 @@ class CouponController extends BaseController
     public function save()
     {
         $model = M('coupon');
+        $id = I('id', '');
         $company = $this->get_company();
         $data['coupon_name'] = I('coupon_name', '');
         $data['coupon_money'] = I('coupon_money', '');
@@ -73,7 +74,23 @@ class CouponController extends BaseController
         $data['merchandise'] = I('coupon_goods_ids', '');
         $data['coupon_status'] = 2;
         if (!empty($data['coupon_name']) && $data['coupon_money'] > 0) {
-            $id = $model->add($data);
+            if (id > 0) {
+                //修改
+                $res_model_user = $model->where(" id=$id")->select()[0];
+                if ($res_model_user) {
+                    $res_model_user['coupon_name'] = I('coupon_name', '');
+                    $res_model_user['coupon_money'] = I('coupon_money', '');
+                    $res_model_user['coupon_small_money'] = I('coupon_small_money', '');
+                    $res_model_user['coupon_send_start'] = I('coupon_type', '');
+                    $res_model_user['coupon_send_end'] = I('coupon_send_end', '');
+                    $res_model_user['coupon_use_start'] = I('coupon_use_start', '');
+                    $res_model_user['coupon_use_end'] = I('coupon_use_end', '');
+                    $res_id = $model->where(" id=$id")->save($res_model_user);
+                }
+            } else {
+                //新建
+                $id = $model->add($data);
+            }
         }
 
         $this->redirect(U('Coupon/clist'));
