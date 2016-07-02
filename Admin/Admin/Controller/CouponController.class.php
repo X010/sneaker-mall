@@ -85,7 +85,8 @@ class CouponController extends BaseController
                     $res_model_user['coupon_send_end'] = I('coupon_send_end', '');
                     $res_model_user['coupon_use_start'] = I('coupon_use_start', '');
                     $res_model_user['coupon_use_end'] = I('coupon_use_end', '');
-                    $res_id = $model->where(" id=$id")->save($res_model_user);
+                    $res_model_user['id'] = I('id', '');
+                    $res_id = $model->where("id=$id")->save($res_model_user);
                 }
             } else {
                 //新建

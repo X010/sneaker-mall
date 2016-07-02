@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65fd0e7-8a83-4f03-9253-ecdfd6f0132b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" afterPath="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Coupon/edit.html" afterPath="$PROJECT_DIR$/Assets/Admin/Coupon/edit.html" />
     </list>
     <ignored path="pb-admin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,34 +38,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CouponController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CouponController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0259918">
-              <caret line="80" column="74" selection-start-line="80" selection-start-column="74" selection-end-line="80" selection-end-column="74" />
+            <state vertical-scroll-proportion="-4.8076925">
+              <caret line="78" column="72" selection-start-line="78" selection-start-column="72" selection-end-line="78" selection-end-column="72" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="edit.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.423077">
-              <caret line="368" column="57" selection-start-line="368" selection-start-column="57" selection-end-line="368" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.5762712">
+              <caret line="391" column="68" selection-start-line="391" selection-start-column="68" selection-end-line="391" selection-end-column="68" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gedit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Admin/Goods/gedit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.076923">
-              <caret line="206" column="29" selection-start-line="206" selection-start-column="29" selection-end-line="206" selection-end-column="29" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -155,8 +147,8 @@
         <option value="$PROJECT_DIR$/Admin/Admin/Controller/GoodsController.class.php" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
-        <option value="$PROJECT_DIR$/Assets/Admin/Coupon/edit.html" />
         <option value="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" />
+        <option value="$PROJECT_DIR$/Assets/Admin/Coupon/edit.html" />
       </list>
     </option>
   </component>
@@ -957,12 +949,12 @@
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
       <workItem from="1467297416209" duration="1865000" />
-      <workItem from="1467434599731" duration="12008000" />
+      <workItem from="1467434599731" duration="12671000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34649000" />
+    <option name="totallyTimeSpent" value="35312000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -975,7 +967,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1387,14 +1379,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Goods/gedit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.076923">
-          <caret line="206" column="29" selection-start-line="206" selection-start-column="29" selection-end-line="206" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/SaleController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.96153843">
@@ -1413,16 +1397,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.423077">
-          <caret line="368" column="57" selection-start-line="368" selection-start-column="57" selection-end-line="368" selection-end-column="57" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/GoodsController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="6.730769">
@@ -1431,11 +1405,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Goods/gedit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33474576">
+          <caret line="206" column="29" selection-start-line="206" selection-start-column="29" selection-end-line="206" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0259918">
-          <caret line="80" column="74" selection-start-line="80" selection-start-column="74" selection-end-line="80" selection-end-column="74" />
+        <state vertical-scroll-proportion="-4.8076925">
+          <caret line="78" column="72" selection-start-line="78" selection-start-column="72" selection-end-line="78" selection-end-column="72" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5762712">
+          <caret line="391" column="68" selection-start-line="391" selection-start-column="68" selection-end-line="391" selection-end-column="68" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

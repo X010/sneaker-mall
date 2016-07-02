@@ -387,10 +387,9 @@
                                 <div class="form-group ">
                                     <label class="col-sm-3 control-label">发放红包类型</label>
                                     <div class="col-xs-7">
-                                        <input type="radio" name="coupon_type"  onchange="selectCouponType();" <if condition="$current_coupon.coupon_type eq 1">checked </if>   disabled value="1"> 按用户发放 &nbsp;&nbsp;<input
-                                            type="radio" onchange="selectCouponType();" name="coupon_type" disabled  <if condition="$current_coupon.coupon_type eq 2">checked </if>
-                                        value="2"> 按订单金额发放 &nbsp;&nbsp;<input
-                                            type="radio" name="coupon_type" onchange="selectCouponType();" value="3"  <if condition="$current_coupon.coupon_type eq 3">checked </if>  disabled> 按商品发放
+                                        <input type="radio" disabled name="coupon_type"  onchange="selectCouponType();" <if condition="$current_coupon.coupon_type eq 1">checked </if>  value="1" /> 按用户发放 &nbsp;&nbsp;
+                                        <input type="radio" disabled onchange="selectCouponType();" name="coupon_type"  <if condition="$current_coupon.coupon_type eq 2">checked </if>  value="2" /> 按订单金额发放 &nbsp;&nbsp;
+                                        <input type="radio" disabled name="coupon_type" onchange="selectCouponType();" value="3"  <if condition="$current_coupon.coupon_type eq 3">checked </if> /> 按商品发放
                                     </div>
                                 </div>
                                 <div class="form-group">
