@@ -183,6 +183,16 @@
         }, function (start, end, label) {
             //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
         });
+
+        //点击检索按钮对商品进行检索
+        $("#gsearch").click(function () {
+            var search_name = $("#text").val();
+            if (search_name != null && search_name.length > 0) {
+
+            } else {
+                parent.layer.msg('请输入您需要搜索的商品名称', {icon: 2, time: 2000});
+            }
+        });
     });
 
     //修改选择的红包类型
@@ -194,7 +204,6 @@
         } else {
             $("#search_goods").hide();
         }
-        alert(coupon_type);
     }
 
 
@@ -259,6 +268,8 @@
 
         $('#coupon-form').submit();
     }
+
+
 </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -366,6 +377,16 @@
                                         <input type="text" class="form-control" id="gkey" placeholder="请搜索想要的商品">
                                         <div class="input-group-addon"><i class="fa fa-search" id="gsearch"></i></div>
                                     </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div id='scontent' class="col-xs-12">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id='submit_goods' class="col-xs-12">
                                 </div>
                             </div>
                         </div>
