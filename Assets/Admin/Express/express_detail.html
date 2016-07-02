@@ -1,5 +1,34 @@
 <include file="./Assets/Admin/Inc/header.html" title="" keywords=""/>
 <script language="JavaScript">
+    /**
+     * 获取url中的参数
+     */
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        //console.log(window.location);
+        if (r != null) {
+            return decodeURI(r[2]);
+            //return unescape(r[2]);
+        }
+        return null; //返回参数值
+    }
+
+    //判断是否金额
+    function check(v) {
+        var a = /^[0-9]*(\.[0-9]{1,2})?$/;
+        if (!a.test(v)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    $().ready(function () {
+        var id = getUrlParam("id");
+        $("#express_id").val(id);
+    });
 
     /**
      * 检测表单数据
@@ -8,8 +37,24 @@
         var province = $("#province").val();
         var first_price = $("#first_price").val();
         var continue_price = $("#continue_price").val();
+        var express_id = getUrlParam("id");
 
+        if (province == null || province == '') {
+            parent.layer.msg('请选择省份', {icon: 2, time: 2000});
+            return false;
+        }
 
+        if (!check(first_price)) {
+            parent.layer.msg('请输入正确的首重金额', {icon: 2, time: 2000});
+            return false;
+        }
+
+        if (!check(continue_price)) {
+            parent.layer.msg('请输入正确的续重金额', {icon: 2, time: 2000});
+            return false;
+        }
+
+        $('#express-detail-form').submit();
     }
 </script>
 </head>
@@ -69,7 +114,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="row">
-                                <form class="form-horizontal" id="coupon-form" method="post" action="{:U('express/detail_save')}">
+                                <form class="form-horizontal" id="express-detail-form" method="post" action="{:U('express/detail_save')}">
+                                    <input type="hidden" id="express_id" name="express_id" value=""/>
                                     <div class="form-group ">
                                         <label class="col-sm-3 control-label">城市名称</label>
                                         <div class="col-xs-7">

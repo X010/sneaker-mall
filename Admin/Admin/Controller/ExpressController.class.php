@@ -78,6 +78,26 @@ class ExpressController extends BaseController
      */
     public function detail_save()
     {
+        $express_id = I('express_id', 0);
+        $province = I('province', '');
+        $first_price = I('first_price', 0);
+        $continue_price = I('continue_price', 0);
+        $id = I('id', '');
+        $model = M('province_express');
+        if (!empty($province) && $first_price >= 0 && $continue_price >= 0) {
+            if ($id > 0) {
+                //修改
 
+
+            } else {
+                //新建
+                $data['province'] = $province;
+                $data['first_price'] = $first_price;
+                $data['continue_price'] = $continue_price;
+                $data['express_id'] = $express_id;
+                $model->add($data);
+            }
+        }
+        $this->redirect(U('express/express_detail') . "&id=$express_id");
     }
 }
