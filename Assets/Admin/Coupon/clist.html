@@ -103,8 +103,8 @@
                                             <div align="center">{$vo.coupon_use_end}</div>
                                         </td>
                                         <td>
-                                            <div align="center"><button  class="btn-info" onclick="javascript:window.location.href='{:U('coupon/edit')}&id={$vo.id}'"> 编辑</button> |<button  class="btn-danger"
-                                                                                                                                                                             onclick="javascript:if(confirm('您确认删除吗,如果删除,生成的未使用红包将全部失效?')){ location.href='{:U('coupon/delete')}&id={$vo.id}' }">移除</button>
+                                            <div align="center"><button  class="btn-info" href="{:U('coupon/edit')}&id={$vo.id}"> 编辑</button> &nbsp;&nbsp;<a  class="btn-danger"
+                                                    href="javascript:if(confirm('您确认删除吗,如果删除,生成的未使用红包将全部失效?')){ location.href='{:U('coupon/delete')}&id={$vo.id}' }">移除</a>
                                             </div>
                                         </td>
                                         <!--<td><div>{$vo.description}</div></td>-->
