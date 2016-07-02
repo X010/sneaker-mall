@@ -16,6 +16,14 @@ class ExpressController extends BaseController
     {
         //读取物流公司
         $model = M('express');
+        $id = I('id', '');
+        if ($id) {
+            //输要输出可编辑的数据
+            $res_edit = $model->where("id=$id")->select()[0];
+            $this->assign("res_edit", $res_edit);
+        }
+
+        //输出列表
         $res = $model->where("status<>9")->select();
         $this->assign("res", $res);
         $this->display('Express:express');
@@ -34,6 +42,14 @@ class ExpressController extends BaseController
             $res = $model->add($data);
         }
         $this->redirect(U('express/express'));
+    }
+
+    /**
+     * 删除物流公司
+     */
+    public function delete_express()
+    {
+
     }
 
     /**
