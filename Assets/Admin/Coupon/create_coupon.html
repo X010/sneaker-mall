@@ -200,7 +200,7 @@
                             td += "<td><div align='center'>" + v.gname + "</div></td>";
                             td += "<td><div align='center'>" + v.barcode + "</div></td>";
                             td += "<td><div align='center'>" + v.spec + "</div></td>";
-                            td += "<td><div align='center'><a href='javascript:addSelectRow(" + v.id + "," + v.gcode + "," + v.gname + "," + v.barcode + "," + v.spec + ")'> 添加</a></div></td>";
+                            td += "<td><div align='center'><a href='javascript:addSelectRow(" + v.id + ",\"" + v.gcode + "\",\"" + v.gname + "\",\"" + v.barcode + "\",\"" + v.spec + "\")'> 添加</a></div></td>";
                             td += "</tr>";
                             table += td;
                         });
