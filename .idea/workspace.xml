@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65fd0e7-8a83-4f03-9253-ecdfd6f0132b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" afterPath="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Coupon/detail.html" afterPath="$PROJECT_DIR$/Assets/Admin/Coupon/detail.html" />
     </list>
     <ignored path="pb-admin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="74.03846">
-              <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.42372882">
+              <caret line="96" column="51" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -112,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clist.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="clist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.529661">
-              <caret line="105" column="154" selection-start-line="105" selection-start-column="154" selection-end-line="105" selection-end-column="154" />
+            <state vertical-scroll-proportion="-10.576923">
+              <caret line="106" column="160" selection-start-line="106" selection-start-column="58" selection-end-line="106" selection-end-column="160" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -153,12 +153,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Admin/Inc/menu.html" />
-        <option value="$PROJECT_DIR$/Assets/Admin/Coupon/detail.html" />
         <option value="$PROJECT_DIR$/Admin/Admin/Controller/GoodsController.class.php" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/edit.html" />
         <option value="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
+        <option value="$PROJECT_DIR$/Assets/Admin/Coupon/detail.html" />
       </list>
     </option>
   </component>
@@ -959,12 +959,12 @@
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
       <workItem from="1467297416209" duration="1865000" />
-      <workItem from="1467434599731" duration="13307000" />
+      <workItem from="1467434599731" duration="13398000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35948000" />
+    <option name="totallyTimeSpent" value="36039000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -1413,16 +1413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="74.03846">
-          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Goods/glist.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.35849">
@@ -1435,8 +1425,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.529661">
-          <caret line="105" column="154" selection-start-line="105" selection-start-column="154" selection-end-line="105" selection-end-column="154" />
+        <state vertical-scroll-proportion="-10.576923">
+          <caret line="106" column="160" selection-start-line="106" selection-start-column="58" selection-end-line="106" selection-end-column="160" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42372882">
+          <caret line="96" column="51" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
           <folding>
             <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
           </folding>
