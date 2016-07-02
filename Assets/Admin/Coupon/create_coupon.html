@@ -266,7 +266,17 @@
         var coupon_send_end = $("#coupon_send_end").val();
         var coupon_use_start = $("#coupon_use_start").val();
         var coupon_use_end = $("#coupon_use_end").val();
+        var coupon_type = $('input[name="coupon_type"]:checked ').val();
+        var ids = "";
         var reg = new RegExp("^[0-9]*$");
+
+        if (coupon_type == 3 && index_str != null && index_str.length > 0) {
+            ids = index_str.replace("><", ",");
+            ids = ids.replace("<", "");
+            ids = ids.replace(">", "");
+            $("#coupon_goods_ids").val(ids);
+            console.log(ids);
+        }
 
         if (coupon_name == null || coupon_money == '') {
             parent.layer.msg('请输入红包名称', {icon: 2, time: 2000});
@@ -407,6 +417,7 @@
                                     <label class="col-sm-3 control-label">使用结束时间</label>
                                     <div class="col-xs-7">
                                         <input type="text" class="form-control" id="coupon_use_end" name="coupon_use_end"/>
+                                        <input type="hidden" id="coupon_goods_ids" name="coupon_goods_ids" value=""/>
                                     </div>
                                 </div>
 
@@ -451,7 +462,6 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -479,7 +489,6 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
                                         </tbody>
                                     </table>
                                 </div>
