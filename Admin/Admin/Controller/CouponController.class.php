@@ -15,6 +15,18 @@ class CouponController extends BaseController
     }
 
     /**
+     * 修改红包信息
+     */
+    public function edit()
+    {
+        $id = I('id', 0);
+        $model = M('coupon');
+        $data = $model->where(" id=$id")->select()[0];
+        $this->assign('current_coupon', $data);
+        $this->display('Coupon:edit');
+    }
+
+    /**
      * 优惠劵列表
      */
     public function clist()
@@ -59,7 +71,6 @@ class CouponController extends BaseController
         $data['coupon_use_end'] = I('coupon_use_end', '');
         $data['company_id'] = $company['id'];
         $data['merchandise'] = I('coupon_goods_ids', '');
-        var_dump($data['merchandise']);
         $data['coupon_status'] = 2;
         if (!empty($data['coupon_name']) && $data['coupon_money'] > 0) {
             $id = $model->add($data);

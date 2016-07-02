@@ -1,0 +1,516 @@
+<include file="./Assets/Admin/Inc/header.html" title="" keywords=""/>
+<link rel="stylesheet" href="/Assets/Admin/Public/css/daterangepicker.css">
+<script src="/Assets/Admin/Public/js/moment.min.js"></script>
+<script src="/Assets/Admin/Public/js/daterangepicker.js"></script>
+<script language="javascript">
+    $().ready(function () {
+        // 时间选择
+        $('#coupon_send_start').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function (start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+        $('#coupon_send_end').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function (start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+
+        // 时间选择
+        $('#coupon_use_start').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function (start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+        $('#coupon_use_end').daterangepicker({
+            "autoApply": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "locale": {
+                "format": "YYYY-MM-DD HH:mm:ss",
+                //"separator": " - ",//与后端一致
+                "applyLabel": "确定",
+                "cancelLabel": "取消",
+                //"fromLabel": "从",
+                //"toLabel": "到",
+                //"customRangeLabel": "自定义",
+                "daysOfWeek": [
+                    "日",
+                    "一",
+                    "二",
+                    "三",
+                    "四",
+                    "五",
+                    "六"
+                ],
+                "monthNames": [
+                    "一月",
+                    "二月",
+                    "三月",
+                    "四月",
+                    "五月",
+                    "六月",
+                    "七月",
+                    "八月",
+                    "九月",
+                    "十月",
+                    "十一月",
+                    "十二月"
+                ],
+                "firstDay": 1
+            },
+            "linkedCalendars": false,
+        }, function (start, end, label) {
+            //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+
+        //点击检索按钮对商品进行检索
+        $("#gsearch").click(function () {
+            var search_name = $("#gkey").val();
+
+            if (search_name != null && search_name.length > 0) {
+                var url = "{:U('goods/gsearch')}&gtyp=5&key=" + search_name;
+                $.get(url, function (data) {
+                    if (data.error === 0) {
+                        $("#scontent tbody").empty();
+                        var table = "";
+                        $.each(data.data.data, function (k, v) {
+                            var td = "<tr>"
+                            td += "<td><div align='center'>" + v.gcode + "</div></td>";
+                            td += "<td><div align='center'>" + v.gname + "</div></td>";
+                            td += "<td><div align='center'>" + v.barcode + "</div></td>";
+                            td += "<td><div align='center'>" + v.spec + "</div></td>";
+                            td += "<td><div align='center'><a href='javascript:addSelectRow(" + v.id + ",\"" + v.gcode + "\",\"" + v.gname + "\",\"" + v.barcode + "\",\"" + v.spec + "\")'> 添加</a></div></td>";
+                            td += "</tr>";
+                            table += td;
+                        });
+                        $("#scontent tbody").append(table);
+                    }
+                });
+            } else {
+                parent.layer.msg('请输入您需要搜索的商品名称', {icon: 2, time: 2000});
+            }
+        });
+    });
+
+    var index_str = "";
+
+    //添加到行
+    function addSelectRow(id, gcode, gname, barcode, spec) {
+        if (id != null) {
+            if (index_str.indexOf("<" + id + ">") < 0) {
+                //判断选择的行里面是否存在
+                var td = "<tr id='remove_" + id + "' data_id='" + id + "'>"
+                td += "<td><div align='center'>" + gcode + "</div></td>";
+                td += "<td><div align='center'>" + gname + "</div></td>";
+                td += "<td><div align='center'>" + barcode + "</div></td>";
+                td += "<td><div align='center'>" + spec + "</div></td>";
+                td += "<td><div align='center'><a href='javascript:deleteSelectRow(" + id + ")'> 删除</a></div></td>";
+                td += "</tr>";
+                index_str += "<" + id + ">";
+                $("#submit_goods tbody").append(td);
+            } else {
+                parent.layer.msg('商品已经添加', {icon: 2, time: 2000});
+            }
+        }
+    }
+
+    //删除行
+    function deleteSelectRow(id) {
+        if (index_str.indexOf("<" + id + ">") >= 0) {
+            $("#remove_" + id).remove();
+            index_str = index_str.replace("<" + id + ">", "");
+        }
+    }
+
+    //修改选择的红包类型
+    function selectCouponType() {
+        var coupon_type = $('input[name="coupon_type"]:checked ').val();
+        if (coupon_type == 3) {
+            //按商品发放
+            $("#search_goods").show();
+        } else {
+            $("#search_goods").hide();
+        }
+    }
+
+
+    /**
+     * 校验表单
+     */
+    function checkForm() {
+        var coupon_name = $("#coupon_name").val();
+        var coupon_money = $("#coupon_money").val();
+        var coupon_small_money = $("#coupon_small_money").val();
+        var coupon_send_start = $("#coupon_send_start").val();
+        var coupon_send_end = $("#coupon_send_end").val();
+        var coupon_use_start = $("#coupon_use_start").val();
+        var coupon_use_end = $("#coupon_use_end").val();
+        var coupon_type = $('input[name="coupon_type"]:checked ').val();
+        var ids = "";
+        var reg = new RegExp("^[0-9]*$");
+
+        if (coupon_type == 3 && index_str != null && index_str.length > 0) {
+            ids = index_str.replace("><", ",");
+            ids = ids.replace("<", "");
+            ids = ids.replace(">", "");
+            $("#coupon_goods_ids").val(ids);
+            console.log(ids);
+        }
+
+        if (coupon_name == null || coupon_money == '') {
+            parent.layer.msg('请输入红包名称', {icon: 2, time: 2000});
+            return false;
+        }
+        if (coupon_money == null || coupon_money == '') {
+            parent.layer.msg('请输入红包金额', {icon: 2, time: 2000});
+            return false;
+        } else {
+            if (!reg.test(coupon_money)) {
+                parent.layer.msg('请输入正确的红包金额', {icon: 2, time: 2000});
+                return false;
+            }
+        }
+
+        if (coupon_small_money == null || coupon_small_money == '') {
+            parent.layer.msg('请输入最小订单金额', {icon: 2, time: 2000});
+            return false;
+        } else {
+            if (!reg.test(coupon_small_money)) {
+                parent.layer.msg('请输入正确的红包金额', {icon: 2, time: 2000});
+                return false;
+            }
+        }
+
+
+        if (coupon_send_start == null || coupon_send_start == '') {
+            parent.layer.msg('请输入发放起始时间', {icon: 2, time: 2000});
+            return false;
+        }
+
+        if (coupon_send_end == null || coupon_send_end == '') {
+            parent.layer.msg('请输入发放结束时间', {icon: 2, time: 2000});
+            return false;
+        }
+
+
+        if (coupon_use_end == null || coupon_use_end == '') {
+            parent.layer.msg('请输入使用起始时间', {icon: 2, time: 2000});
+            return false;
+        }
+
+        if (coupon_use_end == null || coupon_use_end == '') {
+            parent.layer.msg('请输入使用结束时间', {icon: 2, time: 2000});
+            return false;
+        }
+
+        $('#coupon-form').submit();
+    }
+
+
+</script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!-- Main Header -->
+    <include file="./Assets/Admin/Inc/nav.html" title="" keywords=""/>
+    <!-- Left side column. contains the logo and sidebar -->
+    <include file="./Assets/Admin/Inc/menu.html" title="" keywords=""/>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                修改红包
+                <small>{$current_coupon.coupon_name}</small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <!--
+                    <h3 class="box-title">业务员APP活动栏目列表及顶部焦点图设置</h3>
+                    <div class="box-tools pull-right">
+                        <a href="{:U('column/column_edit')}" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> 添加新栏目</a>
+                    </div>
+                    -->
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form class="form-horizontal" id="coupon-form" method="post" action="{:U('coupon/save')}">
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">红包名称</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_name" name="coupon_name" placeholder="如：满300送5元代金劵">
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">红包金额(元)</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_money" name="coupon_money" placeholder="如: 5">
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">最小订单金额(元)</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_small_money" name="coupon_small_money" placeholder="如: 5">
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-sm-3 control-label">发放红包类型</label>
+                                    <div class="col-xs-7">
+                                        <input type="radio" name="coupon_type" onchange="selectCouponType();" checked value="1"> 按用户发放 &nbsp;&nbsp;<input
+                                            type="radio" onchange="selectCouponType();" name="coupon_type"
+                                            value="2"> 按订单金额发放 &nbsp;&nbsp;<input
+                                            type="radio" name="coupon_type" onchange="selectCouponType();" value="3"> 按商品发放
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">发放起始时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_send_start" name="coupon_send_start"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">发放结束时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_send_end" name="coupon_send_end"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">使用起始时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_use_start" name="coupon_use_start"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">使用结束时间</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_use_end" name="coupon_use_end"/>
+                                        <input type="hidden" id="coupon_goods_ids" name="coupon_goods_ids" value=""/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-10">
+                                        <input type="button" onclick="checkForm();" class="btn btn-primary" value="保存"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-6" id="search_goods" style="display: none;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="gkey" placeholder="请搜索想要的商品">
+                                        <div class="input-group-addon"><i class="fa fa-search" id="gsearch"></i></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div id='scontent' class="col-xs-12">
+                                    <table class="table table-striped table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <div align="center">ID</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">名称</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">条码</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">规格</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">操作</div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id='submit_goods' class="col-xs-12">
+                                    <table class="table table-striped table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <div align="center">ID</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">名称</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">条码</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">规格</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">操作</div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+
+                </div>
+                <!-- /.box-footer-->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <include file="./Assets/Admin/Inc/footer.html" title="" keywords=""/>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

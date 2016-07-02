@@ -103,7 +103,7 @@
                                             <div align="center">{$vo.coupon_use_end}</div>
                                         </td>
                                         <td>
-                                            <div align="center">编辑 |<a
+                                            <div align="center"><a href="{:U('coupon/edit')}&id={$vo.id}"> 编辑</a> |<a
                                                     href="javascript:if(confirm('您确认删除吗,如果删除,生成的未使用红包将全部失效?')){ location.href='{:U('coupon/delete')}&id={$vo.id}' }">移除</a>
                                             </div>
                                         </td>
