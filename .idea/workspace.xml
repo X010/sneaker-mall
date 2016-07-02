@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65fd0e7-8a83-4f03-9253-ecdfd6f0132b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" afterPath="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Coupon/detail.html" afterPath="$PROJECT_DIR$/Assets/Admin/Coupon/detail.html" />
     </list>
     <ignored path="pb-admin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CouponController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CouponController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.6153846">
-              <caret line="108" column="29" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.3644068">
+              <caret line="113" column="42" selection-start-line="113" selection-start-column="42" selection-end-line="113" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -80,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5826271">
-              <caret line="99" column="221" selection-start-line="99" selection-start-column="212" selection-end-line="99" selection-end-column="221" />
+            <state vertical-scroll-proportion="-6.730769">
+              <caret line="92" column="50" selection-start-line="92" selection-start-column="50" selection-end-line="92" selection-end-column="50" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -159,8 +157,8 @@
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/edit.html" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
-        <option value="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/detail.html" />
+        <option value="$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php" />
       </list>
     </option>
   </component>
@@ -961,12 +959,12 @@
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
       <workItem from="1467297416209" duration="1865000" />
-      <workItem from="1467434599731" duration="14004000" />
+      <workItem from="1467434599731" duration="14182000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36645000" />
+    <option name="totallyTimeSpent" value="36823000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -1427,21 +1425,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6153846">
-          <caret line="108" column="29" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5826271">
-          <caret line="99" column="221" selection-start-line="99" selection-start-column="212" selection-end-line="99" selection-end-column="221" />
+        <state vertical-scroll-proportion="-6.730769">
+          <caret line="92" column="50" selection-start-line="92" selection-start-column="50" selection-end-line="92" selection-end-column="50" />
           <folding>
             <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/CouponController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3644068">
+          <caret line="113" column="42" selection-start-line="113" selection-start-column="42" selection-end-line="113" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

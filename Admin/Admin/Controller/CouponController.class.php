@@ -111,8 +111,7 @@ class CouponController extends BaseController
             $model_detail = M('coupon_detail');
             $res = $model_detail->where(" id=$id")->setField("status", 9);
         }
-
-
+        $this->redirect(U('Coupon/detail')."&id=$coupon_id");
     }
 
     /**
