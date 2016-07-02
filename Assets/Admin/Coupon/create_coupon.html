@@ -186,15 +186,16 @@
 
         //点击检索按钮对商品进行检索
         $("#gsearch").click(function () {
-            var search_name = $("#text").val();
+            var search_name = $("#gkey").val();
+
             if (search_name != null && search_name.length > 0) {
-                var url = "{:U('goods/gsearch')}&gtyp=1&key=" + key;
+                var url = "{:U('goods/gsearch')}&gtyp=5&key=" + key;
                 $.get(url, function (data) {
                     if (data.error === 0) {
                         $("#scontent").empty();
 
                         $.each(data.data.data, function (k, v) {
-
+                            console.log(v);
                         });
                     }
                 });
