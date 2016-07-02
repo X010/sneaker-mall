@@ -365,6 +365,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <form class="form-horizontal" id="coupon-form" method="post" action="{:U('coupon/save')}">
+                                <input type="hidden" id="id" name="id" value="{$current_coupon.id}">
                                 <div class="form-group ">
                                     <label class="col-sm-3 control-label">红包名称</label>
                                     <div class="col-xs-7">

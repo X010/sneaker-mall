@@ -49,8 +49,8 @@
       <file leaf-file-name="edit.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7351695">
-              <caret line="417" column="138" selection-start-line="417" selection-start-column="138" selection-end-line="417" selection-end-column="138" />
+            <state vertical-scroll-proportion="0.52330506">
+              <caret line="367" column="97" selection-start-line="367" selection-start-column="97" selection-end-line="367" selection-end-column="97" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -957,12 +957,12 @@
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
       <workItem from="1467297416209" duration="1865000" />
-      <workItem from="1467434599731" duration="11047000" />
+      <workItem from="1467434599731" duration="11103000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33688000" />
+    <option name="totallyTimeSpent" value="33744000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -1431,8 +1431,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7351695">
-          <caret line="417" column="138" selection-start-line="417" selection-start-column="138" selection-end-line="417" selection-end-column="138" />
+        <state vertical-scroll-proportion="0.52330506">
+          <caret line="367" column="97" selection-start-line="367" selection-start-column="97" selection-end-line="367" selection-end-column="97" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
           </folding>
