@@ -100,6 +100,22 @@ class CouponController extends BaseController
     }
 
     /**
+     * 删除数据
+     */
+    public function delete_detail()
+    {
+        $company = $this->get_company();
+        $id = I("id", 0);
+        $coupon_id = I("couid", 0);
+        if ($id > 0) {
+            $model_detail = M('coupon_detail');
+            $res = $model_detail->where(" id=$id")->setField("status", 9);
+        }
+
+
+    }
+
+    /**
      * 删除该红包
      */
     public function delete()
