@@ -188,7 +188,16 @@
         $("#gsearch").click(function () {
             var search_name = $("#text").val();
             if (search_name != null && search_name.length > 0) {
+                var url = "{:U('goods/gsearch')}&gtyp=1&key=" + key;
+                $.get(url, function (data) {
+                    if (data.error === 0) {
+                        $("#scontent").empty();
 
+                        $.each(data.data.data, function (k, v) {
+
+                        });
+                    }
+                });
             } else {
                 parent.layer.msg('请输入您需要搜索的商品名称', {icon: 2, time: 2000});
             }
@@ -387,6 +396,7 @@
                             </div>
                             <div class="row">
                                 <div id='submit_goods' class="col-xs-12">
+
                                 </div>
                             </div>
                         </div>
