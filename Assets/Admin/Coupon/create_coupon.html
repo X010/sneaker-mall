@@ -200,7 +200,7 @@
                             td += "<td><div align='center'>" + v.gname + "</div></td>";
                             td += "<td><div align='center'>" + v.barcode + "</div></td>";
                             td += "<td><div align='center'>" + v.spec + "</div></td>";
-                            td += "<td><div align='center'><a href='javascript:addSelectRow(" + v + ")'> 添加</a></div></td>";
+                            td += "<td><div align='center'><a href='javascript:addSelectRow(" + v.id + "," + v.gcode + "," + v.gname + "," + v.barcode + "," + v.spec + ")'> 添加</a></div></td>";
                             td += "</tr>";
                             table += td;
                         });
@@ -213,19 +213,26 @@
         });
     });
 
+    var index_str = "";
+
     //添加到行
-    function addSelectRow(row_value) {
+    function addSelectRow(id, gcode, gname, barcode, spec) {
         console.log(row_value);
         if (row_value != null) {
-            //判断选择的行里面是否存在
-            var td = "<tr>"
-            td += "<td><div align='center'>" + v.gcode + "</div></td>";
-            td += "<td><div align='center'>" + v.gname + "</div></td>";
-            td += "<td><div align='center'>" + v.barcode + "</div></td>";
-            td += "<td><div align='center'>" + v.spec + "</div></td>";
-            td += "<td><div align='center'><a href='javascript:deleteSelectRow(" + v + ")'> 添加</a></div></td>";
-            td += "</tr>";
-            $("#submit_goods tbody").append(td);
+            if (index_str.indexOf(id) >= 0) {
+                //判断选择的行里面是否存在
+                var td = "<tr>"
+                td += "<td><div align='center'>" + gcode + "</div></td>";
+                td += "<td><div align='center'>" + gname + "</div></td>";
+                td += "<td><div align='center'>" + barcode + "</div></td>";
+                td += "<td><div align='center'>" + spec + "</div></td>";
+                td += "<td><div align='center'><a href='javascript:deleteSelectRow(" + v + ")'> 添加</a></div></td>";
+                td += "</tr>";
+                index_str += "<" + id + ">";
+                $("#submit_goods tbody").append(td);
+            } else {
+                parent.layer.msg('商品已经添加', {icon: 2, time: 2000});
+            }
         }
     }
 
