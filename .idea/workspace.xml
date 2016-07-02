@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65fd0e7-8a83-4f03-9253-ecdfd6f0132b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Assets/Admin/Express/express_detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php" afterPath="$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" afterPath="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Express/express.html" afterPath="$PROJECT_DIR$/Assets/Admin/Express/express.html" />
     </list>
     <ignored path="pb-admin.iws" />
@@ -56,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExpressController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ExpressController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6292373">
-              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state vertical-scroll-proportion="-8.538462">
+              <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -98,45 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SaleController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/SaleController.class.php">
+      <file leaf-file-name="express_detail.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.96153843">
-              <caret line="903" column="38" selection-start-line="903" selection-start-column="32" selection-end-line="903" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.8076925">
-              <caret line="89" column="85" selection-start-line="89" selection-start-column="85" selection-end-line="89" selection-end-column="85" />
-              <folding>
-                <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clist.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.6923075">
-              <caret line="72" column="151" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="151" />
-              <folding>
-                <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="express.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.576923">
-              <caret line="57" column="115" selection-start-line="57" selection-start-column="109" selection-end-line="57" selection-end-column="115" />
+            <state vertical-scroll-proportion="0.5762712">
+              <caret line="43" column="46" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -171,6 +137,7 @@
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
         <option value="$PROJECT_DIR$/Assets/Admin/Express/express.html" />
         <option value="$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php" />
+        <option value="$PROJECT_DIR$/Assets/Admin/Express/express_detail.html" />
       </list>
     </option>
   </component>
@@ -927,12 +894,12 @@
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
       <workItem from="1467297416209" duration="1865000" />
-      <workItem from="1467434599731" duration="17112000" />
+      <workItem from="1467434599731" duration="17813000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39753000" />
+    <option name="totallyTimeSpent" value="40454000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -1002,13 +969,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Market/giving_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="255" column="107" selection-start-line="255" selection-start-column="103" selection-end-line="255" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/MarketController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1354,10 +1314,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.576923">
+          <caret line="427" column="38" selection-start-line="423" selection-start-column="32" selection-end-line="427" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.21186441">
+          <caret line="59" column="83" selection-start-line="59" selection-start-column="83" selection-end-line="59" selection-end-column="83" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.8076925">
-          <caret line="89" column="85" selection-start-line="89" selection-start-column="85" selection-end-line="89" selection-end-column="85" />
+        <state vertical-scroll-proportion="0.63559324">
+          <caret line="97" column="89" selection-start-line="97" selection-start-column="89" selection-end-line="97" selection-end-column="89" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33898306">
+          <caret line="106" column="135" selection-start-line="106" selection-start-column="135" selection-end-line="106" selection-end-column="135" />
           <folding>
             <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
           </folding>
@@ -1374,41 +1364,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.576923">
-          <caret line="427" column="38" selection-start-line="423" selection-start-column="32" selection-end-line="427" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.6923075">
-          <caret line="72" column="151" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="151" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.576923">
-          <caret line="57" column="115" selection-start-line="57" selection-start-column="109" selection-end-line="57" selection-end-column="115" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6292373">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        <state vertical-scroll-proportion="-8.538462">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5762712">
+          <caret line="43" column="46" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

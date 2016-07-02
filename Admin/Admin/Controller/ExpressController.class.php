@@ -36,4 +36,12 @@ class ExpressController extends BaseController
     {
 
     }
+
+    /**
+     * 保存物流详情信息
+     */
+    public function detail_save()
+    {
+
+    }
 }

@@ -21,7 +21,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                物流公司列表
+                物流公司价格
                 <small>管理物流公司</small>
             </h1>
         </section>
@@ -46,7 +46,13 @@
                                 <thead>
                                 <tr>
                                     <th>
-                                        <div align="center">物流公司</div>
+                                        <div align="center">城市名称</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">首重价格</div>
+                                    </th>
+                                    <th>
+                                        <div align="center">续重价格</div>
                                     </th>
                                     <th>
                                         <div align="center">操作</div>
@@ -54,26 +60,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <foreach name="res" item="vo">
-                                    <tr data-id="{$vo.id}" ondblclick="javscript:location.href='{:U('express/detail')}&id={$vo.id}'">
-                                        <td>
-                                            <div align="center">{$vo.express}</div>
-                                        </td>
-                                        <td>
-                                            <div align="center"><a  class="btn-info" href="#">编缉</a>  &nbsp;&nbsp; <a  class="btn-danger" href="#">移除</a> </div>
-                                        </td>
-                                    </tr>
-                                </foreach>
                                 </tbody>
                             </table>
                         </div>
                         <div class="col-sm-6">
                             <div class="row">
-                                <form class="form-horizontal" id="coupon-form" method="post" action="{:U('express/save')}">
+                                <form class="form-horizontal" id="coupon-form" method="post" action="{:U('express/detail_save')}">
                                     <div class="form-group ">
-                                        <label class="col-sm-3 control-label">物流公司名称</label>
+                                        <label class="col-sm-3 control-label">城市名称</label>
                                         <div class="col-xs-7">
-                                            <input type="text" class="form-control" id="express_name" name="express_name" placeholder="如：申通快递"/>
+                                            <input type="text" class="form-control" id="province" name="province" placeholder="如：北京市"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="col-sm-3 control-label">首重金额(公斤)</label>
+                                        <div class="col-xs-7">
+                                            <input type="text" class="form-control" id="first_price" name="first_price" placeholder="如：1"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="col-sm-3 control-label">续重金额(公斤)</label>
+                                        <div class="col-xs-7">
+                                            <input type="text" class="form-control" id="continue_price" name="continue_price" placeholder="如：2"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
