@@ -215,6 +215,22 @@
 
     //添加到行
     function addSelectRow(row_value) {
+        console.log(row_value);
+        if (row_value != null) {
+            //判断选择的行里面是否存在
+            var td = "<tr>"
+            td += "<td><div align='center'>" + v.gcode + "</div></td>";
+            td += "<td><div align='center'>" + v.gname + "</div></td>";
+            td += "<td><div align='center'>" + v.barcode + "</div></td>";
+            td += "<td><div align='center'>" + v.spec + "</div></td>";
+            td += "<td><div align='center'><a href='javascript:deleteSelectRow(" + v + ")'> 添加</a></div></td>";
+            td += "</tr>";
+            $("#submit_goods tbody").append(td);
+        }
+    }
+
+    //删除行
+    function deleteSelectRow(row_value) {
 
     }
 
