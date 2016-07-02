@@ -219,6 +219,8 @@
     function addSelectRow(id, gcode, gname, barcode, spec) {
         console.log(id);
         if (id != null) {
+            console.log(index_str);
+            console.log(index_str.indexOf("<" + id + ">"));
             if (index_str.indexOf("<" + id + ">") >= 0) {
                 //判断选择的行里面是否存在
                 var td = "<tr>"
@@ -239,7 +241,7 @@
     //删除行
     function deleteSelectRow(id) {
         if (index_str.indexOf("<" + id + ">") >= 0) {
-
+            var tds = $("#submit_goods tbody tr");
         }
     }
 
