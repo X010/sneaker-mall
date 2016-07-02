@@ -44,6 +44,16 @@
             return false;
         }
 
+        if (first_price == null || first_price == '') {
+            parent.layer.msg('请输入首重金额', {icon: 2, time: 2000});
+            return false;
+        }
+
+        if (continue_price == null || continue_price == '') {
+            parent.layer.msg('请输入续重金额', {icon: 2, time: 2000});
+            return false;
+        }
+
         if (!check(first_price)) {
             parent.layer.msg('请输入正确的首重金额', {icon: 2, time: 2000});
             return false;
@@ -158,13 +168,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="col-sm-3 control-label">首重金额(公斤)</label>
+                                        <label class="col-sm-3 control-label">首重金额(无)</label>
                                         <div class="col-xs-7">
                                             <input type="text" class="form-control" id="first_price" name="first_price" placeholder="如：1"/>
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="col-sm-3 control-label">续重金额(公斤)</label>
+                                        <label class="col-sm-3 control-label">续重金额(元)</label>
                                         <div class="col-xs-7">
                                             <input type="text" class="form-control" id="continue_price" name="continue_price" placeholder="如：2"/>
                                         </div>
