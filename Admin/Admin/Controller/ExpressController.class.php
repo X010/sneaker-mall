@@ -28,4 +28,12 @@ class ExpressController extends BaseController
     {
 
     }
+
+    /**
+     * 物流列表详情
+     */
+    public function detail()
+    {
+
+    }
 }

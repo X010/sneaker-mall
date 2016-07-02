@@ -55,7 +55,7 @@
                                 </thead>
                                 <tbody>
                                 <foreach name="res" item="vo">
-                                    <tr>
+                                    <tr data-id="{$vo.id}" ondblclick="javscript:location.href='{:U('express/detail')}&id={$vo.id}'">
                                         <td>
                                             <div align="center">{$vo.express}</div>
                                         </td>
