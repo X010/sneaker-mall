@@ -77,6 +77,7 @@ class CouponController extends BaseController
             if (id > 0) {
                 //修改
                 $res_model_user = $model->where(" id=$id")->select()[0];
+                var_dump($res_model_user);
                 if ($res_model_user) {
                     $res_model_user['coupon_name'] = I('coupon_name', '');
                     $res_model_user['coupon_money'] = I('coupon_money', '');
