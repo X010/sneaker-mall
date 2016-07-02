@@ -368,54 +368,54 @@
                                 <div class="form-group ">
                                     <label class="col-sm-3 control-label">红包名称</label>
                                     <div class="col-xs-7">
-                                        <input type="text" class="form-control" id="coupon_name" name="coupon_name" placeholder="如：满300送5元代金劵">
+                                        <input type="text" class="form-control" id="coupon_name" name="coupon_name" value="{$current_coupon.coupon_name}" placeholder="如：满300送5元代金劵">
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <label class="col-sm-3 control-label">红包金额(元)</label>
                                     <div class="col-xs-7">
-                                        <input type="text" class="form-control" id="coupon_money" name="coupon_money" placeholder="如: 5">
+                                        <input type="text" class="form-control" id="coupon_money" name="coupon_money" value="{$current_coupon.coupon_money}" placeholder="如: 5">
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <label class="col-sm-3 control-label">最小订单金额(元)</label>
                                     <div class="col-xs-7">
-                                        <input type="text" class="form-control" id="coupon_small_money" name="coupon_small_money" placeholder="如: 5">
+                                        <input type="text" class="form-control" id="coupon_small_money" name="coupon_small_money"  value="{$current_coupon.coupon_small_money}" placeholder="如: 5">
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <label class="col-sm-3 control-label">发放红包类型</label>
                                     <div class="col-xs-7">
-                                        <input type="radio" name="coupon_type" onchange="selectCouponType();" checked value="1"> 按用户发放 &nbsp;&nbsp;<input
-                                            type="radio" onchange="selectCouponType();" name="coupon_type"
-                                            value="2"> 按订单金额发放 &nbsp;&nbsp;<input
-                                            type="radio" name="coupon_type" onchange="selectCouponType();" value="3"> 按商品发放
+                                        <input type="radio" name="coupon_type"  onchange="selectCouponType();" <if condition="$current_coupon.coupon_type eq 1">checked </if>   disabled value="1"> 按用户发放 &nbsp;&nbsp;<input
+                                            type="radio" onchange="selectCouponType();" name="coupon_type" disabled  <if condition="$current_coupon.coupon_type eq 2">checked </if>
+                                        value="2"> 按订单金额发放 &nbsp;&nbsp;<input
+                                            type="radio" name="coupon_type" onchange="selectCouponType();" value="3"  <if condition="$current_coupon.coupon_type eq 3">checked </if>  disabled> 按商品发放
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">发放起始时间</label>
                                     <div class="col-xs-7">
-                                        <input type="text" class="form-control" id="coupon_send_start" name="coupon_send_start"/>
+                                        <input type="text" class="form-control" id="coupon_send_start" value="{$current_coupon.coupon_send_start}" name="coupon_send_start"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">发放结束时间</label>
                                     <div class="col-xs-7">
-                                        <input type="text" class="form-control" id="coupon_send_end" name="coupon_send_end"/>
+                                        <input type="text" class="form-control" id="coupon_send_end"  value="{$current_coupon.coupon_send_end}" name="coupon_send_end"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">使用起始时间</label>
                                     <div class="col-xs-7">
-                                        <input type="text" class="form-control" id="coupon_use_start" name="coupon_use_start"/>
+                                        <input type="text" class="form-control" id="coupon_use_start"  value="{$current_coupon.coupon_use_start}" name="coupon_use_start"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">使用结束时间</label>
                                     <div class="col-xs-7">
-                                        <input type="text" class="form-control" id="coupon_use_end" name="coupon_use_end"/>
+                                        <input type="text" class="form-control" id="coupon_use_end" value="{$current_coupon.coupon_use_end}" name="coupon_use_end"/>
                                         <input type="hidden" id="coupon_goods_ids" name="coupon_goods_ids" value=""/>
                                     </div>
                                 </div>
