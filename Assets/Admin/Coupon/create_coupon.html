@@ -192,11 +192,19 @@
                 var url = "{:U('goods/gsearch')}&gtyp=5&key=" + search_name;
                 $.get(url, function (data) {
                     if (data.error === 0) {
-                        $("#scontent").empty();
-
+                        $("#scontent tbody").empty();
+                        var table = "";
                         $.each(data.data.data, function (k, v) {
+                            var td = "<tr>"
+                            td += "<td><div align='center'>" + v.gcode + "</div></td>";
+                            td += "<td><div align='center'>" + v.gname + "</div></td>";
+                            td += "<td><div align='center'>" + v.barcode + "</div></td>";
+                            td += "<td><div align='center'>" + v.spec + "</div></td>";
+                            td += "<td><div align='center'><a href='javascript:addSelectRow(" + v + ")'> 添加</a></div></td>";
+                            td += "</tr>";
                             console.log(v);
                         });
+                        $("#scontent tbody").append(table);
                     }
                 });
             } else {
@@ -204,6 +212,11 @@
             }
         });
     });
+
+    //添加到行
+    function addSelectRow(row_value) {
+
+    }
 
     //修改选择的红包类型
     function selectCouponType() {
@@ -392,12 +405,58 @@
                             </div>
                             <div class="row">
                                 <div id='scontent' class="col-xs-12">
+                                    <table class="table table-striped table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <div align="center">ID</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">名称</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">条码</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">规格</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">操作</div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <div class="row">
                                 <div id='submit_goods' class="col-xs-12">
+                                    <table class="table table-striped table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <div align="center">ID</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">名称</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">条码</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">规格</div>
+                                            </th>
+                                            <th>
+                                                <div align="center">操作</div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

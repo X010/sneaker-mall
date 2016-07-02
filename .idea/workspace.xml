@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65fd0e7-8a83-4f03-9253-ecdfd6f0132b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html" afterPath="$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html" />
     </list>
     <ignored path="pb-admin.iws" />
@@ -28,8 +27,8 @@
       <file leaf-file-name="create_coupon.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73628694">
-              <caret line="191" column="75" selection-start-line="191" selection-start-column="75" selection-end-line="191" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.47257385">
+              <caret line="202" column="99" selection-start-line="202" selection-start-column="99" selection-end-line="202" selection-end-column="99" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -82,8 +81,8 @@
       <file leaf-file-name="pkgsize.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Goods/pkgsize.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.8461537">
-              <caret line="46" column="54" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
+            <state vertical-scroll-proportion="-13.5">
+              <caret line="50" column="72" selection-start-line="50" selection-start-column="68" selection-end-line="50" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -935,12 +934,12 @@
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
       <workItem from="1467297416209" duration="1865000" />
-      <workItem from="1467434599731" duration="4038000" />
+      <workItem from="1467434599731" duration="4916000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26679000" />
+    <option name="totallyTimeSpent" value="27557000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -1391,14 +1390,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Goods/pkgsize.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.8461537">
-          <caret line="46" column="54" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="20.192308">
@@ -1409,10 +1400,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Goods/pkgsize.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.5">
+          <caret line="50" column="72" selection-start-line="50" selection-start-column="68" selection-end-line="50" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/create_coupon.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73628694">
-          <caret line="191" column="75" selection-start-line="191" selection-start-column="75" selection-end-line="191" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.47257385">
+          <caret line="202" column="99" selection-start-line="202" selection-start-column="99" selection-end-line="202" selection-end-column="99" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
           </folding>
