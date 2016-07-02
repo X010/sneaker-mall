@@ -26,7 +26,14 @@ class ExpressController extends BaseController
      */
     public function save()
     {
-
+        $express_name = I('express_name', '');
+        if (!empty($data['express_name'])) {
+            $model = M('express');
+            $data['express'] = $express_name;
+            $data['status'] = 1;
+            $res = $model->add($data);
+        }
+        $this->redirect(U('express/express'));
     }
 
     /**
