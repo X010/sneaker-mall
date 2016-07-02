@@ -59,7 +59,9 @@
 
             <li name="li_menu" class="treeview <?php if($Think.CONTROLLER_NAME == 'Express') echo 'active'; ?>">
                 <a href="javascript:"><i class="fa fa-th-list"></i> <span>物流管理</span> <i class="fa fa-angle-left pull-right"></i></a>
-            <li><a name="menu_link" href="{:U('express/express')}"><i class="fa fa-circle-o"></i>物流公司管理</a></li>
+                <ul class="treeview-menu">
+                    <li><a name="menu_link" href="{:U('express/express')}"><i class="fa fa-circle-o"></i>物流公司管理</a></li>
+                </ul>
             </li>
             <!--<li class="treeview">
                 <a href="javascript:enterOtherPlatform('yc');"><i class="fa fa-cloud"></i> <span>99云仓</span> </a>
