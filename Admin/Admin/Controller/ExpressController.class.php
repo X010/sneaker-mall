@@ -34,7 +34,13 @@ class ExpressController extends BaseController
      */
     public function detail()
     {
-
+        $id = I('id', 0);
+        if ($id) {
+            $model_express = M('express');
+            $model_res = $model_express->where("id=$id")->select()[0];
+            $this->assign("model_res", $model_res);
+        }
+        $this->display('Express:express_detail');
     }
 
     /**
