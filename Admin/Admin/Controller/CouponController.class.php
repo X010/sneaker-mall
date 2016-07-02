@@ -74,10 +74,11 @@ class CouponController extends BaseController
         $data['merchandise'] = I('coupon_goods_ids', '');
         $data['coupon_status'] = 2;
         if (!empty($data['coupon_name']) && $data['coupon_money'] > 0) {
-            if (id > 0) {
+
+            if ($id > 0) {
                 //修改
                 $res_model_user = $model->where(" id=$id")->select()[0];
-                var_dump($res_model_user);
+
                 if ($res_model_user) {
                     $res_model_user['coupon_name'] = I('coupon_name', '');
                     $res_model_user['coupon_money'] = I('coupon_money', '');
