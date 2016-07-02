@@ -94,8 +94,8 @@
       <file leaf-file-name="glist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Goods/glist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.7924528">
-              <caret line="350" column="102" selection-start-line="350" selection-start-column="92" selection-end-line="350" selection-end-column="102" />
+            <state vertical-scroll-proportion="-4.207547">
+              <caret line="350" column="79" selection-start-line="350" selection-start-column="71" selection-end-line="350" selection-end-column="79" />
               <folding>
                 <marker date="1464856048000" expanded="true" signature="19386:19436" placeholder="..." />
               </folding>
@@ -116,8 +116,8 @@
       <file leaf-file-name="clist.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3707627">
-              <caret line="105" column="137" selection-start-line="105" selection-start-column="137" selection-end-line="105" selection-end-column="137" />
+            <state vertical-scroll-proportion="0.6885593">
+              <caret line="105" column="187" selection-start-line="105" selection-start-column="187" selection-end-line="105" selection-end-column="187" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -960,12 +960,12 @@
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
       <workItem from="1467297416209" duration="1865000" />
-      <workItem from="1467434599731" duration="13032000" />
+      <workItem from="1467434599731" duration="13173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35673000" />
+    <option name="totallyTimeSpent" value="35814000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="0" />
@@ -1426,8 +1426,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Goods/glist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7924528">
-          <caret line="350" column="102" selection-start-line="350" selection-start-column="92" selection-end-line="350" selection-end-column="102" />
+        <state vertical-scroll-proportion="-4.207547">
+          <caret line="350" column="79" selection-start-line="350" selection-start-column="71" selection-end-line="350" selection-end-column="79" />
           <folding>
             <marker date="1464856048000" expanded="true" signature="19386:19436" placeholder="..." />
           </folding>
@@ -1436,8 +1436,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/clist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3707627">
-          <caret line="105" column="137" selection-start-line="105" selection-start-column="137" selection-end-line="105" selection-end-column="137" />
+        <state vertical-scroll-proportion="0.6885593">
+          <caret line="105" column="187" selection-start-line="105" selection-start-column="187" selection-end-line="105" selection-end-column="187" />
           <folding>
             <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
           </folding>
