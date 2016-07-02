@@ -160,8 +160,8 @@ class CouponController extends BaseController
                     $start = 0;
                 }
 
-                $coupon_detail_list = $model_detail->where(" coupon_id=$id")->limit($start, $this->limit)->order(' id DESC')->select();
-                $count = $model_detail->where(" coupon_id=$id")->count();
+                $coupon_detail_list = $model_detail->where(" coupon_id=$id and status<>9")->limit($start, $this->limit)->order(' id DESC')->select();
+                $count = $model_detail->where(" coupon_id=$id and status<>9")->count();
 
                 $Page = new \Extend\Page($count, $this->limit, ['key' => $search_key, 'id' => $id]);
                 $show = $Page->show();// 分页显示输出
