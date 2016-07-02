@@ -217,11 +217,8 @@
 
     //添加到行
     function addSelectRow(id, gcode, gname, barcode, spec) {
-        console.log(id);
         if (id != null) {
-            console.log(index_str);
-            console.log(index_str.indexOf("<" + id + ">"));
-            if (index_str.indexOf("<" + id + ">") >= 0) {
+            if (index_str.indexOf("<" + id + ">") < 0) {
                 //判断选择的行里面是否存在
                 var td = "<tr>"
                 td += "<td><div align='center'>" + gcode + "</div></td>";
