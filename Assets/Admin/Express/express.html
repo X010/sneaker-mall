@@ -5,7 +5,13 @@
      * 检测表单数据
      */
     function checkForm() {
+        var express_name = $("#express_name").val();
+        if (express_name == null || express_name == '') {
+            parent.layer.msg('请输入快递公司名称', {icon: 2, time: 2000});
+            return false;
+        }
 
+        $('#express-form').submit();
     }
 </script>
 </head>
@@ -60,7 +66,7 @@
                                             <div align="center">{$vo.express}</div>
                                         </td>
                                         <td>
-                                            <div align="center"><a  class="btn-info" href="#">编缉</a>  &nbsp;&nbsp; <a  class="btn-danger" href="#">移除</a> </div>
+                                            <div align="center"><a class="btn-info" href="#">编缉</a> &nbsp;&nbsp; <a class="btn-danger" href="#">移除</a></div>
                                         </td>
                                     </tr>
                                 </foreach>
@@ -69,7 +75,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="row">
-                                <form class="form-horizontal" id="coupon-form" method="post" action="{:U('express/save')}">
+                                <form class="form-horizontal" id="express-form" method="post" action="{:U('express/save')}">
                                     <div class="form-group ">
                                         <label class="col-sm-3 control-label">物流公司名称</label>
                                         <div class="col-xs-7">
