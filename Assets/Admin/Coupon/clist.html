@@ -13,8 +13,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                优惠劵列表
-                <small>已经生成优惠劵列表</small>
+                红包列表
+                <small>已经生成红包列表</small>
             </h1>
         </section>
 
@@ -79,7 +79,7 @@
                                                 按用户发放
                                                 <elseif condition="$vo.coupon_type eq 2"/>
                                                 按订单金额发放
-                                                <else />
+                                                <else/>
                                                 按商品发放
                                             </if>
                                         </td>
@@ -103,7 +103,9 @@
                                             <div align="center">{$vo.coupon_use_end}</div>
                                         </td>
                                         <td>
-                                            <div align="center">编辑 |<a href="javascript:if(confirm('您确认删除吗,如果删除,生成的未使用红包将全部失效?')){ location.href='{:U('coupon/delete')}&id={$vo.id}' }">移除</a></div>
+                                            <div align="center">编辑 |<a
+                                                    href="javascript:if(confirm('您确认删除吗,如果删除,生成的未使用红包将全部失效?')){ location.href='{:U('coupon/delete')}&id={$vo.id}' }">移除</a>
+                                            </div>
                                         </td>
                                         <!--<td><div>{$vo.description}</div></td>-->
                                     </tr>

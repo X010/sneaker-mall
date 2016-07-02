@@ -190,9 +190,9 @@
         var coupon_type = $('input[name="coupon_type"]:checked ').val();
         if (coupon_type == 3) {
             //按商品发放
-
+            $("#search_goods").show();
         } else {
-
+            $("#search_goods").hide();
         }
         alert(coupon_type);
     }
@@ -274,8 +274,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                创建优惠劵
-                <small>生成优惠劵列表</small>
+                创建红包
+                <small>生成红包列表</small>
             </h1>
         </section>
 
