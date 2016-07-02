@@ -14,6 +14,10 @@ class ExpressController extends BaseController
      */
     public function express()
     {
+        //读取物流公司
+        $model = M('express');
+        $res = $model->where("status<>9")->select();
+        $this->assign("res", $res);
         $this->display('Express:express');
     }
 
