@@ -59,6 +59,7 @@ class CouponController extends BaseController
         $data['coupon_use_end'] = I('coupon_use_end', '');
         $data['company_id'] = $company['id'];
         $data['merchandise'] = I('coupon_goods_ids', '');
+        var_dump($data['merchandise']);
         $data['coupon_status'] = 2;
         if (!empty($data['coupon_name']) && $data['coupon_money'] > 0) {
             $id = $model->add($data);
