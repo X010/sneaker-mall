@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65fd0e7-8a83-4f03-9253-ecdfd6f0132b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php" afterPath="$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Admin/Express/express_detail.html" afterPath="$PROJECT_DIR$/Assets/Admin/Express/express_detail.html" />
     </list>
     <ignored path="pb-admin.iws" />
@@ -55,12 +53,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExpressController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ExpressController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2584746">
-              <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
+            <state vertical-scroll-proportion="-10.461538">
+              <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="express_detail.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.45127118">
+              <caret line="133" column="228" selection-start-line="133" selection-start-column="228" selection-end-line="133" selection-end-column="228" />
+              <folding>
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -159,8 +169,8 @@
         <option value="$PROJECT_DIR$/Assets/Admin/Inc/menu.html" />
         <option value="$PROJECT_DIR$/Assets/Admin/Coupon/clist.html" />
         <option value="$PROJECT_DIR$/Assets/Admin/Express/express.html" />
-        <option value="$PROJECT_DIR$/Assets/Admin/Express/express_detail.html" />
         <option value="$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php" />
+        <option value="$PROJECT_DIR$/Assets/Admin/Express/express_detail.html" />
       </list>
     </option>
   </component>
@@ -1031,12 +1041,12 @@
       <updated>1467046168098</updated>
       <workItem from="1467046169570" duration="20776000" />
       <workItem from="1467297416209" duration="1865000" />
-      <workItem from="1467434599731" duration="25780000" />
+      <workItem from="1467434599731" duration="25885000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48421000" />
+    <option name="totallyTimeSpent" value="48526000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="23" width="1410" height="877" extended-state="6" />
@@ -1492,16 +1502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4766949">
-          <caret line="133" column="243" selection-start-line="133" selection-start-column="243" selection-end-line="133" selection-end-column="243" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Admin/Coupon/edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.7307692">
@@ -1514,9 +1514,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Admin/Admin/Controller/ExpressController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2584746">
-          <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
+        <state vertical-scroll-proportion="-10.461538">
+          <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Admin/Express/express_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45127118">
+          <caret line="133" column="228" selection-start-line="133" selection-start-column="228" selection-end-line="133" selection-end-column="228" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
