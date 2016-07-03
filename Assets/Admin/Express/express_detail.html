@@ -119,6 +119,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <foreach name="coupon_list" item="vo">
+                                    <tr>
+                                        <td>
+                                            <div align="center">{$vo.province}</div>
+                                        </td>
+                                        <td>
+                                            <div align="center">{$vo.first_price}</div>
+                                        </td>
+                                        <td>
+                                            <div align="center">{$vo.continue_price}</div>
+                                        </td>
+                                        <td>
+                                            <div align="center"></div>
+                                        </td>
+                                    </tr>
+                                </foreach>
                                 </tbody>
                             </table>
                         </div>
@@ -168,7 +184,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="col-sm-3 control-label">首重金额(无)</label>
+                                        <label class="col-sm-3 control-label">首重金额1KG(元)</label>
                                         <div class="col-xs-7">
                                             <input type="text" class="form-control" id="first_price" name="first_price" placeholder="如：1"/>
                                         </div>
