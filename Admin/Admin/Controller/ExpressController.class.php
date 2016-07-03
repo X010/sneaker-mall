@@ -106,6 +106,6 @@ class ExpressController extends BaseController
                 $model->add($data);
             }
         }
-        $this->redirect(U('express/express_detail') . "&id=$express_id");
+        $this->redirect(U('express/detail') . "&id=$express_id");
     }
 }
