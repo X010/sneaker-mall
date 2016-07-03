@@ -87,7 +87,7 @@ class ExpressController extends BaseController
 
             //获取省份列表
             $model_express_province = M('province_express');
-            $detail_list = $model_express_province->where("express_id=$id")->select();
+            $detail_list = $model_express_province->where("express_id=$id and status<>9")->select();
             $this->assign("model_express_province", $detail_list);
         }
 
