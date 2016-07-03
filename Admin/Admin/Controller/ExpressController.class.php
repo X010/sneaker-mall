@@ -56,7 +56,17 @@ class ExpressController extends BaseController
      */
     public function delete_express()
     {
+        $id = I('id', 0);
+        if ($id > 0) {
+            //删除他的子项
+            $model_detail = M('province_express');
+            $model_detail->where("express_id=$id")->setField("status", 9);
 
+            //删除他的该物流公司
+            $model_express = M('db_express');
+            $model_express->where("id=$id")->setField("status", 9);
+        }
+        $this->redirect(U('express/express'));
     }
 
     /**
