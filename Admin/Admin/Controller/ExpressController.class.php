@@ -63,7 +63,7 @@ class ExpressController extends BaseController
             $model_detail->where("express_id=$id")->setField("status", 9);
 
             //删除他的该物流公司
-            $model_express = M('db_express');
+            $model_express = M('express');
             $model_express->where("id=$id")->setField("status", 9);
         }
         $this->redirect(U('express/express'));
