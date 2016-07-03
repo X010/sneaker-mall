@@ -131,7 +131,7 @@
                                             <div align="center">{$vo.continue_price}</div>
                                         </td>
                                         <td>
-                                            <div align="center"></div>
+                                            <div align="center"><a  class="btn-danger"  href="javascript:if(confirm('您确认删除该项吗?')){window.location.href='{:U('express/delete_express_detail')}&id={$vo.id}&express_id=$model_res.id'}"> 移除</a></div>
                                         </td>
                                     </tr>
                                 </foreach>

@@ -60,6 +60,20 @@ class ExpressController extends BaseController
     }
 
     /**
+     * 删除物流公司详情
+     */
+    public function delete_express_detail()
+    {
+        $id = I('id', 0);
+        $express_id = I('express_id', 0);
+        if ($id > 0) {
+            $model = M('province_express');
+            $model->where("id=$id")->setField("status", 9);
+        }
+        $this->redirect(U('express/detail') . "&id=$express_id");
+    }
+
+    /**
      * 物流列表详情
      */
     public function detail()
