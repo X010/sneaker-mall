@@ -2,7 +2,7 @@
 return array(
 'DB_TYPE'               =>  'mysql',     // 数据库类型
 'DB_HOST'               =>  '115.28.8.173', // 服务器地址sss
-'DB_NAME'               =>  'bmall-admin',          // 数据库名
+'DB_NAME'               =>  'bmall-jane',          // 数据库名
 'DB_USER'               =>  'root',      // 用户名
 'DB_PWD'                =>  'runnerpassword',          // 密码
 'DB_PORT'               =>  '3306',        // 端口
