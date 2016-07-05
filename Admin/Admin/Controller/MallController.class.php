@@ -310,7 +310,7 @@ class MallController extends BaseController{
         $url = '';
         
         if (!empty($app_id) && !empty($state) && $bind) {
-            $url = $wx_auth_url . 'appid=' . $app_id . '&ridirect_url=' . urlencode($wx_auth_callback_url) . '&response_type=code&scope=snsapi_base&state=' . $state . '#wechat_redirect';
+            $url = $wx_auth_url . 'appid=' . $app_id . '&redirect_url=' . urlencode($wx_auth_callback_url) . '&response_type=code&scope=snsapi_base&state=' . $state . '#wechat_redirect';
         }
         
         return $url;
