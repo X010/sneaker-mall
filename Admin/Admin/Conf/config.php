@@ -73,6 +73,6 @@ return array(
     ),
    // 微信商城设置相关
     'WEIXIN_AUTH_URL' => 'https://open.weixin.qq.com/connect/oauth2/authorize?',
-    'WEIXIN_AUTH_CALLBACK_URL' => 'http://local.wx.ms9d.com/index.html'
+    'WEIXIN_AUTH_CALLBACK_URL' => 'http://local.wx.test.ms9d.com/index.html'
 
 );
