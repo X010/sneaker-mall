@@ -185,7 +185,7 @@ class CouponController extends BaseController
             $coupt = $model->where(" id=$id")->select()[0];
             if ($coupt) {
                 if ($coupt['offline_send'] == 1) {
-                    $request_url = C('API_CK_URL') . "?cid=" . $coupt['company_id'];
+                    $request_url = C('API_CUSTOMER_URL') . "?cid=" . $coupt['company_id'];
                     $ck = file_get_contents($request_url);
                     $ck = json_decode($ck, true);
                     if ($ck) {
