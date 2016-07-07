@@ -111,7 +111,7 @@ class CouponController extends BaseController
             $model_detail = M('coupon_detail');
             $res = $model_detail->where(" id=$id")->setField("status", 9);
         }
-        $this->redirect(U('Coupon/detail')."&id=$coupon_id");
+        $this->redirect(U('Coupon/detail') . "&id=$coupon_id");
     }
 
     /**
@@ -181,10 +181,36 @@ class CouponController extends BaseController
         $id = I('id', 0);
         $model = M('coupon');
         $model_detail = M('coupon_detail');
-        if($id>0)
-        {
-
-            $res = $model->where(" id=$id")->setField("offline_send", 2); //设置为2表示已发放
+        if ($id > 0) {
+            $coupt = $model->where(" id=$id")->select()[0];
+            if ($coupt) {
+                if ($coupt['offline_send'] == 1) {
+                    $request_url = C('API_CK_URL') . "?cid=" . $coupt['company_id'];
+                    $ck = file_get_contents($request_url);
+                    $ck = json_decode($ck, true);
+                    if ($ck) {
+                        $current_time = date('Y-m-d H:i:s');
+                        foreach ($ck as $k) {
+                            $coupon_detail_data['ccid'] = $k['ccid'];
+                            $coupon_detail_data['company_id'] = $coupt['company_id'];
+                            $coupon_detail_data['coupon_id'] = $coupt['id'];
+                            $coupon_detail_data['coupon_name'] = $coupt['coupon_name'];
+                            $coupon_detail_data['create_time'] = $current_time;
+                            $coupon_detail_data['status'] = 3;
+                            $coupon_detail_data['coupon_money'] = $coupt['coupon_money'];
+                            $coupon_detail_data['coupon_small_money'] = $coupt['coupon_small_money'];
+                            $coupon_detail_data['coupon_type'] = $coupt['coupon_type'];
+                            $coupon_detail_data['coupon_send_start'] = $coupt['coupon_send_start'];
+                            $coupon_detail_data['coupon_send_end'] = $coupt['coupon_send_end'];
+                            $coupon_detail_data['coupon_use_start'] = $coupt['coupon_use_start'];
+                            $coupon_detail_data['coupon_use_end'] = $coupt['coupon_use_end'];
+                            $coupon_detail_data['merchandise'] = $coupt['merchandise'];
+                            $model_detail->add($coupon_detail_data);
+                        }
+                    }
+                    $res = $model->where(" id=$id")->setField("offline_send", 2); //设置为2表示已发放
+                }
+            }
         }
         $this->redirect(U('Coupon/clist'));
     }
