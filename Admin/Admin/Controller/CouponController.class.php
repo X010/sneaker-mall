@@ -197,6 +197,7 @@ class CouponController extends BaseController
                             $coupon_detail_data['coupon_name'] = $coupt['coupon_name'];
                             $coupon_detail_data['create_time'] = $current_time;
                             $coupon_detail_data['status'] = 3;
+                            $coupon_detail_data['customer_name']=$k['ccname'];
                             $coupon_detail_data['coupon_money'] = $coupt['coupon_money'];
                             $coupon_detail_data['coupon_small_money'] = $coupt['coupon_small_money'];
                             $coupon_detail_data['coupon_type'] = $coupt['coupon_type'];
