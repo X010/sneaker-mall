@@ -173,6 +173,22 @@ class CouponController extends BaseController
         $this->display('Coupon:detail');
     }
 
+    /**
+     * 发放用户红包与商品红包
+     */
+    public function send()
+    {
+        $id = I('id', 0);
+        $model = M('coupon');
+        $model_detail = M('coupon_detail');
+        if($id>0)
+        {
+
+            $res = $model->where(" id=$id")->setField("offline_send", 2); //设置为2表示已发放
+        }
+        $this->redirect(U('Coupon/clist'));
+    }
+
 
     /**
      *按公司获取优惠劵列表
