@@ -70,6 +70,7 @@ class CouponController extends BaseController
         $data['coupon_send_end'] = I('coupon_send_end', '');
         $data['coupon_use_start'] = I('coupon_use_start', '');
         $data['coupon_use_end'] = I('coupon_use_end', '');
+        $data['coupon_number']= I('coupon_number', '');
         $data['company_id'] = $company['id'];
         $data['merchandise'] = I('coupon_goods_ids', '');
         $data['coupon_status'] = 2;
