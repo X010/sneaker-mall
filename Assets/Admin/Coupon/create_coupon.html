@@ -280,7 +280,7 @@
             }
         }
 
-        if (coupon_type == 3 && index_str != null && index_str.length > 0) {
+        if ((coupon_type == 3||coupon_type==4 )&& index_str != null && index_str.length > 0) {
             ids = index_str.replace("><", ",");
             ids = ids.replace("<", "");
             ids = ids.replace(">", "");
