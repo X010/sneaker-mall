@@ -205,6 +205,7 @@ class CouponController extends BaseController
                             $coupon_detail_data['merchandise'] = $coupt['merchandise'];
                             $card_num = $this->getCardNumber($coupt['id']);
                             $coupon_detail_data['card_number'] = $card_num;
+                            $model_detail->add($coupon_detail_data);
                         }
                     } else {
                         $request_url = C('API_CUSTOMER_URL') . "?cid=" . $coupt['company_id'];
