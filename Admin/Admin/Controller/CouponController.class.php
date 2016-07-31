@@ -70,7 +70,7 @@ class CouponController extends BaseController
         $data['coupon_send_end'] = I('coupon_send_end', '');
         $data['coupon_use_start'] = I('coupon_use_start', '');
         $data['coupon_use_end'] = I('coupon_use_end', '');
-        $data['coupon_number']= I('coupon_number', '');
+        $data['coupon_number'] = I('coupon_number', '');
         $data['company_id'] = $company['id'];
         $data['merchandise'] = I('coupon_goods_ids', '');
         $data['coupon_status'] = 2;
@@ -186,19 +186,15 @@ class CouponController extends BaseController
             $coupt = $model->where(" id=$id")->select()[0];
             if ($coupt) {
                 if ($coupt['offline_send'] == 1) {
-                    $request_url = C('API_CUSTOMER_URL') . "?cid=" . $coupt['company_id'];
-                    $ck = file_get_contents($request_url);
-                    $ck = json_decode($ck, true);
-                    if ($ck) {
-                        $current_time = date('Y-m-d H:i:s');
-                        foreach ($ck as $k) {
-                            $coupon_detail_data['ccid'] = $k['ccid'];
+                    $current_time = date('Y-m-d H:i:s');
+                    if ($coupt['coupon_type'] == 4) {
+                        $coupon_number = $coupt['coupon_number'];
+                        for ($i = 0; $i < $coupon_number; $i++) {
                             $coupon_detail_data['company_id'] = $coupt['company_id'];
                             $coupon_detail_data['coupon_id'] = $coupt['id'];
                             $coupon_detail_data['coupon_name'] = $coupt['coupon_name'];
                             $coupon_detail_data['create_time'] = $current_time;
                             $coupon_detail_data['status'] = 3;
-                            $coupon_detail_data['customer_name']=$k['ccname'];
                             $coupon_detail_data['coupon_money'] = $coupt['coupon_money'];
                             $coupon_detail_data['coupon_small_money'] = $coupt['coupon_small_money'];
                             $coupon_detail_data['coupon_type'] = $coupt['coupon_type'];
@@ -207,7 +203,32 @@ class CouponController extends BaseController
                             $coupon_detail_data['coupon_use_start'] = $coupt['coupon_use_start'];
                             $coupon_detail_data['coupon_use_end'] = $coupt['coupon_use_end'];
                             $coupon_detail_data['merchandise'] = $coupt['merchandise'];
-                            $model_detail->add($coupon_detail_data);
+                            $card_num = $this->getCardNumber($coupt['id']);
+                            $coupon_detail_data['card_number'] = $card_num;
+                        }
+                    } else {
+                        $request_url = C('API_CUSTOMER_URL') . "?cid=" . $coupt['company_id'];
+                        $ck = file_get_contents($request_url);
+                        $ck = json_decode($ck, true);
+                        if ($ck) {
+                            foreach ($ck as $k) {
+                                $coupon_detail_data['ccid'] = $k['ccid'];
+                                $coupon_detail_data['company_id'] = $coupt['company_id'];
+                                $coupon_detail_data['coupon_id'] = $coupt['id'];
+                                $coupon_detail_data['coupon_name'] = $coupt['coupon_name'];
+                                $coupon_detail_data['create_time'] = $current_time;
+                                $coupon_detail_data['status'] = 3;
+                                $coupon_detail_data['customer_name'] = $k['ccname'];
+                                $coupon_detail_data['coupon_money'] = $coupt['coupon_money'];
+                                $coupon_detail_data['coupon_small_money'] = $coupt['coupon_small_money'];
+                                $coupon_detail_data['coupon_type'] = $coupt['coupon_type'];
+                                $coupon_detail_data['coupon_send_start'] = $coupt['coupon_send_start'];
+                                $coupon_detail_data['coupon_send_end'] = $coupt['coupon_send_end'];
+                                $coupon_detail_data['coupon_use_start'] = $coupt['coupon_use_start'];
+                                $coupon_detail_data['coupon_use_end'] = $coupt['coupon_use_end'];
+                                $coupon_detail_data['merchandise'] = $coupt['merchandise'];
+                                $model_detail->add($coupon_detail_data);
+                            }
                         }
                     }
                     $res = $model->where(" id=$id")->setField("offline_send", 2); //设置为2表示已发放
@@ -215,6 +236,29 @@ class CouponController extends BaseController
             }
         }
         $this->redirect(U('Coupon/clist'));
+    }
+
+    /**
+     * @param $num 生成卡密
+     */
+    private function getCardNumber($num)
+    {
+        $str = null;
+        $card_len = 12;//12位卡密
+        $strPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $strNum = $num . '';
+        $max = strlen($strPool) - 1;
+        $char_len = $card_len - strlen($strNum);
+
+        for ($i = 0; $i < $char_len; $i++) {
+            $str .= $strPool[rand(0, $max)];
+        }
+
+        $strNum = $strNum . $str;
+
+        $strNum = str_shuffle($strNum);
+
+        return $strNum;
     }
 
 
