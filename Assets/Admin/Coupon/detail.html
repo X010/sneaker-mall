@@ -48,6 +48,11 @@
                                     <th>
                                         <div align="center">发放时间</div>
                                     </th>
+                                    <if condition="$vo.card_number neq null">
+                                        <th>
+                                            <div align="center">卡密号码</div>
+                                        </th>
+                                    </if>
                                     <th>
                                         <div align="center">领取客户</div>
                                     </th>
@@ -69,6 +74,7 @@
                                     <th>
                                         <div align="center">操作</div>
                                     </th>
+
                                     <!--<th><div>描述</div> </th>-->
                                 </tr>
                                 </thead>
@@ -77,6 +83,11 @@
                                     <tr class="market_list">
                                         <td><div align="center">{$vo.id}</div></td>
                                         <td><div align="center">{$vo.create_time}</div></td>
+                                        <if condition="$vo.card_number neq null">
+                                            <th>
+                                                <div align="center">${$vo.card_number}</div>
+                                            </th>
+                                        </if>
                                         <td><div align="center">{$vo.customer_name}</div></td>
                                         <td><div align="center">{$vo.coupon_order_no}</div></td>
                                         <td><div align="center">{$vo.use_user_account}</div></td>
