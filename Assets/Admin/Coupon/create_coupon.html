@@ -246,7 +246,7 @@
     //修改选择的红包类型
     function selectCouponType() {
         var coupon_type = $('input[name="coupon_type"]:checked ').val();
-        if (coupon_type == 3) {
+        if (coupon_type == 3||coupon_type==4) {
             //按商品发放
             $("#search_goods").show();
         } else {
@@ -267,8 +267,18 @@
         var coupon_use_start = $("#coupon_use_start").val();
         var coupon_use_end = $("#coupon_use_end").val();
         var coupon_type = $('input[name="coupon_type"]:checked ').val();
+        var coupon_number=$("#coupon_number").val();
         var ids = "";
         var reg = new RegExp("^[0-9]*$");
+
+        if(coupon_type==4)
+        {
+            if(coupon_number==null||coupon_type=='undefined'||coupon_number<=0)
+            {
+                parent.layer.msg('请输入线下发送红包数量', {icon: 2, time: 2000});
+                return false;
+            }
+        }
 
         if (coupon_type == 3 && index_str != null && index_str.length > 0) {
             ids = index_str.replace("><", ",");
@@ -385,12 +395,19 @@
                                     </div>
                                 </div>
                                 <div class="form-group ">
+                                    <label class="col-sm-3 control-label">线下红包个数</label>
+                                    <div class="col-xs-7">
+                                        <input type="text" class="form-control" id="coupon_number" name="coupon_small_money" placeholder="40">
+                                    </div>
+                                </div>
+                                <div class="form-group ">
                                     <label class="col-sm-3 control-label">发放红包类型</label>
                                     <div class="col-xs-7">
                                         <input type="radio" name="coupon_type" onchange="selectCouponType();" checked value="1"> 按用户发放 &nbsp;&nbsp;<input
                                             type="radio" onchange="selectCouponType();" name="coupon_type"
                                             value="2"> 按订单金额发放 &nbsp;&nbsp;<input
-                                            type="radio" name="coupon_type" onchange="selectCouponType();" value="3"> 按商品发放
+                                            type="radio" name="coupon_type" onchange="selectCouponType();" value="3"> 按商品发放  &nbsp;&nbsp;<input
+                                            type="radio" name="coupon_type" onchange="selectCouponType();" value="4"> 线下红包
                                     </div>
                                 </div>
                                 <div class="form-group">
